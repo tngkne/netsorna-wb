@@ -3,142 +3,155 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Netsorna Boutique | Acrylic UV Print Wall Art</title>
-    <link rel="stylesheet" href="style.css">
-
-    <!-- Google tag (gtag.js) - Loaded conditionally via Consent Mode v2 -->
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        
-        // Default consent to denied (POPIA compliant)
-        gtag('consent', 'default', {
-            'ad_storage': 'denied',
-            'analytics_storage': 'denied',
-            'ad_user_data': 'denied',
-            'ad_personalization': 'denied'
-        });
-        
-        gtag('js', new Date());
-        gtag('config', 'G-G1W07ZCX7D');
-    </script>
+    <title>netsorna. | Made for the Moment. Kept for a Lifetime.</title>
+    
+    <!-- Netsorna Typography Bible (Fonts are linked here) -->
+    <link href="https://fonts.googleapis.com/css2?family=Arapey:ital@0;1&family=Monsieur+La+Doulaise&family=Poppins:wght@400;900&display=swap" rel="stylesheet">
+    
+    <!-- Link to the Style Sheet (provided next) -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <!-- START Google Analytics Tag -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-G1W07ZCX7D"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-G1W07ZCX7D');
+    </script>
+    <!-- END Google Analytics Tag -->
+
 </head>
 <body>
 
+    <!-- Accessible Skip Link -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Site Header & Main Navigation (Multi-Page Ready) -->
     <header class="site-header">
-        <div class="container">
-            <h1 class="logo">Netsorna</h1>
-            <p class="tagline">Personalized Acrylic UV Print Wall Art</p>
+        <div class="logo-wrapper">
+            <h1 class="logo">netsorna.</h1>
         </div>
+        <nav class="site-nav" aria-label="Main Navigation">
+            <ul>
+                <!-- Current Page marked with active class -->
+                <li><a href="index.html" class="active">Featured</a></li>
+                <li><a href="products/index.html">Products</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="terms.html">Terms</a></li>
+                <li><a href="policies.html">Policies</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <main class="container">
-        <section class="hero">
-            <h2>Bespoke Wall Art Pieces</h2>
-            <p>Delivered Nationwide across South Africa.</p>
-        </section>
-
-        <!-- Product Gallery Grid -->
-        <section class="gallery-grid" aria-label="Art Collection">
-            <div class="product-card">
-                <h3>3-Piece Acrylic UV Art Set (Small)</h3>
-                <p class="price">R2,550</p>
-                <button class="btn-quote" onclick="openQuoteModal('3-Piece Acrylic UV Art Set (Small)', 2550)">Get QUOTE</button>
+    <main id="main-content">
+        
+        <!-- START: Featured Signature Section (Lerato M.) -->
+        <section class="featured-spotlight" aria-labelledby="featured-heading">
+            <div class="pattern-overlay" aria-hidden="true"></div>
+            
+            <div class="spotlight-layout">
+                
+                <div class="signature-block">
+                    <!-- Signature Font Applied Here (MonsieurLaDoulaise) -->
+                    <p class="signature-font" aria-label="Signature of Lerato M.">Lerato M.</p>
+                </div>
+                
+                <div class="featured-image-wrapper">
+                    <!-- IMAGE PLACEHOLDER FOR: featured_product.webp -->
+                    <img src="assets/images/featured_product.webp" 
+                         alt="Framed original charcoal portrait of a subject, featured in the Netsorna Art Gallery."
+                         class="frame-image"
+                         width="300"
+                         height="360"
+                         loading="lazy">
+                </div>
+                
+                <div class="testimony-block">
+                    <p class="testimony-text">
+                        <span class="pull-quote">"</span>I really love how this art piece came out. 
+                        Big up to Tiisetso & his team for making my vision come true. 
+                        i really wish i could appreciate more. all i could say is thank you so so so so much.
+                    </p>
+                </div>
+                
             </div>
-            <div class="product-card">
-                <h3>4-Piece Acrylic UV Art Set (Large)</h3>
-                <p class="price">R3,350</p>
-                <button class="btn-quote" onclick="openQuoteModal('4-Piece Acrylic UV Art Set (Large)', 3350)">Get QUOTE</button>
+        </section>
+        <!-- END: Featured Signature Section -->
+
+        <!-- START: Featured Art Gallery Grid -->
+        <section class="art-collection" aria-labelledby="collection-heading">
+            
+            <div class="gallery-grid">
+                
+                <!-- CARD 1: Cracked Glass (Link to Single Product Page) -->
+                <article class="product-card">
+                    <div class="product-image-wrapper">
+                        <a href="product.html">
+                            <!-- IMAGE PLACEHOLDER FOR: product_1.webp -->
+                            <img src="assets/images/product_1.webp" 
+                                 alt="Acrylic Art featuring the Cracked Glass Series, a highly textured black and white hyper-realistic portrait."
+                                 width="400"
+                                 height="300"
+                                 loading="lazy">
+                        </a>
+                    </div>
+                    <div class="product-details">
+                        <h3 class="product-title">Acrylic Art Cracked Glass</h3>
+                        <p class="product-price">R1 999</p>
+                    </div>
+                </article>
+
+                <!-- CARD 2: Classic Style Painting (Link to Single Product Page) -->
+                <article class="product-card">
+                    <div class="product-image-wrapper">
+                        <a href="product.html">
+                            <!-- IMAGE PLACEHOLDER FOR: product_2.webp -->
+                            <img src="assets/images/product_2.webp" 
+                                 alt="Acrylic Art Classic Style Painting, a geometric abstract portrait with bold primary colors (red, blue, yellow) and black outlines."
+                                 width="400"
+                                 height="300"
+                                 loading="lazy">
+                        </a>
+                    </div>
+                    <div class="product-details">
+                        <h3 class="product-title">Acrylic Art Classic Style Painting</h3>
+                        <p class="product-price">R1 399</p>
+                    </div>
+                </article>
+
+                <!-- CARD 3: Modern Style Painting (Link to Single Product Page) -->
+                <article class="product-card">
+                    <div class="product-image-wrapper">
+                        <a href="product.html">
+                            <!-- IMAGE PLACEHOLDER FOR: product_3.webp -->
+                            <img src="assets/images/product_3.webp" 
+                                 alt="Acrylic Art Modern Style Painting, a vibrant pop-art portrait of a subject with teal hair on a soft pink background."
+                                 width="400"
+                                 height="300"
+                                 loading="lazy">
+                        </a>
+                    </div>
+                    <div class="product-details">
+                        <h3 class="product-title">Acrylic Art Modern Style Painting</h3>
+                        <p class="product-price">R1 649</p>
+                    </div>
+                </article>
+                
             </div>
         </section>
+        <!-- END: Featured Art Gallery Grid -->
 
-        <!-- Quote Modal / Form Section -->
-        <section id="quote-section" class="quote-section" style="display:none;">
-            <h3>Request a Quote for <span id="modal-product-name"></span></h3>
-            <form id="quote-form">
-                <input type="hidden" id="form-product-name" name="product_name">
-                <input type="hidden" id="form-product-price" name="product_price">
-
-                <div class="form-group">
-                    <label for="customer-type">Customer Type:</label>
-                    <select id="customer-type" name="customer_type" onchange="toggleCustomerType()">
-                        <option value="IND">Individual / B2C</option>
-                        <option value="BSN">Business / Group</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="first-name">First Name:</label>
-                    <input type="text" id="first-name" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="last-name">Surname:</label>
-                    <input type="text" id="last-name" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="whatsapp-num">WhatsApp Number:</label>
-                    <input type="tel" id="whatsapp-num" placeholder="0712345678" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="city">City:</label>
-                    <input type="text" id="city" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="province">Province:</label>
-                    <select id="province" name="province" required>
-                        <option value="">Select Province...</option>
-                        <option value="GP">Gauteng</option>
-                        <option value="WC">Western Cape</option>
-                        <option value="KZN">KwaZulu-Natal</option>
-                        <option value="EC">Eastern Cape</option>
-                        <option value="FS">Free State</option>
-                        <option value="MP">Mpumalanga</option>
-                        <option value="LP">Limpopo</option>
-                        <option value="NW">North West</option>
-                        <option value="NC">Northern Cape</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="area-code">Area Code:</label>
-                    <input type="text" id="area-code" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="urgency">Urgency Level:</label>
-                    <select id="urgency" name="urgency">
-                        <option value="WSTN">I want it soon (WSTN)</option>
-                        <option value="WRLY">I want to reserve / Lay-By (WRLY)</option>
-                        <option value="WTAK">I want to ask (WTAK)</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label>
-                        <input type="checkbox" id="whatsapp-consent" required>
-                        I consent to being contacted via WhatsApp for order communications.
-                    </label>
-                </div>
-
-                <button type="submit" class="btn-submit">Submit & Continue to WhatsApp</button>
-            </form>
-        </section>
     </main>
 
-    <!-- POPIA Cookie Consent Banner -->
-    <div id="cookie-banner" class="cookie-banner">
-        <p>We use cookies to enhance your experience and analyze traffic in compliance with POPIA. <a href="#">Privacy Policy</a></p>
-        <div class="cookie-buttons">
-            <button onclick="handleConsent('granted')" class="btn-accept">Accept All</button>
-            <button onclick="handleConsent('denied')" class="btn-decline">Essential Only</button>
+    <!-- Basic Footer (will expand on the Contact Page) -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <p>&copy; 2026 netsorna. All Rights Reserved. South African Handcrafted Art.</p>
         </div>
-    </div>
+    </footer>
 
-    <script src="script.js"></script>
 </body>
 </html>
