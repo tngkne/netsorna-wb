@@ -1,91 +1,67 @@
-document.addEventListener("DOMContentLoaded", function() {
-    
-    // 1. Cookie Consent Handling
-    document.getElementById("accept-cookies").addEventListener("click", function() {
-        gtag('consent', 'update', {
-            'ad_storage': 'granted',
-            'analytics_storage': 'granted',
-            'ad_user_data': 'granted',
-            'ad_personalization': 'granted'
-        });
-        gtag('event', 'cookie_consent_granted', { 'consent_type': 'all' });
-        document.getElementById("cookie-banner").style.display = 'none';
+// POPIA Cookie Handling
+function handleConsent(status) {
+    gtag('consent', 'update', {
+        'analytics_storage': status,
+        'ad_storage': status,
+        'ad_user_data': status,
+        'ad_personalization': status
+    });
+    document.getElementById('cookie-banner').style.display = 'none';
+}
+
+function openQuoteModal(productName, price) {
+    document.getElementById('quote-section').style.display = 'block';
+    document.getElementById('modal-product-name').innerText = productName;
+    document.getElementById('form-product-name').value = productName;
+    document.getElementById('form-product-price').value = price;
+    document.getElementById('quote-section').scrollIntoView({ behavior: 'smooth' });
+}
+
+function generateShortCode() {
+    const randomHex = Math.floor(100000 + Math.random() * 900000);
+    return `#fxxh${randomHex}`;
+}
+
+document.getElementById('quote-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const productName = document.getElementById('form-product-name').value;
+    const price = document.getElementById('form-product-price').value;
+    const firstName = document.getElementById('first-name').value;
+    const lastName = document.getElementById('last-name').value;
+    const phone = document.getElementById('whatsapp-num').value;
+    const shortCode = generateShortCode();
+
+    const today = new Date();
+    const dateStr = today.toISOString().split('T')[0].replace(/-/g, '/');
+    const timeStr = today.toTimeString().split(' ')[0].substring(0, 5);
+
+    // Format formatted WhatsApp receipt text
+    const message = 
+`NEW QUOTE 
+--------------------
+QUOTE No: ${shortCode}
+Customer: ${firstName} ${lastName}
+Phone: ${phone}
+Date: ${dateStr}
+Time: ${timeStr}
+--------------------
+SERVICES:
+  * ${productName} x1  R${price}.00
+--------------------
+TOTAL: R${price}.00
+--------------------
+Hi there -- Netsorna Boutique
+Please confirm my quotation. I'm interested in ${productName}.`;
+
+    // Analytics event track
+    gtag('event', 'form_submitted', {
+        'event_category': 'Quote',
+        'event_label': shortCode
     });
 
-    document.getElementById("essential-cookies").addEventListener("click", function() {
-        gtag('consent', 'update', {
-            'ad_storage': 'denied',
-            'analytics_storage': 'granted',
-            'ad_user_data': 'denied',
-            'ad_personalization': 'denied'
-        });
-        gtag('event', 'cookie_consent_granted', { 'consent_type': 'essential' });
-        document.getElementById("cookie-banner").style.display = 'none';
-    });
-
-    // Capture UTM parameters from URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const utmSource = urlParams.get('utm_source') || 'direct';
-    const utmCampaign = urlParams.get('utm_campaign') || 'none';
-
-    // 2. Quote Initiated Event
-    const quoteBtn = document.getElementById("get-quote-btn");
-    quoteBtn.addEventListener("click", function() {
-        gtag('event', 'quote_initiated', {
-            'event_category': 'Engagement',
-            'utm_source': utmSource
-        });
-        document.getElementById("quote-section").scrollIntoView({ behavior: 'smooth' });
-    });
-
-    // 3. Form Started Event (fires on first input change)
-    let formStartedFired = false;
-    const form = document.getElementById("quote-form");
-    const productSelect = document.getElementById("product-select");
-
-    productSelect.addEventListener("change", function() {
-        if (!formStartedFired) {
-            gtag('event', 'form_started', {
-                'product_name': productSelect.value
-            });
-            formStartedFired = true;
-        }
-    });
-
-    // 4. Form Submitted & WhatsApp Handoff
-    form.addEventListener("submit", function(e) {
-        e.preventDefault();
-
-        const productName = productSelect.value;
-        const customerType = document.getElementById("customer-type").value;
-        const province = document.getElementById("province-select").value;
-        const urgency = document.getElementById("urgency-select").value;
-        const quoteCode = 'NET-' + Math.floor(1000 + Math.random() * 9000);
-
-        // Fire GA4 Form Submitted Event
-        gtag('event', 'form_submitted', {
-            'product_name': productName,
-            'customer_type': customerType,
-            'province': province,
-            'urgency': urgency,
-            'quote_code': quoteCode,
-            'utm_source': utmSource,
-            'utm_campaign': utmCampaign
-        });
-
-        // Fire GA4 WhatsApp Redirect Event
-        gtag('event', 'whatsapp_redirect', {
-            'quote_code': quoteCode,
-            'utm_source': utmSource
-        });
-
-        // Redirect to WhatsApp Business with pre-filled message
-        const phone = "27820000000"; // Replace with your WhatsApp business number
-        const text = encodeURIComponent(`Hi Netsorna, I'd like to finalize my quote! Ref: ${quoteCode}\nProduct: ${productName}\nProvince: ${province}\nUrgency: ${urgency}`);
-        
-        setTimeout(function() {
-            window.location.href = `https://wa.me/${phone}?text=${text}`;
-        }, 500);
-    });
+    // WhatsApp Redirect Link (Insert your target WhatsApp Number here)
+    const targetPhone = "27123456789"; // Replace with your WhatsApp Business Number
+    const encodedMessage = encodeURIComponent(message);
+    window.open(`https://wa.me/${targetPhone}?text=${encodedMessage}`, '_blank');
 });
-
