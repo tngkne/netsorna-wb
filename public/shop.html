@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop — Netsorna Art Collection</title>
+  <meta name="description" content="Browse our curated collection of acrylic art, custom portraits, and unique artistic pieces. Filter by style, artist, and price.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/shop.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%231A1A1A'/%3E%3Cpath d='M8 8h16v16H8z' fill='%23F5F0EB'/%3E%3C/svg%3E">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header" id="header">
+    <div class="container">
+      <div class="header-inner">
+        <a href="index.html" class="logo">
+          <span class="logo-mark">
+            <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><rect width="16" height="16" fill="currentColor"/></svg>
+          </span>
+          netsorna.
+        </a>
+        <nav class="nav-main" aria-label="Main navigation">
+          <a href="shop.html" class="nav-link active">Shop</a>
+          <a href="featured.html" class="nav-link">Featured</a>
+          <a href="blog.html" class="nav-link">Journal</a>
+          <a href="faqs.html" class="nav-link">FAQs</a>
+          <a href="custom-order.html" class="nav-link">Custom Order</a>
+        </nav>
+        <div class="nav-actions">
+          <button class="nav-icon-btn" aria-label="Search" id="searchToggle">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          </button>
+          <button class="nav-icon-btn" aria-label="Cart" id="cartToggle" style="position:relative;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+            <span class="cart-count" id="cartCount" style="display:none;">0</span>
+          </button>
+          <button class="mobile-menu-btn" aria-label="Menu" id="mobileMenuBtn"><span></span><span></span><span></span></button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Search Overlay -->
+  <div class="search-overlay" id="searchOverlay" style="display:none;position:fixed;inset:0;background:rgba(245,240,235,0.98);z-index:500;padding:var(--space-8);align-items:center;justify-content:center;">
+    <div style="width:100%;max-width:600px;">
+      <div style="display:flex;align-items:center;gap:var(--space-4);border-bottom:2px solid var(--color-border);padding-bottom:var(--space-4);">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <input type="text" placeholder="Search art, artists, styles..." id="searchInput" style="flex:1;border:none;background:transparent;font-size:var(--text-2xl);font-family:var(--font-display);outline:none;" autofocus>
+        <button id="searchClose" style="font-size:var(--text-sm);text-transform:uppercase;letter-spacing:0.05em;font-weight:600;">Close</button>
+      </div>
+      <div id="searchResults" style="margin-top:var(--space-6);"></div>
+    </div>
+  </div>
+
+  <main>
+    <!-- Shop Header -->
+    <section style="padding:var(--space-16) 0 var(--space-8);border-bottom:2px solid var(--color-border);">
+      <div class="container">
+        <p class="text-uppercase" style="color:var(--color-accent);margin-bottom:var(--space-3);">Collection</p>
+        <h1 style="font-size:var(--text-4xl);margin-bottom:var(--space-4);">All Artworks</h1>
+        <p style="color:var(--color-gray);max-width:600px;">Browse our curated selection of acrylic art pieces, from emotive portraits to bold abstract works. Each piece is handcrafted by talented South African artists.</p>
+      </div>
+    </section>
+
+    <!-- Filters & Products -->
+    <section style="padding:var(--space-8) 0 var(--space-20);">
+      <div class="container">
+        <div style="display:grid;grid-template-columns:240px 1fr;gap:var(--space-8);">
+          <!-- Sidebar Filters -->
+          <aside class="shop-filters" id="shopFilters">
+            <div style="position:sticky;top:80px;">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--space-5);">
+                <h3 style="font-family:var(--font-display);font-size:var(--text-lg);">Filters</h3>
+                <button class="btn-ghost" id="clearFilters" style="font-size:var(--text-sm);display:none;">Clear</button>
+              </div>
+              
+              <!-- Category Filter -->
+              <div style="margin-bottom:var(--space-6);padding-bottom:var(--space-6);border-bottom:1px solid var(--color-border-light);">
+                <h4 style="font-size:var(--text-sm);font-weight:600;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:var(--space-3);">Category</h4>
+                <div style="display:flex;flex-direction:column;gap:var(--space-2);">
+                  <label style="display:flex;align-items:center;gap:var(--space-2);cursor:pointer;font-size:var(--text-sm);">
+                    <input type="checkbox" name="category" value="portraits" class="filter-checkbox">
+                    <span>Portraits</span>
+                  </label>
+                  <label style="display:flex;align-items:center;gap:var(--space-2);cursor:pointer;font-size:var(--text-sm);">
+                    <input type="checkbox" name="category" value="abstract" class="filter-checkbox">
+                    <span>Abstract</span>
+                  </label>
+                  <label style="display:flex;align-items:center;gap:var(--space-2);cursor:pointer;font-size:var(--text-sm);">
+                    <input type="checkbox" name="category" value="classic" class="filter-checkbox">
+                    <span>Classic</span>
+                  </label>
+                  <label style="display:flex;align-items:center;gap:var(--space-2);cursor:pointer;font-size:var(--text-sm);">
+                    <input type="checkbox" name="category" value="modern" class="filter-checkbox">
+                    <span>Modern</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Price Filter -->
+              <div style="margin-bottom:var(--space-6);padding-bottom:var(--space-6);border-bottom:1px solid var(--color-border-light);">
+                <h4 style="font-size:var(--text-sm);font-weight:600;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:var(--space-3);">Price</h4>
+                <div style="display:flex;flex-direction:column;gap:var(--space-2);">
+                  <label style="display:flex;align-items:center;gap:var(--space-2);cursor:pointer;font-size:var(--text-sm);">
+                    <input type="radio" name="price" value="all" checked class="filter-radio">
+                    <span>All Prices</span>
+                  </label>
+                  <label style="display:flex;align-items:center;gap:var(--space-2);cursor:pointer;font-size:var(--text-sm);">
+                    <input type="radio" name="price" value="under-1000" class="filter-radio">
+                    <span>Under R1 000</span>
+                  </label>
+                  <label style="display:flex;align-items:center;gap:var(--space-2);cursor:pointer;font-size:var(--text-sm);">
+                    <input type="radio" name="price" value="1000-2000" class="filter-radio">
+                    <span>R1 000 – R2 000</span>
+                  </label>
+                  <label style="display:flex;align-items:center;gap:var(--space-2);cursor:pointer;font-size:var(--text-sm);">
+                    <input type="radio" name="price" value="over-2000" class="filter-radio">
+                    <span>Over R2 000</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Availability -->
+              <div>
+                <h4 style="font-size:var(--text-sm);font-weight:600;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:var(--space-3);">Availability</h4>
+                <label style="display:flex;align-items:center;gap:var(--space-2);cursor:pointer;font-size:var(--text-sm);">
+                  <input type="checkbox" id="inStockOnly" class="filter-checkbox">
+                  <span>In Stock Only</span>
+                </label>
+              </div>
+            </div>
+          </aside>
+
+          <!-- Product Grid -->
+          <div>
+            <!-- Sort & Count -->
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--space-6);padding-bottom:var(--space-4);border-bottom:1px solid var(--color-border-light);">
+              <p style="font-size:var(--text-sm);color:var(--color-gray);"><span id="resultCount">12</span> products</p>
+              <div style="display:flex;align-items:center;gap:var(--space-3);">
+                <label style="font-size:var(--text-sm);color:var(--color-gray);">Sort by:</label>
+                <select id="sortSelect" class="form-select" style="width:auto;min-height:36px;padding:var(--space-1) var(--space-3);">
+                  <option value="newest">Newest</option>
+                  <option value="price-low">Price: Low to High</option>
+                  <option value="price-high">Price: High to Low</option>
+                  <option value="name">Name</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Products -->
+            <div class="product-grid" id="shopProductGrid">
+              <article class="card product-card" data-category="portraits" data-price="1999" data-stock="3">
+                <a href="product.html?id=acrylic-cracked-glass" style="display:block;">
+                  <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=500&h=650&fit=crop&q=80" alt="Acrylic Art Cracked Glass" loading="lazy">
+                    <span class="badge badge-primary" style="position:absolute;top:var(--space-3);left:var(--space-3);">New</span>
+                  </div>
+                </a>
+                <div class="card-body">
+                  <a href="product.html?id=acrylic-cracked-glass">
+                    <h3 class="card-title">Acrylic Art<br>Cracked Glass</h3>
+                  </a>
+                  <p class="card-subtitle">Mixed media on canvas</p>
+                  <div style="display:flex;justify-content:space-between;align-items:center;margin-top:var(--space-3);">
+                    <p class="card-price">R1 999</p>
+                    <button class="btn btn-sm add-to-cart" data-id="acrylic-cracked-glass" data-name="Acrylic Art Cracked Glass" data-price="1999" data-image="https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=200&h=260&fit=crop&q=80">Add</button>
+                  </div>
+                </div>
+              </article>
+
+              <article class="card product-card" data-category="classic" data-price="1399" data-stock="5">
+                <a href="product.html?id=acrylic-classic-style" style="display:block;">
+                  <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1549490349-8643362247b5?w=500&h=650&fit=crop&q=80" alt="Acrylic Art Classic Style" loading="lazy">
+                  </div>
+                </a>
+                <div class="card-body">
+                  <a href="product.html?id=acrylic-classic-style">
+                    <h3 class="card-title">Acrylic Art Classic<br>Style Painting</h3>
+                  </a>
+                  <p class="card-subtitle">Traditional technique</p>
+                  <div style="display:flex;justify-content:space-between;align-items:center;margin-top:var(--space-3);">
+                    <p class="card-price">R1 399</p>
+                    <button class="btn btn-sm add-to-cart" data-id="acrylic-classic-style" data-name="Acrylic Art Classic Style" data-price="1399" data-image="https://images.unsplash.com/photo-1549490349-8643362247b5?w=200&h=260&fit=crop&q=80">Add</button>
+                  </div>
+                </div>
+              </article>
+
+              <article class="card product-card" data-category="modern" data-price="1649" data-stock="2">
+                <a href="product.html?id=acrylic-modern-style" style="display:block;">
+                  <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=500&h=650&fit=crop&q=80" alt="Acrylic Art Modern Style" loading="lazy">
+                    <span class="badge badge-accent" style="position:absolute;top:var(--space-3);left:var(--space-3);">Bestseller</span>
+                  </div>
+                </a>
+                <div class="card-body">
+                  <a href="product.html?id=acrylic-modern-style">
+                    <h3 class="card-title">Acrylic Art Modern<br>Style Painting</h3>
+                  </a>
+                  <p class="card-subtitle">Contemporary expression</p>
+                  <div style="display:flex;justify-content:space-between;align-items:center;margin-top:var(--space-3);">
+                    <p class="card-price">R1 649</p>
+                    <button class="btn btn-sm add-to-cart" data-id="acrylic-modern-style" data-name="Acrylic Art Modern Style" data-price="1649" data-image="https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=200&h=260&fit=crop&q=80">Add</button>
+                  </div>
+                </div>
+              </article>
+
+              <article class="card product-card" data-category="abstract" data-price="2499" data-stock="1">
+                <a href="product.html?id=abstract-horizons" style="display:block;">
+                  <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1549887534-1541e9326642?w=500&h=650&fit=crop&q=80" alt="Abstract Horizons" loading="lazy">
+                  </div>
+                </a>
+                <div class="card-body">
+                  <a href="product.html?id=abstract-horizons">
+                    <h3 class="card-title">Abstract<br>Horizons</h3>
+                  </a>
+                  <p class="card-subtitle">Large format canvas</p>
+                  <div style="display:flex;justify-content:space-between;align-items:center;margin-top:var(--space-3);">
+                    <p class="card-price">R2 499</p>
+                    <button class="btn btn-sm add-to-cart" data-id="abstract-horizons" data-name="Abstract Horizons" data-price="2499" data-image="https://images.unsplash.com/photo-1549887534-1541e9326642?w=200&h=260&fit=crop&q=80">Add</button>
+                  </div>
+                </div>
+              </article>
+
+              <article class="card product-card" data-category="portraits" data-price="1899" data-stock="4">
+                <a href="product.html?id=soul-gaze-portrait" style="display:block;">
+                  <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1576769267415-9642010aa962?w=500&h=650&fit=crop&q=80" alt="Soul Gaze Portrait" loading="lazy">
+                  </div>
+                </a>
+                <div class="card-body">
+                  <a href="product.html?id=soul-gaze-portrait">
+                    <h3 class="card-title">Soul Gaze<br>Portrait</h3>
+                  </a>
+                  <p class="card-subtitle">Charcoal & acrylic blend</p>
+                  <div style="display:flex;justify-content:space-between;align-items:center;margin-top:var(--space-3);">
+                    <p class="card-price">R1 899</p>
+                    <button class="btn btn-sm add-to-cart" data-id="soul-gaze-portrait" data-name="Soul Gaze Portrait" data-price="1899" data-image="https://images.unsplash.com/photo-1576769267415-9642010aa962?w=200&h=260&fit=crop&q=80">Add</button>
+                  </div>
+                </div>
+              </article>
+
+              <article class="card product-card" data-category="classic" data-price="1599" data-stock="6">
+                <a href="product.html?id=heritage-series-1" style="display:block;">
+                  <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1578926078680-0db9438a21b2?w=500&h=650&fit=crop&q=80" alt="Heritage Series I" loading="lazy">
+                    <span class="badge badge-primary" style="position:absolute;top:var(--space-3);left:var(--space-3);">New</span>
+                  </div>
+                </a>
+                <div class="card-body">
+                  <a href="product.html?id=heritage-series-1">
+                    <h3 class="card-title">Heritage Series<br>I</h3>
+                  </a>
+                  <p class="card-subtitle">Oil on canvas</p>
+                  <div style="display:flex;justify-content:space-between;align-items:center;margin-top:var(--space-3);">
+                    <p class="card-price">R1 599</p>
+                    <button class="btn btn-sm add-to-cart" data-id="heritage-series-1" data-name="Heritage Series I" data-price="1599" data-image="https://images.unsplash.com/photo-1578926078680-0db9438a21b2?w=200&h=260&fit=crop&q=80">Add</button>
+                  </div>
+                </div>
+              </article>
+
+              <article class="card product-card" data-category="modern" data-price="2199" data-stock="3">
+                <a href="product.html?id=urban-dreamscape" style="display:block;">
+                  <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1549490349-8643362247b5?w=500&h=650&fit=crop&q=80" alt="Urban Dreamscape" loading="lazy">
+                  </div>
+                </a>
+                <div class="card-body">
+                  <a href="product.html?id=urban-dreamscape">
+                    <h3 class="card-title">Urban<br>Dreamscape</h3>
+                  </a>
+                  <p class="card-subtitle">Mixed media collage</p>
+                  <div style="display:flex;justify-content:space-between;align-items:center;margin-top:var(--space-3);">
+                    <p class="card-price">R2 199</p>
+                    <button class="btn btn-sm add-to-cart" data-id="urban-dreamscape" data-name="Urban Dreamscape" data-price="2199" data-image="https://images.unsplash.com/photo-1549490349-8643362247b5?w=200&h=260&fit=crop&q=80">Add</button>
+                  </div>
+                </div>
+              </article>
+
+              <article class="card product-card" data-category="abstract" data-price="1799" data-stock="2">
+                <a href="product.html?id=chromatic-flow" style="display:block;">
+                  <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=500&h=650&fit=crop&q=80" alt="Chromatic Flow" loading="lazy">
+                  </div>
+                </a>
+                <div class="card-body">
+                  <a href="product.html?id=chromatic-flow">
+                    <h3 class="card-title">Chromatic<br>Flow</h3>
+                  </a>
+                  <p class="card-subtitle">Fluid acrylic technique</p>
+                  <div style="display:flex;justify-content:space-between;align-items:center;margin-top:var(--space-3);">
+                    <p class="card-price">R1 799</p>
+                    <button class="btn btn-sm add-to-cart" data-id="chromatic-flow" data-name="Chromatic Flow" data-price="1799" data-image="https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=200&h=260&fit=crop&q=80">Add</button>
+                  </div>
+                </div>
+              </article>
+
+              <article class="card product-card" data-category="portraits" data-price="2899" data-stock="1">
+                <a href="product.html?id=ancestral-wisdom" style="display:block;">
+                  <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1578301978162-7aae4d755744?w=500&h=650&fit=crop&q=80" alt="Ancestral Wisdom" loading="lazy">
+                    <span class="badge badge-accent" style="position:absolute;top:var(--space-3);left:var(--space-3);">Limited</span>
+                  </div>
+                </a>
+                <div class="card-body">
+                  <a href="product.html?id=ancestral-wisdom">
+                    <h3 class="card-title">Ancestral<br>Wisdom</h3>
+                  </a>
+                  <p class="card-subtitle">Large format portrait</p>
+                  <div style="display:flex;justify-content:space-between;align-items:center;margin-top:var(--space-3);">
+                    <p class="card-price">R2 899</p>
+                    <button class="btn btn-sm add-to-cart" data-id="ancestral-wisdom" data-name="Ancestral Wisdom" data-price="2899" data-image="https://images.unsplash.com/photo-1578301978162-7aae4d755744?w=200&h=260&fit=crop&q=80">Add</button>
+                  </div>
+                </div>
+              </article>
+            </div>
+
+            <!-- Pagination -->
+            <div style="display:flex;justify-content:center;gap:var(--space-2);margin-top:var(--space-12);">
+              <button class="btn btn-sm btn-outline" disabled>Previous</button>
+              <button class="btn btn-sm" style="min-width:40px;">1</button>
+              <button class="btn btn-sm btn-outline" style="min-width:40px;">2</button>
+              <button class="btn btn-sm btn-outline" style="min-width:40px;">3</button>
+              <button class="btn btn-sm btn-outline">Next</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo" style="color:var(--color-cream);">
+            <span class="logo-mark" style="background:var(--color-cream);"><svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><rect width="16" height="16" fill="#1A1A1A"/></svg></span>
+            netsorna.
+          </a>
+          <p>Premium acrylic art and custom portraits handcrafted by South African artists.</p>
+        </div>
+        <div>
+          <h4 class="footer-title">Shop</h4>
+          <div class="footer-links">
+            <a href="shop.html">All Artworks</a>
+            <a href="shop.html?category=portraits">Portraits</a>
+            <a href="shop.html?category=abstract">Abstract</a>
+            <a href="custom-order.html">Custom Orders</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-title">Company</h4>
+          <div class="footer-links">
+            <a href="featured.html">Featured Artists</a>
+            <a href="blog.html">Journal</a>
+            <a href="faqs.html">FAQs</a>
+            <a href="terms.html">Terms</a>
+            <a href="privacy.html">Privacy</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-title">Connect</h4>
+          <div class="footer-links">
+            <a href="https://instagram.com/netsorna" target="_blank" rel="noopener">Instagram</a>
+            <a href="https://facebook.com/netsorna" target="_blank" rel="noopener">Facebook</a>
+            <a href="whatsapp-inquiry.html">WhatsApp</a>
+            <a href="mailto:hello@netsorna.art">hello@netsorna.art</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Netsorna. All rights reserved.</p>
+        <p>Crafted in South Africa</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Cart Drawer -->
+  <div class="cart-drawer-overlay" id="cartOverlay"></div>
+  <aside class="cart-drawer" id="cartDrawer" aria-label="Shopping cart">
+    <div class="cart-header">
+      <h2 class="cart-title">Your Cart</h2>
+      <button class="cart-close" id="cartClose" aria-label="Close cart">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-footer" id="cartFooter" style="display:none;">
+      <div class="cart-subtotal"><span>Subtotal</span><span class="cart-subtotal-value" id="cartSubtotal">R0</span></div>
+      <p class="cart-note">Shipping and taxes calculated at checkout.</p>
+      <a href="checkout.html" class="btn" style="width:100%;">Proceed to Checkout</a>
+      <button class="btn btn-ghost" style="width:100%;margin-top:var(--space-3);" id="continueShopping">Continue Shopping</button>
+    </div>
+  </aside>
+
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="js/main.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/shop.js"></script>
+  <script src="js/search.js"></script>
+  <script src="js/consent.js"></script>
+  <script src="js/analytics.js"></script>
+</body>
+</html>
