@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Netsorna — Premium Acrylic Art & Custom Portraits</title>
+  <meta name="description" content="Discover handcrafted acrylic art, custom portraits, and unique artistic pieces. Commission your vision with Netsorna.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%231A1A1A'/%3E%3Cpath d='M8 8h16v16H8z' fill='%23F5F0EB'/%3E%3C/svg%3E">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header" id="header">
+    <div class="container">
+      <div class="header-inner">
+        <a href="index.html" class="logo">
+          <span class="logo-mark">
+            <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+              <rect width="16" height="16" fill="currentColor"/>
+            </svg>
+          </span>
+          netsorna.
+        </a>
+        <nav class="nav-main" aria-label="Main navigation">
+          <a href="shop.html" class="nav-link">Shop</a>
+          <a href="featured.html" class="nav-link">Featured</a>
+          <a href="blog.html" class="nav-link">Journal</a>
+          <a href="faqs.html" class="nav-link">FAQs</a>
+          <a href="custom-order.html" class="nav-link">Custom Order</a>
+        </nav>
+        <div class="nav-actions">
+          <button class="nav-icon-btn" aria-label="Search" id="searchToggle">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>
+            </svg>
+          </button>
+          <button class="nav-icon-btn" aria-label="Cart" id="cartToggle" style="position:relative;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/>
+              <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
+            </svg>
+            <span class="cart-count" id="cartCount" style="display:none;">0</span>
+          </button>
+          <button class="mobile-menu-btn" aria-label="Menu" id="mobileMenuBtn">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Search Overlay -->
+  <div class="search-overlay" id="searchOverlay" style="display:none;position:fixed;inset:0;background:rgba(245,240,235,0.98);z-index:500;padding:var(--space-8);align-items:center;justify-content:center;">
+    <div style="width:100%;max-width:600px;">
+      <div style="display:flex;align-items:center;gap:var(--space-4);border-bottom:2px solid var(--color-border);padding-bottom:var(--space-4);">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <input type="text" placeholder="Search art, artists, styles..." id="searchInput" style="flex:1;border:none;background:transparent;font-size:var(--text-2xl);font-family:var(--font-display);outline:none;" autofocus>
+        <button id="searchClose" style="font-size:var(--text-sm);text-transform:uppercase;letter-spacing:0.05em;font-weight:600;">Close</button>
+      </div>
+      <div id="searchResults" style="margin-top:var(--space-6);"></div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <main>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-content">
+            <p class="hero-label">Handcrafted in South Africa</p>
+            <h1 class="hero-title">Art That Speaks<br>Your Story</h1>
+            <p class="hero-subtitle">Commission bespoke acrylic portraits and discover curated art pieces from talented local artists. Every piece tells a story worth hanging.</p>
+            <div class="hero-actions">
+              <a href="shop.html" class="btn btn-lg">Explore Collection</a>
+              <a href="custom-order.html" class="btn btn-secondary btn-lg">Commission Art</a>
+            </div>
+          </div>
+          <div class="hero-image">
+            <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=800&h=1000&fit=crop&q=80" alt="Colorful abstract acrylic painting on canvas" loading="eager">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Artist Section -->
+    <section class="featured-section section-divider">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Featured Artist</h2>
+          <a href="featured.html" class="section-link">View All Artists <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+        <div class="featured-grid">
+          <div class="featured-left">
+            <p class="featured-signature">Lerato M.</p>
+            <h3 class="featured-name" style="font-size:var(--text-4xl);">Lerato M.</h3>
+            <p style="font-size:var(--text-base);color:var(--color-gray);line-height:1.7;margin-bottom:var(--space-6);">Acrylic portrait artist specializing in emotive black-and-white portraiture. Each piece captures the soul of the subject through careful attention to light, shadow, and expression.</p>
+            <a href="featured.html" class="btn">View Artist Profile</a>
+          </div>
+          <div class="featured-right">
+            <div class="featured-image">
+              <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=600&h=750&fit=crop&q=80" alt="Portrait of Lerato M. holding her artwork" loading="lazy">
+            </div>
+            <blockquote class="featured-quote">
+              "I really love how this art piece came out. Big up to Tiisetso & his team for making my vision come true. I really wish I could appreciate more. All I could say is thank you so so so so much."
+            </blockquote>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="section section-divider">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Latest Arrivals</h2>
+          <a href="shop.html" class="section-link">View All <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+        <div class="product-grid" id="productGrid">
+          <article class="card">
+            <div class="card-image">
+              <img src="https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=500&h=650&fit=crop&q=80" alt="Acrylic Art Cracked Glass portrait" loading="lazy">
+            </div>
+            <div class="card-body">
+              <h3 class="card-title">Acrylic Art<br>Cracked Glass</h3>
+              <p class="card-subtitle">Mixed media on canvas</p>
+              <p class="card-price">R1 999</p>
+            </div>
+          </article>
+          <article class="card">
+            <div class="card-image">
+              <img src="https://images.unsplash.com/photo-1549490349-8643362247b5?w=500&h=650&fit=crop&q=80" alt="Acrylic Art Classic Style Painting" loading="lazy">
+            </div>
+            <div class="card-body">
+              <h3 class="card-title">Acrylic Art Classic<br>Style Painting</h3>
+              <p class="card-subtitle">Traditional technique</p>
+              <p class="card-price">R1 399</p>
+            </div>
+          </article>
+          <article class="card">
+            <div class="card-image">
+              <img src="https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=500&h=650&fit=crop&q=80" alt="Acrylic Art Modern Style Painting" loading="lazy">
+            </div>
+            <div class="card-body">
+              <h3 class="card-title">Acrylic Art Modern<br>Style Painting</h3>
+              <p class="card-subtitle">Contemporary expression</p>
+              <p class="card-price">R1 649</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Custom Order CTA -->
+    <section class="section section-divider" style="background:var(--color-black);color:var(--color-cream);">
+      <div class="container">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-12);align-items:center;">
+          <div>
+            <p class="text-uppercase" style="color:var(--color-accent);margin-bottom:var(--space-4);">Commission Your Vision</p>
+            <h2 style="font-size:var(--text-4xl);margin-bottom:var(--space-5);line-height:1.1;">Have a Vision?<br>We'll Bring It to Life.</h2>
+            <p style="font-size:var(--text-lg);color:var(--color-gray-light);line-height:1.7;margin-bottom:var(--space-8);max-width:480px;">Upload your reference photos, describe your vision, and our artists will create a one-of-a-kind piece just for you.</p>
+            <a href="custom-order.html" class="btn" style="background:var(--color-cream);color:var(--color-black);">Start Custom Order</a>
+          </div>
+          <div style="border:2px solid var(--color-cream);overflow:hidden;">
+            <img src="https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=700&h=900&fit=crop&q=80" alt="Artist working on custom acrylic portrait" loading="lazy" style="width:100%;height:auto;display:block;">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Journal/Blog Preview -->
+    <section class="section section-divider">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">From the Journal</h2>
+          <a href="blog.html" class="section-link">Read All <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-6);">
+          <article class="card" style="border:none;background:transparent;">
+            <div class="card-image" style="aspect-ratio:16/10;">
+              <img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=600&h=375&fit=crop&q=80" alt="Artist studio with acrylic paints" loading="lazy">
+            </div>
+            <div class="card-body" style="padding:var(--space-4) 0;">
+              <p class="text-uppercase" style="color:var(--color-accent);margin-bottom:var(--space-2);">Technique</p>
+              <h3 class="card-title" style="font-size:var(--text-lg);">The Art of Layering: Building Depth in Acrylic Portraits</h3>
+              <p style="font-size:var(--text-sm);color:var(--color-gray);margin-top:var(--space-2);">January 15, 2025</p>
+            </div>
+          </article>
+          <article class="card" style="border:none;background:transparent;">
+            <div class="card-image" style="aspect-ratio:16/10;">
+              <img src="https://images.unsplash.com/photo-1578301978162-7aae4d755744?w=600&h=375&fit=crop&q=80" alt="Abstract art exhibition" loading="lazy">
+            </div>
+            <div class="card-body" style="padding:var(--space-4) 0;">
+              <p class="text-uppercase" style="color:var(--color-accent);margin-bottom:var(--space-2);">Community</p>
+              <h3 class="card-title" style="font-size:var(--text-lg);">Meet the Artists: Behind the Scenes at Netsorna</h3>
+              <p style="font-size:var(--text-sm);color:var(--color-gray);margin-top:var(--space-2);">January 8, 2025</p>
+            </div>
+          </article>
+          <article class="card" style="border:none;background:transparent;">
+            <div class="card-image" style="aspect-ratio:16/10;">
+              <img src="https://images.unsplash.com/photo-1547891654-e66ed7ebb968?w=600&h=375&fit=crop&q=80" alt="Custom portrait process" loading="lazy">
+            </div>
+            <div class="card-body" style="padding:var(--space-4) 0;">
+              <p class="text-uppercase" style="color:var(--color-accent);margin-bottom:var(--space-2);">Guide</p>
+              <h3 class="card-title" style="font-size:var(--text-lg);">How to Choose the Perfect Portrait Style for Your Space</h3>
+              <p style="font-size:var(--text-sm);color:var(--color-gray);margin-top:var(--space-2);">December 28, 2024</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="section section-divider" style="background:var(--color-bg-warm);">
+      <div class="container" style="text-align:center;max-width:600px;">
+        <p class="text-uppercase" style="color:var(--color-accent);margin-bottom:var(--space-4);">Stay Inspired</p>
+        <h2 style="font-size:var(--text-3xl);margin-bottom:var(--space-4);">Join the Netsorna Circle</h2>
+        <p style="color:var(--color-gray);margin-bottom:var(--space-8);">Get early access to new collections, artist spotlights, and exclusive commission slots.</p>
+        <form id="newsletterForm" style="display:flex;gap:var(--space-3);max-width:480px;margin:0 auto;">
+          <input type="email" class="form-input" placeholder="Your email address" required style="flex:1;">
+          <button type="submit" class="btn">Subscribe</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo" style="color:var(--color-cream);">
+            <span class="logo-mark" style="background:var(--color-cream);">
+              <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                <rect width="16" height="16" fill="#1A1A1A"/>
+              </svg>
+            </span>
+            netsorna.
+          </a>
+          <p>Premium acrylic art and custom portraits handcrafted by South African artists. Every piece tells a story.</p>
+        </div>
+        <div>
+          <h4 class="footer-title">Shop</h4>
+          <div class="footer-links">
+            <a href="shop.html">All Artworks</a>
+            <a href="shop.html?category=portraits">Portraits</a>
+            <a href="shop.html?category=abstract">Abstract</a>
+            <a href="shop.html?category=classic">Classic</a>
+            <a href="custom-order.html">Custom Orders</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-title">Company</h4>
+          <div class="footer-links">
+            <a href="featured.html">Featured Artists</a>
+            <a href="blog.html">Journal</a>
+            <a href="faqs.html">FAQs</a>
+            <a href="terms.html">Terms of Service</a>
+            <a href="privacy.html">Privacy Policy</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-title">Connect</h4>
+          <div class="footer-links">
+            <a href="https://instagram.com/netsorna" target="_blank" rel="noopener">Instagram</a>
+            <a href="https://facebook.com/netsorna" target="_blank" rel="noopener">Facebook</a>
+            <a href="whatsapp-inquiry.html">WhatsApp</a>
+            <a href="mailto:hello@netsorna.art">hello@netsorna.art</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Netsorna. All rights reserved.</p>
+        <p>Crafted in South Africa</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Cart Drawer -->
+  <div class="cart-drawer-overlay" id="cartOverlay"></div>
+  <aside class="cart-drawer" id="cartDrawer" aria-label="Shopping cart">
+    <div class="cart-header">
+      <h2 class="cart-title">Your Cart</h2>
+      <button class="cart-close" id="cartClose" aria-label="Close cart">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="cart-items" id="cartItems">
+      <div style="text-align:center;padding:var(--space-12) var(--space-6);color:var(--color-gray);">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" style="margin:0 auto var(--space-4);opacity:0.3;">
+          <circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/>
+          <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
+        </svg>
+        <p>Your cart is empty</p>
+        <a href="shop.html" class="btn btn-secondary" style="margin-top:var(--space-4);">Continue Shopping</a>
+      </div>
+    </div>
+    <div class="cart-footer" id="cartFooter" style="display:none;">
+      <div class="cart-subtotal">
+        <span>Subtotal</span>
+        <span class="cart-subtotal-value" id="cartSubtotal">R0</span>
+      </div>
+      <p class="cart-note">Shipping and taxes calculated at checkout.</p>
+      <a href="checkout.html" class="btn" style="width:100%;">Proceed to Checkout</a>
+      <button class="btn btn-ghost" style="width:100%;margin-top:var(--space-3);" id="continueShopping">Continue Shopping</button>
+    </div>
+  </aside>
+
+  <!-- Cookie Consent -->
+  <div class="cookie-banner" id="cookieBanner">
+    <div class="container">
+      <div class="cookie-inner">
+        <p class="cookie-text">We use cookies to enhance your experience, analyze site traffic, and for marketing purposes. By continuing to use our site, you agree to our <a href="privacy.html">Privacy Policy</a> and <a href="terms.html">Terms of Service</a>.</p>
+        <div class="cookie-actions">
+          <button class="btn btn-sm btn-secondary" id="cookieDecline" style="border-color:var(--color-gray-light);color:var(--color-gray-light);">Decline</button>
+          <button class="btn btn-sm" id="cookieAccept">Accept All</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/search.js"></script>
+  <script src="js/consent.js"></script>
+  <script src="js/analytics.js"></script>
+</body>
+</html>
