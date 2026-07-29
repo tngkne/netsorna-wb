@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Journal — Netsorna</title>
+  <meta name="description" content="Stories, techniques, and inspiration from the world of acrylic art and South African creativity.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%231A1A1A'/%3E%3Cpath d='M8 8h16v16H8z' fill='%23F5F0EB'/%3E%3C/svg%3E">
+</head>
+<body>
+  <header class="header" id="header">
+    <div class="container">
+      <div class="header-inner">
+        <a href="index.html" class="logo">
+          <span class="logo-mark"><svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><rect width="16" height="16" fill="currentColor"/></svg></span>
+          netsorna.
+        </a>
+        <nav class="nav-main" aria-label="Main navigation">
+          <a href="shop.html" class="nav-link">Shop</a>
+          <a href="featured.html" class="nav-link">Featured</a>
+          <a href="blog.html" class="nav-link active">Journal</a>
+          <a href="faqs.html" class="nav-link">FAQs</a>
+          <a href="custom-order.html" class="nav-link">Custom Order</a>
+        </nav>
+        <div class="nav-actions">
+          <button class="nav-icon-btn" aria-label="Search" id="searchToggle">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          </button>
+          <button class="nav-icon-btn" aria-label="Cart" id="cartToggle" style="position:relative;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+            <span class="cart-count" id="cartCount" style="display:none;">0</span>
+          </button>
+          <button class="mobile-menu-btn" aria-label="Menu" id="mobileMenuBtn"><span></span><span></span><span></span></button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section style="padding:var(--space-16) 0 var(--space-8);border-bottom:2px solid var(--color-border);">
+      <div class="container">
+        <p class="text-uppercase" style="color:var(--color-accent);margin-bottom:var(--space-3);">Journal</p>
+        <h1 style="font-size:var(--text-4xl);margin-bottom:var(--space-4);">Stories from the Studio</h1>
+        <p style="color:var(--color-gray);max-width:600px;line-height:1.7;">Techniques, artist profiles, and the stories behind the art. Dive into the creative process.</p>
+      </div>
+    </section>
+
+    <!-- Featured Post -->
+    <section style="padding:var(--space-12) 0;">
+      <div class="container">
+        <a href="blog/layering-depth-acrylics.html" style="display:block;">
+          <div style="display:grid;grid-template-columns:1.2fr 1fr;gap:0;border:2px solid var(--color-border);overflow:hidden;">
+            <div style="overflow:hidden;">
+              <img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=900&h=600&fit=crop&q=80" alt="Artist studio with acrylic paints" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform var(--transition-slow);" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+            </div>
+            <div style="padding:var(--space-10);display:flex;flex-direction:column;justify-content:center;background:var(--color-cream);">
+              <p class="text-uppercase" style="color:var(--color-accent);margin-bottom:var(--space-3);">Technique</p>
+              <h2 style="font-size:var(--text-2xl);margin-bottom:var(--space-4);line-height:1.2;">The Art of Layering: Building Depth in Acrylic Portraits</h2>
+              <p style="color:var(--color-gray);line-height:1.7;margin-bottom:var(--space-5);">Discover how master artists build luminous depth through strategic layering techniques. From underpainting to glazing, learn the methods that transform flat canvases into living portraits.</p>
+              <div style="display:flex;align-items:center;gap:var(--space-3);">
+                <span style="font-size:var(--text-sm);font-weight:600;">Lerato M.</span>
+                <span style="color:var(--color-gray-light);">•</span>
+                <span style="font-size:var(--text-sm);color:var(--color-gray);">January 15, 2025</span>
+                <span style="color:var(--color-gray-light);">•</span>
+                <span style="font-size:var(--text-sm);color:var(--color-gray);">8 min read</span>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- Post Grid -->
+    <section class="section section-divider">
+      <div class="container">
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-6);">
+          <article>
+            <a href="blog/meet-the-artists.html" style="display:block;">
+              <div style="border:2px solid var(--color-border);overflow:hidden;margin-bottom:var(--space-4);">
+                <img src="https://images.unsplash.com/photo-1578301978162-7aae4d755744?w=600&h=400&fit=crop&q=80" alt="Abstract art exhibition" style="width:100%;height:auto;display:block;transition:transform var(--transition-slow);" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+              </div>
+            </a>
+            <p class="text-uppercase" style="color:var(--color-accent);margin-bottom:var(--space-2);">Community</p>
+            <a href="blog/meet-the-artists.html"><h3 style="font-family:var(--font-display);font-size:var(--text-xl);margin-bottom:var(--space-2);line-height:1.2;">Meet the Artists: Behind the Scenes at Netsorna</h3></a>
+            <p style="font-size:var(--text-sm);color:var(--color-gray);line-height:1.6;margin-bottom:var(--space-3);">Go behind the curtain and meet the talented creators who make Netsorna possible. From their first sketches to finished masterpieces.</p>
+            <p style="font-size:var(--text-sm);color:var(--color-gray);">January 8, 2025 · 6 min read</p>
+          </article>
+
+          <article>
+            <a href="blog/choose-perfect-portrait.html" style="display:block;">
+              <div style="border:2px solid var(--color-border);overflow:hidden;margin-bottom:var(--space-4);">
+                <img src="https://images.unsplash.com/photo-1547891654-e66ed7ebb968?w=600&h=400&fit=crop&q=80" alt="Custom portrait process" style="width:100%;height:auto;display:block;transition:transform var(--transition-slow);" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+              </div>
+            </a>
+            <p class="text-uppercase" style="color:var(--color-accent);margin-bottom:var(--space-2);">Guide</p>
+            <a href="blog/choose-perfect-portrait.html"><h3 style="font-family:var(--font-display);font-size:var(--text-xl);margin-bottom:var(--space-2);line-height:1.2;">How to Choose the Perfect Portrait Style for Your Space</h3></a>
+            <p style="font-size:var(--text-sm);color:var(--color-gray);line-height:1.6;margin-bottom:var(--space-3);">From minimalist line art to richly textured realism — find the portrait style that complements your interior and tells your story.</p>
+            <p style="font-size:var(--text-sm);color:var(--color-gray);">December 28, 2024 · 5 min read</p>
+          </article>
+
+          <article>
+            <a href="blog/caring-for-acrylic-art.html" style="display:block;">
+              <div style="border:2px solid var(--color-border);overflow:hidden;margin-bottom:var(--space-4);">
+                <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=600&h=400&fit=crop&q=80" alt="Acrylic painting care" style="width:100%;height:auto;display:block;transition:transform var(--transition-slow);" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+              </div>
+            </a>
+            <p class="text-uppercase" style="color:var(--color-accent);margin-bottom:var(--space-2);">Care</p>
+            <a href="blog/caring-for-acrylic-art.html"><h3 style="font-family:var(--font-display);font-size:var(--text-xl);margin-bottom:var(--space-2);line-height:1.2;">Caring for Your Acrylic Art: A Complete Guide</h3></a>
+            <p style="font-size:var(--text-sm);color:var(--color-gray);line-height:1.6;margin-bottom:var(--space-3);">Learn how to preserve the vibrancy and integrity of your acrylic artworks for generations. Proper lighting, cleaning, and storage tips.</p>
+            <p style="font-size:var(--text-sm);color:var(--color-gray);">December 15, 2024 · 4 min read</p>
+          </article>
+
+          <article>
+            <a href="blog/south-african-art-movement.html" style="display:block;">
+              <div style="border:2px solid var(--color-border);overflow:hidden;margin-bottom:var(--space-4);">
+                <img src="https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=600&h=400&fit=crop&q=80" alt="South African art" style="width:100%;height:auto;display:block;transition:transform var(--transition-slow);" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+              </div>
+            </a>
+            <p class="text-uppercase" style="color:var(--color-accent);margin-bottom:var(--space-2);">Culture</p>
+            <a href="blog/south-african-art-movement.html"><h3 style="font-family:var(--font-display);font-size:var(--text-xl);margin-bottom:var(--space-2);line-height:1.2;">The Rise of Contemporary South African Art</h3></a>
+            <p style="font-size:var(--text-sm);color:var(--color-gray);line-height:1.6;margin-bottom:var(--space-3);">Explore how South African artists are reshaping the global art landscape with bold narratives and innovative techniques.</p>
+            <p style="font-size:var(--text-sm);color:var(--color-gray);">December 1, 2024 · 7 min read</p>
+          </article>
+
+          <article>
+            <a href="blog/custom-commission-process.html" style="display:block;">
+              <div style="border:2px solid var(--color-border);overflow:hidden;margin-bottom:var(--space-4);">
+                <img src="https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=600&h=400&fit=crop&q=80" alt="Commission process" style="width:100%;height:auto;display:block;transition:transform var(--transition-slow);" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+              </div>
+            </a>
+            <p class="text-uppercase" style="color:var(--color-accent);margin-bottom:var(--space-2);">Process</p>
+            <a href="blog/custom-commission-process.html"><h3 style="font-family:var(--font-display);font-size:var(--text-xl);margin-bottom:var(--space-2);line-height:1.2;">From Photo to Masterpiece: The Commission Process</h3></a>
+            <p style="font-size:var(--text-sm);color:var(--color-gray);line-height:1.6;margin-bottom:var(--space-3);">A step-by-step look at how we transform your vision and reference photos into a one-of-a-kind artwork.</p>
+            <p style="font-size:var(--text-sm);color:var(--color-gray);">November 20, 2024 · 6 min read</p>
+          </article>
+
+          <article>
+            <a href="blog/color-theory-portraits.html" style="display:block;">
+              <div style="border:2px solid var(--color-border);overflow:hidden;margin-bottom:var(--space-4);">
+                <img src="https://images.unsplash.com/photo-1549490349-8643362247b5?w=600&h=400&fit=crop&q=80" alt="Color theory in art" style="width:100%;height:auto;display:block;transition:transform var(--transition-slow);" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+              </div>
+            </a>
+            <p class="text-uppercase" style="color:var(--color-accent);margin-bottom:var(--space-2);">Technique</p>
+            <a href="blog/color-theory-portraits.html"><h3 style="font-family:var(--font-display);font-size:var(--text-xl);margin-bottom:var(--space-2);line-height:1.2;">Color Theory in Portrait Painting</h3></a>
+            <p style="font-size:var(--text-sm);color:var(--color-gray);line-height:1.6;margin-bottom:var(--space-3);">Understanding warm and cool tones, complementary colors, and how to use color to evoke emotion in portraiture.</p>
+            <p style="font-size:var(--text-sm);color:var(--color-gray);">November 10, 2024 · 5 min read</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo" style="color:var(--color-cream);">
+            <span class="logo-mark" style="background:var(--color-cream);"><svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><rect width="16" height="16" fill="#1A1A1A"/></svg></span>
+            netsorna.
+          </a>
+          <p>Premium acrylic art and custom portraits handcrafted by South African artists.</p>
+        </div>
+        <div>
+          <h4 class="footer-title">Shop</h4>
+          <div class="footer-links">
+            <a href="shop.html">All Artworks</a>
+            <a href="shop.html?category=portraits">Portraits</a>
+            <a href="shop.html?category=abstract">Abstract</a>
+            <a href="custom-order.html">Custom Orders</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-title">Company</h4>
+          <div class="footer-links">
+            <a href="featured.html">Featured Artists</a>
+            <a href="blog.html">Journal</a>
+            <a href="faqs.html">FAQs</a>
+            <a href="terms.html">Terms</a>
+            <a href="privacy.html">Privacy</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-title">Connect</h4>
+          <div class="footer-links">
+            <a href="https://instagram.com/netsorna" target="_blank" rel="noopener">Instagram</a>
+            <a href="https://facebook.com/netsorna" target="_blank" rel="noopener">Facebook</a>
+            <a href="whatsapp-inquiry.html">WhatsApp</a>
+            <a href="mailto:hello@netsorna.art">hello@netsorna.art</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Netsorna. All rights reserved.</p>
+        <p>Crafted in South Africa</p>
+      </div>
+    </div>
+  </footer>
+
+  <div class="cart-drawer-overlay" id="cartOverlay"></div>
+  <aside class="cart-drawer" id="cartDrawer" aria-label="Shopping cart">
+    <div class="cart-header">
+      <h2 class="cart-title">Your Cart</h2>
+      <button class="cart-close" id="cartClose" aria-label="Close cart">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-footer" id="cartFooter" style="display:none;">
+      <div class="cart-subtotal"><span>Subtotal</span><span class="cart-subtotal-value" id="cartSubtotal">R0</span></div>
+      <p class="cart-note">Shipping and taxes calculated at checkout.</p>
+      <a href="checkout.html" class="btn" style="width:100%;">Proceed to Checkout</a>
+      <button class="btn btn-ghost" style="width:100%;margin-top:var(--space-3);" id="continueShopping">Continue Shopping</button>
+    </div>
+  </aside>
+
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="js/main.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/search.js"></script>
+  <script src="js/consent.js"></script>
+  <script src="js/analytics.js"></script>
+</body>
+</html>
