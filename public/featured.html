@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Featured Artists — Netsorna</title>
+  <meta name="description" content="Discover the talented South African artists behind Netsorna. Learn their stories, techniques, and creative visions.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%231A1A1A'/%3E%3Cpath d='M8 8h16v16H8z' fill='%23F5F0EB'/%3E%3C/svg%3E">
+</head>
+<body>
+  <header class="header" id="header">
+    <div class="container">
+      <div class="header-inner">
+        <a href="index.html" class="logo">
+          <span class="logo-mark"><svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><rect width="16" height="16" fill="currentColor"/></svg></span>
+          netsorna.
+        </a>
+        <nav class="nav-main" aria-label="Main navigation">
+          <a href="shop.html" class="nav-link">Shop</a>
+          <a href="featured.html" class="nav-link active">Featured</a>
+          <a href="blog.html" class="nav-link">Journal</a>
+          <a href="faqs.html" class="nav-link">FAQs</a>
+          <a href="custom-order.html" class="nav-link">Custom Order</a>
+        </nav>
+        <div class="nav-actions">
+          <button class="nav-icon-btn" aria-label="Search" id="searchToggle">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          </button>
+          <button class="nav-icon-btn" aria-label="Cart" id="cartToggle" style="position:relative;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+            <span class="cart-count" id="cartCount" style="display:none;">0</span>
+          </button>
+          <button class="mobile-menu-btn" aria-label="Menu" id="mobileMenuBtn"><span></span><span></span><span></span></button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section style="padding:var(--space-16) 0 var(--space-8);border-bottom:2px solid var(--color-border);">
+      <div class="container">
+        <p class="text-uppercase" style="color:var(--color-accent);margin-bottom:var(--space-3);">The Artists</p>
+        <h1 style="font-size:var(--text-4xl);margin-bottom:var(--space-4);max-width:700px;">The Creative Minds Behind Every Piece</h1>
+        <p style="color:var(--color-gray);max-width:600px;line-height:1.7;">Our featured artists are the heart of Netsorna. Each brings a unique perspective, technique, and story to their work. Get to know the people behind the art.</p>
+      </div>
+    </section>
+
+    <!-- Featured Artist Spotlight -->
+    <section style="padding:var(--space-16) 0;">
+      <div class="container">
+        <div class="featured-grid">
+          <div class="featured-left">
+            <p class="featured-signature">Lerato M.</p>
+            <h3 class="featured-name">Lerato M.</h3>
+            <p style="font-size:var(--text-base);color:var(--color-gray);line-height:1.7;margin-bottom:var(--space-4);">Acrylic portrait artist specializing in emotive black-and-white portraiture. Based in Johannesburg with over 8 years of experience exploring themes of identity, heritage, and human connection.</p>
+            <p style="font-size:var(--text-base);color:var(--color-gray);line-height:1.7;margin-bottom:var(--space-6);">Her signature cracked glass technique was developed during a residency in Cape Town, where she experimented with layering acrylics to create texture that mimics the fragility and resilience of human emotion.</p>
+            <div style="display:flex;gap:var(--space-3);margin-bottom:var(--space-6);">
+              <span class="badge">Portraits</span>
+              <span class="badge">Mixed Media</span>
+              <span class="badge">Abstract</span>
+            </div>
+            <a href="shop.html?artist=lerato-m" class="btn">View All Works</a>
+          </div>
+          <div class="featured-right">
+            <div class="featured-image">
+              <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=600&h=750&fit=crop&q=80" alt="Lerato M. with her artwork" loading="lazy">
+            </div>
+            <blockquote class="featured-quote">
+              "I really love how this art piece came out. Big up to Tiisetso & his team for making my vision come true. I really wish I could appreciate more. All I could say is thank you so so so so much."
+            </blockquote>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Artist Gallery -->
+    <section class="section section-divider">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Artist Portfolio</h2>
+        </div>
+        <div class="product-grid">
+          <article class="card">
+            <div class="card-image"><img src="https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=500&h=650&fit=crop&q=80" alt="Acrylic Art Cracked Glass" loading="lazy"></div>
+            <div class="card-body">
+              <h3 class="card-title">Acrylic Art<br>Cracked Glass</h3>
+              <p class="card-subtitle">Mixed media on canvas</p>
+              <p class="card-price">R1 999</p>
+            </div>
+          </article>
+          <article class="card">
+            <div class="card-image"><img src="https://images.unsplash.com/photo-1576769267415-9642010aa962?w=500&h=650&fit=crop&q=80" alt="Soul Gaze Portrait" loading="lazy"></div>
+            <div class="card-body">
+              <h3 class="card-title">Soul Gaze<br>Portrait</h3>
+              <p class="card-subtitle">Charcoal & acrylic blend</p>
+              <p class="card-price">R1 899</p>
+            </div>
+          </article>
+          <article class="card">
+            <div class="card-image"><img src="https://images.unsplash.com/photo-1578301978162-7aae4d755744?w=500&h=650&fit=crop&q=80" alt="Ancestral Wisdom" loading="lazy"></div>
+            <div class="card-body">
+              <h3 class="card-title">Ancestral<br>Wisdom</h3>
+              <p class="card-subtitle">Large format portrait</p>
+              <p class="card-price">R2 899</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Apply to be Featured -->
+    <section class="section section-divider" style="background:var(--color-black);color:var(--color-cream);">
+      <div class="container" style="text-align:center;max-width:700px;">
+        <p class="text-uppercase" style="color:var(--color-accent);margin-bottom:var(--space-4);">For Artists</p>
+        <h2 style="font-size:var(--text-3xl);margin-bottom:var(--space-4);">Join the Netsorna Collective</h2>
+        <p style="font-size:var(--text-lg);color:var(--color-gray-light);line-height:1.7;margin-bottom:var(--space-8);">Are you a South African artist working in acrylics, portraiture, or mixed media? We'd love to feature your work and connect you with art lovers worldwide.</p>
+        <form id="artistApplicationForm" style="max-width:500px;margin:0 auto;text-align:left;">
+          <div class="form-group">
+            <label class="form-label" for="artistName" style="color:var(--color-cream);">Full Name</label>
+            <input type="text" id="artistName" name="artistName" class="form-input" style="background:var(--color-charcoal);border-color:var(--color-gray);color:var(--color-cream);" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="artistEmail" style="color:var(--color-cream);">Email</label>
+            <input type="email" id="artistEmail" name="artistEmail" class="form-input" style="background:var(--color-charcoal);border-color:var(--color-gray);color:var(--color-cream);" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="artistPortfolio" style="color:var(--color-cream);">Portfolio Link (Instagram, Website, etc.)</label>
+            <input type="url" id="artistPortfolio" name="artistPortfolio" class="form-input" style="background:var(--color-charcoal);border-color:var(--color-gray);color:var(--color-cream);">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="artistBio" style="color:var(--color-cream);">Tell us about your work</label>
+            <textarea id="artistBio" name="artistBio" class="form-textarea" rows="4" style="background:var(--color-charcoal);border-color:var(--color-gray);color:var(--color-cream);" required></textarea>
+          </div>
+          <button type="submit" class="btn" style="width:100%;background:var(--color-cream);color:var(--color-black);">Submit Application</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo" style="color:var(--color-cream);">
+            <span class="logo-mark" style="background:var(--color-cream);"><svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><rect width="16" height="16" fill="#1A1A1A"/></svg></span>
+            netsorna.
+          </a>
+          <p>Premium acrylic art and custom portraits handcrafted by South African artists.</p>
+        </div>
+        <div>
+          <h4 class="footer-title">Shop</h4>
+          <div class="footer-links">
+            <a href="shop.html">All Artworks</a>
+            <a href="shop.html?category=portraits">Portraits</a>
+            <a href="shop.html?category=abstract">Abstract</a>
+            <a href="custom-order.html">Custom Orders</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-title">Company</h4>
+          <div class="footer-links">
+            <a href="featured.html">Featured Artists</a>
+            <a href="blog.html">Journal</a>
+            <a href="faqs.html">FAQs</a>
+            <a href="terms.html">Terms</a>
+            <a href="privacy.html">Privacy</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-title">Connect</h4>
+          <div class="footer-links">
+            <a href="https://instagram.com/netsorna" target="_blank" rel="noopener">Instagram</a>
+            <a href="https://facebook.com/netsorna" target="_blank" rel="noopener">Facebook</a>
+            <a href="whatsapp-inquiry.html">WhatsApp</a>
+            <a href="mailto:hello@netsorna.art">hello@netsorna.art</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Netsorna. All rights reserved.</p>
+        <p>Crafted in South Africa</p>
+      </div>
+    </div>
+  </footer>
+
+  <div class="cart-drawer-overlay" id="cartOverlay"></div>
+  <aside class="cart-drawer" id="cartDrawer" aria-label="Shopping cart">
+    <div class="cart-header">
+      <h2 class="cart-title">Your Cart</h2>
+      <button class="cart-close" id="cartClose" aria-label="Close cart">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-footer" id="cartFooter" style="display:none;">
+      <div class="cart-subtotal"><span>Subtotal</span><span class="cart-subtotal-value" id="cartSubtotal">R0</span></div>
+      <p class="cart-note">Shipping and taxes calculated at checkout.</p>
+      <a href="checkout.html" class="btn" style="width:100%;">Proceed to Checkout</a>
+      <button class="btn btn-ghost" style="width:100%;margin-top:var(--space-3);" id="continueShopping">Continue Shopping</button>
+    </div>
+  </aside>
+
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="js/main.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/forms.js"></script>
+  <script src="js/search.js"></script>
+  <script src="js/consent.js"></script>
+  <script src="js/analytics.js"></script>
+</body>
+</html>
