@@ -16,7 +16,7 @@
 </head>
 <body>
 
-  <!-- Floating Sticky Header Container (Z-Pattern Navigation Bar) -->
+  <!-- Floating Sticky Header Container (Z-Pattern Top Bar) -->
   <div class="navbar-wrapper">
     <header class="navbar" id="navbar">
       <button class="menu-btn" aria-label="Toggle Navigation Menu" id="menuToggle">
@@ -53,137 +53,139 @@
   </nav>
 
   <main>
-    <!-- Featured Hero Section -->
+    <!-- Featured Hero Section (Z-Pattern Structured Layout) -->
     <section class="hero-section">
       <div class="hero-bg-overlay"></div>
       
-      <!-- Responsive Floating Glass Card (Featured Partner) -->
       <div class="featured-card">
-        <div class="featured-header-row">
-          <span class="featured-tag">Spotlight</span>
+        <div class="featured-header">
+          <span class="featured-tag">Collector Spotlight</span>
           <h2 class="featured-title">Featured<br>Partner</h2>
         </div>
         
-        <div class="featured-content">
+        <div class="featured-body">
           <div class="featured-image-box">
             <img src="images/products/featured-art.jpg" alt="Featured Relief Artwork" onerror="this.src='https://via.placeholder.com/300x300/dedad3/000000?text=Featured+Art'">
           </div>
           
           <div class="featured-details">
             <p class="quote">
-              "I really love this piece, it reminds me of when i was still young looking at my late granny's walls seeing beautiful pieces like this one"
+              "I really love this piece, it reminds me of when I was still young looking at my late granny's walls seeing beautiful pieces like this one."
             </p>
-            <div class="signature-row">
-              <span class="signature">Lerato M.</span>
-            </div>
-            
-            <!-- Cards Action Pair: Identical sized buttons arranged horizontally -->
-            <div class="card-actions-horizontal">
-              <a href="product.html?id=featured-1" class="btn btn-solid btn-sm">Get One</a>
-              <a href="featured.html" class="btn btn-subtle btn-sm">View More</a>
-            </div>
+            <span class="signature">Lerato M.</span>
           </div>
+        </div>
+
+        <!-- Identical Sized Buttons Anchored Apart (Left vs Right) -->
+        <div class="featured-actions card-btn-group">
+          <a href="product.html?id=featured-1" class="btn btn-solid">Get One</a>
+          <a href="featured.html" class="btn btn-subtle">View More</a>
         </div>
       </div>
     </section>
 
-    <!-- Browse Catalog Section (F-Pattern Layout) -->
+    <!-- Browse Catalog Section (F-Pattern Reading Grid) -->
     <section class="browse-section">
-      <div class="browse-header-bar">
-        <h1 class="browse-heading">Browse</h1>
-        <span class="browse-subtitle">Relief Collection 2026</span>
-      </div>
+      <h1 class="browse-heading">Browse Catalog</h1>
       
       <div class="product-grid">
-        <!-- Product Item 1 -->
         <article class="product-card">
           <div class="product-image-container">
             <img src="images/products/product1.jpg" alt="FROME ART" class="product-img" onerror="this.outerHTML='<div class=\'placeholder-box\'></div>'">
           </div>
-          <div class="product-info-row">
-            <h3 class="product-title">FROME ART</h3>
-            <span class="price">R 1999</span>
+          <div class="product-info">
+            <div class="product-header-line">
+              <h3 class="product-title">FROME ART</h3>
+              <span class="price">R 1999</span>
+            </div>
+            <a href="product.html?id=frome-art-1" class="btn btn-outline">Get One</a>
           </div>
-          <a href="product.html?id=frome-art-1" class="btn btn-outline btn-sm">Get One</a>
         </article>
 
-        <!-- Product Item 2 -->
         <article class="product-card">
           <div class="product-image-container">
             <img src="images/products/product2.jpg" alt="FROME ART" class="product-img" onerror="this.outerHTML='<div class=\'placeholder-box\'></div>'">
           </div>
-          <div class="product-info-row">
-            <h3 class="product-title">FROME ART</h3>
-            <span class="price">R 1999</span>
+          <div class="product-info">
+            <div class="product-header-line">
+              <h3 class="product-title">FROME ART</h3>
+              <span class="price">R 1999</span>
+            </div>
+            <a href="product.html?id=frome-art-2" class="btn btn-outline">Get One</a>
           </div>
-          <a href="product.html?id=frome-art-2" class="btn btn-outline btn-sm">Get One</a>
         </article>
 
-        <!-- Product Item 3 -->
         <article class="product-card">
           <div class="product-image-container">
             <img src="images/products/product3.jpg" alt="MONO RELIEF" class="product-img" onerror="this.outerHTML='<div class=\'placeholder-box\'></div>'">
           </div>
-          <div class="product-info-row">
-            <h3 class="product-title">MONO RELIEF</h3>
-            <span class="price">R 2499</span>
+          <div class="product-info">
+            <div class="product-header-line">
+              <h3 class="product-title">MONO RELIEF</h3>
+              <span class="price">R 2499</span>
+            </div>
+            <a href="product.html?id=mono-relief" class="btn btn-outline">Get One</a>
           </div>
-          <a href="product.html?id=mono-relief" class="btn btn-outline btn-sm">Get One</a>
         </article>
 
-        <!-- Product Item 4 -->
         <article class="product-card">
           <div class="product-image-container">
             <img src="images/products/product4.jpg" alt="LINEAGE PIECE" class="product-img" onerror="this.outerHTML='<div class=\'placeholder-box\'></div>'">
           </div>
-          <div class="product-info-row">
-            <h3 class="product-title">LINEAGE PIECE</h3>
-            <span class="price">R 3100</span>
+          <div class="product-info">
+            <div class="product-header-line">
+              <h3 class="product-title">LINEAGE PIECE</h3>
+              <span class="price">R 3100</span>
+            </div>
+            <a href="product.html?id=lineage-piece" class="btn btn-outline">Get One</a>
           </div>
-          <a href="product.html?id=lineage-piece" class="btn btn-outline btn-sm">Get One</a>
         </article>
       </div>
 
       <div class="view-all-container">
-        <a href="shop.html" class="btn btn-solid btn-lg">Explore Full Catalogue →</a>
+        <a href="shop.html" class="btn btn-solid">Explore Full Catalogue →</a>
       </div>
     </section>
 
-    <!-- Custom Order Callout Section (Z-pattern visual block) -->
+    <!-- Custom Order Section (Card Buttons Identical in Size & Anchored Left/Right) -->
     <section class="custom-cta-section">
       <div class="custom-cta-container">
         <h2>Bespoke & Custom Commissions</h2>
         <p>Have a specific vision or looking for a tailor-made sculpture for your space? Submit your requirements and custom images directly.</p>
         
-        <!-- Identical Sized Horizontal Pair Anchored Right -->
-        <div class="custom-cta-actions">
-          <a href="whatsapp-inquiry.html" class="btn btn-subtle">WhatsApp Inquiry</a>
+        <div class="card-btn-group">
           <a href="custom-order.html" class="btn btn-solid">Request Custom Order</a>
+          <a href="whatsapp-inquiry.html" class="btn btn-subtle">WhatsApp Inquiry</a>
         </div>
       </div>
     </section>
 
-    <!-- Blog & Spotlight Section -->
+    <!-- Stories Section (F-Pattern Reading Flow) -->
     <section class="stories-section">
       <h2 class="section-title">Stories & Insights</h2>
+      
       <div class="stories-grid">
         <article class="story-card">
-          <div class="story-header">
-            <span class="story-date">July 2026</span>
+          <div>
+            <div class="story-header">
+              <span class="story-date">July 2026</span>
+            </div>
+            <h3>The Craft Behind Modern Linear Relief Art</h3>
+            <p>Discover how classic architectural techniques meet contemporary interior aesthetics.</p>
           </div>
-          <h3>The Craft Behind Modern Linear Relief Art</h3>
-          <p>Discover how classic architectural techniques meet contemporary interior aesthetics.</p>
           <div class="story-footer">
             <a href="blog.html" class="story-link">Read Story →</a>
           </div>
         </article>
 
         <article class="story-card">
-          <div class="story-header">
-            <span class="story-date">June 2026</span>
+          <div>
+            <div class="story-header">
+              <span class="story-date">June 2026</span>
+            </div>
+            <h3>Preserving Heritage Through Art Collectibles</h3>
+            <p>A deep dive into how memory and nostalgia shape modern gallery spaces.</p>
           </div>
-          <h3>Preserving Heritage Through Art Collectibles</h3>
-          <p>A deep dive into how memory and nostalgia shape modern gallery spaces.</p>
           <div class="story-footer">
             <a href="blog.html" class="story-link">Read Story →</a>
           </div>
@@ -231,8 +233,8 @@
     </div>
 
     <div class="footer-bottom">
-      <span class="footer-bottom-left">&copy; 2026 Netsorna. All rights reserved.</span>
-      <span class="footer-bottom-right">Fine Art & Fine Collectibles</span>
+      <span>&copy; 2026 Netsorna. All rights reserved.</span>
+      <span>South Africa</span>
     </div>
   </footer>
 
