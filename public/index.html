@@ -10,12 +10,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Reenie+Beanie&display=swap" rel="stylesheet">
 
-  <!-- Favicon Setup -->
+  <!-- Global Favicon Setup (Absolute paths so every page can reuse) -->
   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-  <link rel="icon" type="image/svg+xml" href="images/icons/horizon_logo.svg" />
+  <link rel="icon" type="image/svg+xml" href="/images/icons/horizon_logo.svg" />
 
   <!-- Core Styles -->
-  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="/css/main.css" />
 </head>
 <body>
 
@@ -30,17 +30,17 @@
         </svg>
       </button>
 
-      <!-- Brand Logo using horizon_logo.svg -->
-      <a href="index.html" class="brand-logo" aria-label="Horizon Home">
+      <!-- Global Brand Logo -->
+      <a href="/index.html" class="brand-logo" aria-label="Horizon Home">
         <img 
-          src="images/icons/horizon_logo.svg" 
+          src="/images/icons/horizon_logo.svg" 
           alt="Horizon Logo" 
           class="logo-img" 
           onerror="this.outerHTML='<span class=\'logo-text\'>HORIZON.</span>'"
         />
       </a>
 
-      <a href="cart.html" class="cart-btn" aria-label="View Cart">
+      <a href="/cart.html" class="cart-btn" aria-label="View Cart">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
           <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
         </svg>
@@ -52,12 +52,12 @@
   <!-- Navigation Drawer Dropdown -->
   <nav class="nav-drawer" id="navDrawer">
     <ul class="nav-links">
-      <li><a href="index.html" class="active">Home</a></li>
-      <li><a href="shop.html">Shop Artworks</a></li>
-      <li><a href="featured.html">Featured Program</a></li>
-      <li><a href="custom-order.html">Custom Orders</a></li>
-      <li><a href="blog.html">Blog & Stories</a></li>
-      <li><a href="faqs.html">FAQs</a></li>
+      <li><a href="/index.html" class="active">Home</a></li>
+      <li><a href="/shop.html">Shop Artworks</a></li>
+      <li><a href="/featured.html">Featured Program</a></li>
+      <li><a href="/custom-order.html">Custom Orders</a></li>
+      <li><a href="/blog.html">Blog & Stories</a></li>
+      <li><a href="/faqs.html">FAQs</a></li>
     </ul>
   </nav>
 
@@ -76,7 +76,7 @@
           <!-- Z-Pattern Diagonal Body Flow -->
           <div class="featured-body">
             <div class="featured-image-box">
-              <img src="images/products/featured-art.jpg" alt="Featured Relief Artwork" onerror="this.src='https://via.placeholder.com/300x300/dedad3/000000?text=Featured+Art'">
+              <img src="/images/products/featured-art.jpg" alt="Featured Relief Artwork" onerror="this.src='https://via.placeholder.com/300x300/dedad3/000000?text=Featured+Art'">
             </div>
             
             <div class="featured-details">
@@ -87,23 +87,23 @@
             </div>
           </div>
 
-          <!-- Z-Pattern Bottom: Identical Buttons Anchored Apart (Left & Right) -->
+          <!-- Z-Pattern Bottom: Identical Buttons Anchored Apart -->
           <div class="featured-actions">
-            <a href="featured.html" class="btn btn-subtle">View More</a>
-            <a href="product.html?id=featured-1" class="btn btn-solid">Get One</a>
+            <a href="/featured.html" class="btn btn-subtle">View More</a>
+            <a href="/product.html?id=featured-1" class="btn btn-solid">Get One</a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- F-Pattern Browse Catalog Section (Un-cramped Card Grid) -->
+    <!-- F-Pattern Browse Catalog Section -->
     <section class="browse-section">
       <h1 class="browse-heading">Browse</h1>
       
       <div class="product-grid">
         <article class="product-card">
           <div class="product-image-container">
-            <img src="images/products/product1.jpg" alt="FROME ART" class="product-img" onerror="this.outerHTML='<div class=\'placeholder-box\'></div>'">
+            <img src="/images/products/product1.jpg" alt="FROME ART" class="product-img" onerror="this.outerHTML='<div class=\'placeholder-box\'></div>'">
           </div>
           <div class="product-info">
             <div class="product-meta">
@@ -111,14 +111,14 @@
               <span class="price">R 1 999</span>
             </div>
             <div class="product-actions">
-              <a href="product.html?id=frome-art-1" class="btn btn-outline">Get One</a>
+              <a href="/product.html?id=frome-art-1" class="btn btn-outline">Get One</a>
             </div>
           </div>
         </article>
 
         <article class="product-card">
           <div class="product-image-container">
-            <img src="images/products/product2.jpg" alt="FROME ART" class="product-img" onerror="this.outerHTML='<div class=\'placeholder-box\'></div>'">
+            <img src="/images/products/product2.jpg" alt="FROME ART" class="product-img" onerror="this.outerHTML='<div class=\'placeholder-box\'></div>'">
           </div>
           <div class="product-info">
             <div class="product-meta">
@@ -126,14 +126,14 @@
               <span class="price">R 1 999</span>
             </div>
             <div class="product-actions">
-              <a href="product.html?id=frome-art-2" class="btn btn-outline">Get One</a>
+              <a href="/product.html?id=frome-art-2" class="btn btn-outline">Get One</a>
             </div>
           </div>
         </article>
 
         <article class="product-card">
           <div class="product-image-container">
-            <img src="images/products/product3.jpg" alt="MONO RELIEF" class="product-img" onerror="this.outerHTML='<div class=\'placeholder-box\'></div>'">
+            <img src="/images/products/product3.jpg" alt="MONO RELIEF" class="product-img" onerror="this.outerHTML='<div class=\'placeholder-box\'></div>'">
           </div>
           <div class="product-info">
             <div class="product-meta">
@@ -141,14 +141,14 @@
               <span class="price">R 2 499</span>
             </div>
             <div class="product-actions">
-              <a href="product.html?id=mono-relief" class="btn btn-outline">Get One</a>
+              <a href="/product.html?id=mono-relief" class="btn btn-outline">Get One</a>
             </div>
           </div>
         </article>
 
         <article class="product-card">
           <div class="product-image-container">
-            <img src="images/products/product4.jpg" alt="LINEAGE PIECE" class="product-img" onerror="this.outerHTML='<div class=\'placeholder-box\'></div>'">
+            <img src="/images/products/product4.jpg" alt="LINEAGE PIECE" class="product-img" onerror="this.outerHTML='<div class=\'placeholder-box\'></div>'">
           </div>
           <div class="product-info">
             <div class="product-meta">
@@ -156,7 +156,7 @@
               <span class="price">R 3 100</span>
             </div>
             <div class="product-actions">
-              <a href="product.html?id=lineage-piece" class="btn btn-outline">Get One</a>
+              <a href="/product.html?id=lineage-piece" class="btn btn-outline">Get One</a>
             </div>
           </div>
         </article>
@@ -164,7 +164,7 @@
 
       <!-- Action Anchored Right -->
       <div class="view-all-container">
-        <a href="shop.html" class="btn btn-solid btn-lg">Explore Full Catalogue →</a>
+        <a href="/shop.html" class="btn btn-solid btn-lg">Explore Full Catalogue →</a>
       </div>
     </section>
 
@@ -175,10 +175,9 @@
           <h2>Bespoke & Custom Commissions</h2>
           <p>Have a specific vision or looking for a tailor-made sculpture for your space? Submit your requirements and custom images directly.</p>
         </div>
-        <!-- Identical Buttons Stacked / Side-by-Side -->
         <div class="cta-actions">
-          <a href="whatsapp-inquiry.html" class="btn btn-subtle">WhatsApp Inquiry</a>
-          <a href="custom-order.html" class="btn btn-solid">Request Custom Order</a>
+          <a href="/whatsapp-inquiry.html" class="btn btn-subtle">WhatsApp Inquiry</a>
+          <a href="/custom-order.html" class="btn btn-solid">Request Custom Order</a>
         </div>
       </div>
     </section>
@@ -195,7 +194,7 @@
             </div>
             <p>Discover how classic architectural techniques meet contemporary interior aesthetics.</p>
           </div>
-          <a href="blog.html" class="story-link">Read Story →</a>
+          <a href="/blog.html" class="story-link">Read Story →</a>
         </article>
 
         <article class="story-card">
@@ -206,7 +205,7 @@
             </div>
             <p>A deep dive into how memory and nostalgia shape modern gallery spaces.</p>
           </div>
-          <a href="blog.html" class="story-link">Read Story →</a>
+          <a href="/blog.html" class="story-link">Read Story →</a>
         </article>
       </div>
     </section>
@@ -223,20 +222,20 @@
       <div class="footer-links-group">
         <h4>Navigation</h4>
         <ul>
-          <li><a href="shop.html">Catalogue</a></li>
-          <li><a href="featured.html">Featured Partner</a></li>
-          <li><a href="custom-order.html">Custom Orders</a></li>
-          <li><a href="faqs.html">FAQs</a></li>
+          <li><a href="/shop.html">Catalogue</a></li>
+          <li><a href="/featured.html">Featured Partner</a></li>
+          <li><a href="/custom-order.html">Custom Orders</a></li>
+          <li><a href="/faqs.html">FAQs</a></li>
         </ul>
       </div>
 
       <div class="footer-links-group">
         <h4>Legal & Terms</h4>
         <ul>
-          <li><a href="terms.html">Terms of Service</a></li>
-          <li><a href="privacy.html">Privacy Policy</a></li>
-          <li><a href="refunds.html">Refund Policy</a></li>
-          <li><a href="ownership.html">Content Ownership</a></li>
+          <li><a href="/terms.html">Terms of Service</a></li>
+          <li><a href="/privacy.html">Privacy Policy</a></li>
+          <li><a href="/refunds.html">Refund Policy</a></li>
+          <li><a href="/ownership.html">Content Ownership</a></li>
         </ul>
       </div>
 
@@ -256,6 +255,6 @@
     </div>
   </footer>
 
-  <script src="js/main.js"></script>
+  <script src="/js/main.js"></script>
 </body>
 </html>
