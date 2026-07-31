@@ -383,28 +383,18 @@ function showToast(message) {
   if (!toast) {
     toast = document.createElement('div');
     toast.id = 'netsorna-toast';
-    toast.style.cssText = `
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      background: #000;
-      color: #fff;
-      padding: 12px 20px;
-      border-radius: 4px;
-      font-size: 0.82rem;
-      z-index: 9999;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      transition: opacity 0.3s ease;
-      opacity: 0;
-    `;
     document.body.appendChild(toast);
   }
 
   toast.textContent = message;
-  toast.style.opacity = '1';
+  toast.classList.add('show');
 
-  setTimeout(() => {
-    toast.style.opacity = '0';
+  if (toast.timeoutId) {
+    clearTimeout(toast.timeoutId);
+  }
+
+  toast.timeoutId = setTimeout(() => {
+    toast.classList.remove('show');
   }, 3000);
 }
 
