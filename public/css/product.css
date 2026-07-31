@@ -12,13 +12,13 @@ body.product-page-body {
 .product-page-wrapper {
   width: 100%;
   margin: 0;
-  padding: 84px 0 0 0;
+  padding: 0; /* Removed top padding so hero sits directly under top viewport/header */
   display: flex;
   flex-direction: column;
 }
 
 /* ==========================================================================
-   Full-Width Hero Slider & Carousel (Mobile & Compact Viewports)
+   Full-Width Hero Slider & Carousel (Edge-to-Edge Visual Layout)
    ========================================================================== */
 .full-width-hero {
   position: relative;
@@ -27,7 +27,7 @@ body.product-page-body {
   right: 50%;
   margin-left: -50vw;
   margin-right: -50vw;
-  height: clamp(380px, 60vh, 650px);
+  height: clamp(420px, 70vh, 750px); /* Height expanded for prominent hero focus */
   background-color: #f7f7f7;
   overflow: hidden;
 }
@@ -62,7 +62,7 @@ body.product-page-body {
 .hero-img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: cover; /* Ensures complete edge-to-edge fill like reference */
   object-position: center;
   display: block;
 }
@@ -73,24 +73,25 @@ body.product-page-body {
   background: var(--placeholder-color, #e5e5e5);
 }
 
-/* Floating Image Counter Badge (Far-Right Anchor) */
+/* Minimalist Centered Image Counter Overlay */
 .hero-counter-badge {
   position: absolute;
-  bottom: clamp(12px, 3vw, 24px);
-  right: clamp(12px, 3vw, 24px);
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%); /* Centered counter over bottom of hero like reference image */
   font-family: var(--font-primary, 'Poppins', sans-serif);
-  font-size: clamp(0.75rem, 2vw, 0.85rem);
+  font-size: 0.85rem;
   font-weight: 500;
-  letter-spacing: 1px;
-  color: #000000;
-  background: rgba(255, 255, 255, 0.45);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  padding: 4px 12px;
+  letter-spacing: 2px;
+  color: #111111;
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 4px 14px;
   border-radius: 20px;
   z-index: 10;
   pointer-events: none;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.4);
 }
 
 /* ==========================================================================
@@ -100,7 +101,7 @@ body.product-page-body {
   width: 100%;
   max-width: 640px;
   margin: 0 auto;
-  padding: clamp(24px, 5vw, 48px) clamp(16px, 4vw, 24px) 60px;
+  padding: 32px clamp(16px, 4vw, 24px) 60px;
   box-sizing: border-box;
   text-align: left;
 }
@@ -111,7 +112,7 @@ body.product-page-body {
 }
 
 .product-title-lg {
-  font-size: clamp(1.8rem, 5vw, 2.5rem);
+  font-size: clamp(2rem, 6vw, 2.8rem);
   font-weight: 700;
   line-height: 1.1;
   letter-spacing: -0.5px;
@@ -346,6 +347,7 @@ body.product-page-body {
     left: auto;
     right: auto;
     flex-shrink: 0;
+    border-radius: 0;
   }
 
   .product-details-container {
@@ -387,7 +389,6 @@ body.product-page-body {
     width: 55%;
     max-width: 720px;
     height: 75vh;
-    border-radius: 4px;
   }
 
   .product-details-container {
