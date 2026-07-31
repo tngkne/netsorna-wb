@@ -33,7 +33,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Fixed Outer Container to hold the floating pill bar */
+/* Floating Outer Container */
 .navbar-wrapper {
   position: fixed;
   top: 12px;
@@ -42,33 +42,33 @@ body {
   display: flex;
   justify-content: center;
   z-index: 1000;
-  padding: 0 16px;
-  pointer-events: none; /* Let clicks pass through outside the bar */
+  padding: 0 12px;
+  pointer-events: none;
 }
 
-/* Floating Pill-style Navbar */
+/* Responsive Floating Header Bar */
 .navbar {
-  pointer-events: auto; /* Enable click events on bar content */
+  pointer-events: auto;
   width: 100%;
-  max-width: 600px;
+  max-width: 1140px; /* Expands cleanly on large screens */
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 18px;
-  border-radius: 100px; /* Capsule / button-like rounded pill shape */
+  padding: 10px 16px;
+  border-radius: 6px; /* Reduced corner radius */
   background-color: transparent;
   border: 1px solid transparent;
   box-shadow: none;
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-/* Scrolled state: 20% transparent white glass blur effect with subtle border */
+/* Scrolled state: 20% transparent white glass blur effect */
 .navbar.scrolled {
   background-color: rgba(255, 255, 255, 0.2) !important;
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.4);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.08);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
 }
 
 .menu-btn, .cart-btn {
@@ -108,23 +108,23 @@ body {
 
 .logo-text {
   font-weight: 700;
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   letter-spacing: -0.5px;
 }
 
 .logo-img {
-  height: 24px;
+  height: 22px;
   width: auto;
 }
 
 /* Navigation Drawer Dropdown */
 .nav-drawer {
   display: none;
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.96);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border-color);
-  padding: 80px 20px 20px;
+  padding: 72px 20px 20px;
   position: fixed;
   top: 0;
   left: 0;
@@ -141,6 +141,8 @@ body {
   display: flex;
   flex-direction: column;
   gap: 12px;
+  max-width: 1140px;
+  margin: 0 auto;
 }
 
 .nav-links a {
@@ -159,7 +161,7 @@ body {
   position: relative;
   min-height: 480px;
   background: url('../images/banners/hero-bg.jpg') center/cover no-repeat #c5c0b6;
-  padding: 80px 16px 24px;
+  padding: 84px 16px 24px;
   display: flex;
   align-items: flex-end;
   justify-content: center;
@@ -181,7 +183,7 @@ body {
   background: var(--card-bg-glass);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  border-radius: 8px;
+  border-radius: 3px;
   padding: 18px;
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.65);
@@ -533,8 +535,32 @@ body {
   color: var(--text-muted);
 }
 
-/* Desktop Breakpoints */
+/* Responsive Media Queries */
+@media (min-width: 576px) {
+  .navbar-wrapper {
+    padding: 0 20px;
+    top: 16px;
+  }
+
+  .navbar {
+    padding: 12px 24px;
+  }
+
+  .logo-img {
+    height: 26px;
+  }
+
+  .logo-text {
+    font-size: 1.5rem;
+  }
+}
+
 @media (min-width: 768px) {
+  .hero-section {
+    min-height: 520px;
+    padding-top: 100px;
+  }
+
   .product-grid {
     grid-template-columns: repeat(4, 1fr);
   }
