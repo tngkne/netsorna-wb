@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FROME ART — Netsorna</title>
+  <title>Ibiza — Netsorna</title>
 
   <!-- Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Reenie+Beanie&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- Core Styles -->
   <link rel="stylesheet" href="css/main.css" />
@@ -53,113 +53,85 @@
     </ul>
   </nav>
 
-  <main class="page-container">
-    <!-- Breadcrumb Bar (Left Title / Right Path) -->
-    <div class="breadcrumb-bar">
-      <span class="breadcrumb-title">Artworks / Collectibles</span>
-      <div class="breadcrumb-links">
-        <a href="index.html">Home</a> / <a href="shop.html">Shop</a> / <span>FROME ART</span>
-      </div>
-    </div>
-
-    <!-- Product Details Grid (Z/F Pattern Hybrid) -->
-    <section class="product-detail-section">
-      <!-- Left Anchor: Main Artwork Display & Thumbnails -->
-      <div class="product-gallery">
-        <div class="main-image-box">
-          <img src="images/products/product1.jpg" alt="FROME ART" id="mainProductImg" onerror="this.outerHTML='<div class=\'placeholder-box lg\'></div>'">
+  <main class="product-page-wrapper">
+    
+    <!-- Hero Full-Width Artwork Viewer -->
+    <section class="artwork-display-container">
+      <div class="artwork-viewport">
+        <img src="images/products/ibiza-large.jpg" alt="Ibiza Artwork" id="mainProductImg" class="hero-artwork-img" onerror="this.src='https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=1000&q=80'">
+        
+        <!-- Image Index Indicator (Exact Reference Match) -->
+        <div class="image-pagination-counter">
+          <span id="currentImgIdx">3</span> / <span id="totalImgIdx">8</span>
         </div>
-        <div class="gallery-thumbnails">
-          <button class="thumb-btn active"><img src="images/products/product1.jpg" alt="Thumb 1" onerror="this.style.display='none'"></button>
-          <button class="thumb-btn"><img src="images/products/product2.jpg" alt="Thumb 2" onerror="this.style.display='none'"></button>
-          <button class="thumb-btn"><img src="images/products/product3.jpg" alt="Thumb 3" onerror="this.style.display='none'"></button>
-        </div>
-      </div>
-
-      <!-- Right Anchor: Product Meta, Price & Actions -->
-      <div class="product-summary">
-        <div class="summary-header">
-          <h1 class="product-title-lg">FROME ART</h1>
-          <span class="product-price-lg">R 1 999</span>
-        </div>
-
-        <p class="product-sku">SKU: NET-FRM-001 • Limited Edition</p>
-
-        <p class="product-description">
-          A hand-crafted 3D linear relief sculpture created using textured composite layers. Designed for contemporary minimalist and mid-century spaces.
-        </p>
-
-        <!-- Options Selection -->
-        <div class="product-options">
-          <div class="option-row">
-            <label>Frame Finish:</label>
-            <div class="option-chips">
-              <button class="chip active">Raw White</button>
-              <button class="chip">Matte Black</button>
-              <button class="chip">Natural Oak</button>
-            </div>
-          </div>
-          <div class="option-row">
-            <label>Dimensions:</label>
-            <span class="option-value-right">60cm x 80cm</span>
-          </div>
-        </div>
-
-        <!-- Identical Action Buttons (Horizontal Anchored Apart or Stacked) -->
-        <div class="product-purchase-actions">
-          <button class="btn btn-outline" id="addToCartBtn">Add to Cart</button>
-          <a href="cart.html" class="btn btn-solid">Buy Now</a>
-        </div>
-
-        <!-- Micro-Guarantees (F-Pattern Left Text / Right Icons) -->
-        <ul class="meta-guarantees">
-          <li>
-            <span>Authenticity Certificate Included</span>
-            <strong>Verifiable</strong>
-          </li>
-          <li>
-            <span>Dispatched in Custom Wooden Crate</span>
-            <strong>3-5 Days</strong>
-          </li>
-        </ul>
       </div>
     </section>
 
-    <!-- Related Products -->
-    <section class="stories-section">
-      <h2 class="section-title">You Might Also Like</h2>
+    <!-- Product Metadata & Purchase Options -->
+    <section class="product-info-container">
+      
+      <!-- Primary Heading & Pricing -->
+      <div class="artwork-header">
+        <h1 class="artwork-title product-title-lg">Ibiza</h1>
+        <div class="artwork-price-row">
+          <span class="price-amount product-price-lg">$1,100.00</span>
+          <span class="price-currency">AUD</span>
+        </div>
+        <p class="shipping-tagline">Free Worldwide Shipping</p>
+      </div>
+
+      <!-- Specific Spec List (Match Reference) -->
+      <div class="artwork-specs-list">
+        <p class="spec-line">59 x 48 cm / 23 x 19 in, unframed</p>
+        <p class="spec-line">Edition of 200</p>
+        <p class="spec-line">Hand-signed</p>
+        <p class="spec-line">Archival print on 310gsm German Etching</p>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="purchase-action-group">
+        <button class="btn btn-solid buy-now-btn" id="addToCartBtn">Add to Cart</button>
+        <a href="cart.html" class="btn btn-outline checkout-direct-btn">Buy Now</a>
+      </div>
+
+    </section>
+
+    <!-- Related Collections Grid -->
+    <section class="related-artworks-section">
+      <h2 class="related-heading">More from this Edition</h2>
       <div class="product-grid">
         <article class="product-card">
           <div class="product-image-container">
-            <img src="images/products/product3.jpg" alt="MONO RELIEF" class="product-img" onerror="this.outerHTML='<div class=\'placeholder-box\'></div>'">
+            <img src="images/products/product3.jpg" alt="MONO RELIEF" class="product-img" onerror="this.src='https://images.unsplash.com/photo-1541701494587-cb58502866ab?auto=format&fit=crop&w=600&q=80'">
           </div>
           <div class="product-info">
             <div class="product-meta">
               <h3 class="product-title">MONO RELIEF</h3>
-              <span class="price">R 2499</span>
+              <span class="price">$1,450.00 AUD</span>
             </div>
             <div class="product-actions">
-              <a href="product.html?id=mono-relief" class="btn btn-outline">Get One</a>
+              <a href="product.html?id=mono-relief" class="btn btn-outline">View Piece</a>
             </div>
           </div>
         </article>
 
         <article class="product-card">
           <div class="product-image-container">
-            <img src="images/products/product4.jpg" alt="LINEAGE PIECE" class="product-img" onerror="this.outerHTML='<div class=\'placeholder-box\'></div>'">
+            <img src="images/products/product4.jpg" alt="LINEAGE PIECE" class="product-img" onerror="this.src='https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=600&q=80'">
           </div>
           <div class="product-info">
             <div class="product-meta">
               <h3 class="product-title">LINEAGE PIECE</h3>
-              <span class="price">R 3100</span>
+              <span class="price">$1,800.00 AUD</span>
             </div>
             <div class="product-actions">
-              <a href="product.html?id=lineage-piece" class="btn btn-outline">Get One</a>
+              <a href="product.html?id=lineage-piece" class="btn btn-outline">View Piece</a>
             </div>
           </div>
         </article>
       </div>
     </section>
+
   </main>
 
   <!-- Site Footer -->
