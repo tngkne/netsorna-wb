@@ -33,7 +33,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Floating Outer Container (Header Unchanged) */
+/* Floating Outer Container */
 .navbar-wrapper {
   position: fixed;
   top: 12px;
@@ -100,6 +100,7 @@ body {
 .brand-logo {
   display: flex;
   align-items: center;
+  justify-content: center;
   text-decoration: none;
   color: #000;
 }
@@ -111,8 +112,11 @@ body {
 }
 
 .logo-img {
-  height: 22px;
+  height: clamp(20px, 4vh, 28px);
   width: auto;
+  max-width: 160px;
+  object-fit: contain;
+  display: block;
 }
 
 /* Navigation Drawer Dropdown */
@@ -141,7 +145,7 @@ body {
   gap: 12px;
   max-width: 1140px;
   margin: 0 auto;
-  text-align: left; /* F-Pattern Left Anchor */
+  text-align: left;
 }
 
 .nav-links a {
@@ -159,8 +163,8 @@ body {
 .btn {
   display: inline-flex;
   align-items: center;
-  justify-content: flex-end; /* Text Anchored to the Right */
-  text-align: right;          /* Right align multi-line text */
+  justify-content: flex-end;
+  text-align: right;
   text-decoration: none;
   font-family: var(--font-main);
   font-size: 0.8rem;
@@ -216,7 +220,7 @@ body {
   padding: 12px 24px;
 }
 
-/* HERO & FEATURED PARTNER BANNER (Z-Pattern Flow) */
+/* HERO & FEATURED PARTNER BANNER */
 .hero-section {
   position: relative;
   min-height: 520px;
@@ -248,7 +252,6 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.65);
 }
 
-/* Z-Pattern Top Horizontal: Anchor Title Right */
 .featured-header {
   display: flex;
   justify-content: flex-end;
@@ -258,7 +261,7 @@ body {
 }
 
 .featured-title {
-  text-align: right; /* Right Anchored Header */
+  text-align: right;
   font-size: 1.5rem;
   font-weight: 700;
   line-height: 1.1;
@@ -266,7 +269,6 @@ body {
   letter-spacing: 0.5px;
 }
 
-/* Z-Pattern Body Structure */
 .featured-content {
   display: flex;
   flex-direction: column;
@@ -279,7 +281,6 @@ body {
   align-items: flex-start;
 }
 
-/* Z-Pattern Left Anchor: Artwork Image */
 .featured-image-box {
   flex: 0 0 45%;
 }
@@ -293,13 +294,12 @@ body {
   padding: 6px;
 }
 
-/* Z-Pattern Left-to-Right: Quote & Signature */
 .featured-details {
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  text-align: left; /* Left Anchored Copy */
+  text-align: left;
 }
 
 .quote {
@@ -315,13 +315,12 @@ body {
   line-height: 0.8;
   margin-top: 12px;
   display: block;
-  text-align: left; /* Left Anchored Signature */
+  text-align: left;
 }
 
-/* Z-Pattern Bottom Horizontal: Identical Buttons Anchored Apart */
 .featured-actions {
   display: flex;
-  justify-content: space-between; /* Anchored Left & Right Apart */
+  justify-content: space-between;
   align-items: center;
   gap: 12px;
   padding-top: 12px;
@@ -329,23 +328,22 @@ body {
 }
 
 .featured-actions .btn {
-  flex: 1; /* Identical Size */
+  flex: 1;
   height: 38px;
 }
 
-/* BROWSE CATALOG SECTION (F-Pattern Grid Layout) */
+/* BROWSE CATALOG SECTION (UN-CRAMPED GRID LAYOUT) */
 .browse-section {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
 }
 
-/* F-Pattern Top Stem: Left Anchored Headline */
 .browse-heading {
   font-size: 2.2rem;
   font-weight: 400;
   padding: 20px 20px 16px;
-  text-align: left; /* Left Anchored */
+  text-align: left;
   border-bottom: 1px solid var(--border-color);
 }
 
@@ -361,6 +359,13 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  background: #fff;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
 }
 
 .product-card:nth-child(2n) {
@@ -369,14 +374,17 @@ body {
 
 .product-image-container {
   width: 100%;
-  aspect-ratio: 1/1;
+  aspect-ratio: 1 / 1;
   margin-bottom: 14px;
+  background-color: var(--placeholder-color);
+  overflow: hidden;
 }
 
 .product-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
 }
 
 .placeholder-box {
@@ -385,38 +393,45 @@ body {
   background-color: var(--placeholder-color);
 }
 
-/* F-Pattern Item Content: Left Title / Right Price */
+/* Un-cramped Card Information Flow */
 .product-info {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 12px;
+  justify-content: space-between;
+  flex-grow: 1;
 }
 
+/* Vertical Stacking: Price directly under Title */
 .product-meta {
   display: flex;
-  justify-content: space-between; /* Left text, Right price */
-  align-items: baseline;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
 }
 
 .product-title {
   font-size: 0.88rem;
-  font-weight: 700;
-  letter-spacing: 0.5px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  line-height: 1.25;
   text-align: left;
+  color: var(--text-dark);
+  word-break: break-word;
 }
 
+/* Reduced price size by ~30% (from 0.9rem to 0.65rem) stacked below */
 .price {
-  font-size: 0.9rem;
+  font-size: 0.65rem;
   font-weight: 500;
-  text-align: right;
+  text-align: left;
+  color: var(--text-muted);
+  letter-spacing: 0.2px;
 }
 
-/* Card Button Layout (Stacked or Identical Horizontal) */
 .product-actions {
-  margin-top: 6px;
-  display: flex;
-  gap: 8px;
-  flex-direction: column; /* Closely stacked when multiple */
+  width: 100%;
+  margin-top: 4px;
 }
 
 .product-actions .btn {
@@ -427,11 +442,11 @@ body {
 .view-all-container {
   padding: 28px 20px;
   display: flex;
-  justify-content: flex-end; /* Anchored Right */
+  justify-content: flex-end;
   border-bottom: 1px solid var(--border-color);
 }
 
-/* CUSTOM CTA SECTION (Left-Anchored Content / Right-Anchored Actions) */
+/* CUSTOM CTA SECTION */
 .custom-cta-section {
   background: var(--accent-light);
   padding: 44px 20px;
@@ -444,7 +459,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  text-align: left; /* Left Anchored Flow */
+  text-align: left;
 }
 
 .custom-cta-text h2 {
@@ -461,11 +476,10 @@ body {
   text-align: left;
 }
 
-/* Identical Stacked / Side-by-Side CTA Buttons */
 .cta-actions {
   display: flex;
   gap: 12px;
-  flex-direction: column; /* Stacked closely on mobile */
+  flex-direction: column;
   width: 100%;
   max-width: 420px;
 }
@@ -475,7 +489,7 @@ body {
   height: 42px;
 }
 
-/* STORIES & BLOG SECTION (F-Pattern Layout) */
+/* STORIES & BLOG SECTION */
 .stories-section {
   padding: 36px 20px;
   max-width: 1140px;
@@ -486,7 +500,7 @@ body {
 .section-title {
   font-size: 1.4rem;
   margin-bottom: 24px;
-  text-align: left; /* Left Anchored Title */
+  text-align: left;
 }
 
 .stories-grid {
@@ -507,7 +521,7 @@ body {
 
 .story-header {
   display: flex;
-  justify-content: space-between; /* Date right anchored */
+  justify-content: space-between;
   align-items: center;
   margin-bottom: 8px;
 }
@@ -533,14 +547,14 @@ body {
 }
 
 .story-card .story-link {
-  align-self: flex-end; /* Anchored Right */
+  align-self: flex-end;
   text-decoration: none;
   font-size: 0.8rem;
   font-weight: 600;
   color: var(--text-dark);
 }
 
-/* SITE FOOTER (F-Pattern Grid & Anchoring) */
+/* SITE FOOTER */
 .site-footer {
   background: #ffffff;
   padding: 36px 20px 16px;
@@ -620,12 +634,12 @@ body {
   border-top: 1px solid #eee;
   padding-top: 16px;
   display: flex;
-  justify-content: space-between; /* Split bottom metadata left/right */
+  justify-content: space-between;
   font-size: 0.72rem;
   color: var(--text-muted);
 }
 
-/* RESPONSIVE BREAKPOINTS (Optimizing Banner & Layout Across Screens) */
+/* RESPONSIVE BREAKPOINTS */
 @media (min-width: 576px) {
   .navbar-wrapper {
     padding: 0 20px;
@@ -641,8 +655,12 @@ body {
   }
 
   .cta-actions {
-    flex-direction: row; /* Horizontal Side-by-Side */
+    flex-direction: row;
     max-width: 100%;
+  }
+
+  .price {
+    font-size: 0.7rem;
   }
 }
 
@@ -680,5 +698,15 @@ body {
 
   .footer-top {
     grid-template-columns: 2fr 1fr 1fr 2fr;
+  }
+}
+
+@media (min-width: 1024px) {
+  .product-title {
+    font-size: 0.92rem;
+  }
+
+  .price {
+    font-size: 0.72rem;
   }
 }
