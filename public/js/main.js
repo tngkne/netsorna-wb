@@ -1,6 +1,6 @@
 /**
  * Netsorna E-Commerce Core Functionality
- * Handles Navbar state, Drawer, LocalStorage Cart, Product Details, dynamic totals, and notifications.
+ * Handles Navbar state, Drawer, LocalStorage Cart, Product Details Carousel, Dynamic Totals, and Notifications.
  */
 
 // --- 1. MOCK PRODUCT DATABASE ---
@@ -10,7 +10,7 @@ const PRODUCTS_DB = {
     name: 'FROME ART',
     price: 1999,
     sku: 'NET-FRM-001',
-    description: 'A hand-crafted 3D linear relief sculpture created using textured composite layers. Designed for contemporary minimalist and mid-century spaces.',
+    description: 'A precision UV printed acrylic wall art piece designed with multi-material contrast and subtle depth. Built for high-end luxury interiors.',
     images: [
       '/images/products/product1.jpg',
       '/images/products/product2.jpg',
@@ -23,7 +23,7 @@ const PRODUCTS_DB = {
     name: 'MONO RELIEF',
     price: 2499,
     sku: 'NET-MNR-002',
-    description: 'Monochromatic textured wall piece capturing subtle shadows and geometric depth.',
+    description: 'Monochromatic textured acrylic piece capturing subtle light reflections and geometric depth.',
     images: [
       '/images/products/product3.jpg',
       '/images/products/product1.jpg'
@@ -35,7 +35,7 @@ const PRODUCTS_DB = {
     name: 'LINEAGE PIECE',
     price: 3100,
     sku: 'NET-LNG-003',
-    description: 'Fluid architectural line art using sustainable composite plaster and organic dye.',
+    description: 'Fluid architectural linear art produced using precision UV direct-to-acrylic printing with polished edge finishes.',
     images: [
       '/images/products/product4.jpg',
       '/images/products/product2.jpg'
@@ -57,7 +57,7 @@ function saveCart(cart) {
   updateCartBadge();
 }
 
-function addToCart(productId, selectedFinish = 'Raw White', quantity = 1) {
+function addToCart(productId, selectedFinish = 'Floating Mount', quantity = 1) {
   const product = PRODUCTS_DB[productId] || PRODUCTS_DB['frome-art'];
   const cart = getCart();
 
@@ -116,7 +116,7 @@ function initNavbar() {
     });
 
     document.addEventListener('click', (e) => {
-      if (!navbar.contains(e.target) && !navDrawer.contains(e.target)) {
+      if (navbar && !navbar.contains(e.target) && navDrawer && !navDrawer.contains(e.target)) {
         navDrawer.classList.remove('active');
       }
     });
@@ -126,8 +126,8 @@ function initNavbar() {
 // --- 4. PRODUCT PAGE INTERACTIONS ---
 function initProductPage() {
   const addToCartBtn = document.getElementById('addToCartBtn');
-  const mainImage = document.getElementById('mainProductImg');
-  const thumbBtns = document.querySelectorAll('.thumb-btn');
+  const heroSlider = document.getElementById('heroSlider');
+  const imageCounter = document.getElementById('imageCounter');
   const chipBtns = document.querySelectorAll('.option-chips .chip');
 
   // Check URL parameters to see which product to display
@@ -135,36 +135,54 @@ function initProductPage() {
   const productId = urlParams.get('id') || 'frome-art';
   const productData = PRODUCTS_DB[productId] || PRODUCTS_DB['frome-art'];
 
-  // Dynamically update view if elements exist
+  // Dynamically update content if elements exist
   const titleEl = document.querySelector('.product-title-lg');
   const priceEl = document.querySelector('.product-price-lg');
-  const skuEl = document.querySelector('.product-sku');
   const descEl = document.querySelector('.product-description');
 
   if (titleEl) titleEl.textContent = productData.name;
   if (priceEl) priceEl.textContent = `R ${productData.price.toLocaleString()}`;
-  if (skuEl) skuEl.textContent = `SKU: ${productData.sku} • Limited Edition`;
   if (descEl) descEl.textContent = productData.description;
-  if (mainImage && productData.images[0]) mainImage.src = productData.images[0];
 
-  // Thumbnail switching logic
-  thumbBtns.forEach((btn, idx) => {
-    if (productData.images[idx]) {
-      const img = btn.querySelector('img');
-      if (img) img.src = productData.images[idx];
-    }
-    btn.addEventListener('click', () => {
-      thumbBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      if (mainImage && productData.images[idx]) {
-        mainImage.src = productData.images[idx];
+  // Render full-width hero slider images
+  if (heroSlider && productData.images.length > 0) {
+    heroSlider.innerHTML = productData.images
+      .map(
+        (imgSrc, index) => `
+        <div class="slide-item ${index === 0 ? 'active' : ''}">
+          <img src="${imgSrc}" alt="${productData.name} view ${index + 1}" class="hero-img" onerror="this.outerHTML='<div class=\\'placeholder-hero\\'></div>'">
+        </div>
+      `
+      )
+      .join('');
+
+    let currentSlide = 0;
+    const slides = heroSlider.querySelectorAll('.slide-item');
+
+    const updateSlider = () => {
+      slides.forEach((slide, idx) => {
+        slide.classList.toggle('active', idx === currentSlide);
+      });
+      if (imageCounter) {
+        imageCounter.textContent = `${currentSlide + 1} / ${slides.length}`;
       }
+    };
+
+    // Cycle slides on click for full-width carousel
+    heroSlider.addEventListener('click', () => {
+      currentSlide = (currentSlide + 1) % slides.length;
+      updateSlider();
     });
-  });
+
+    updateSlider();
+  }
 
   // Chip options selection (Finish choice)
-  let selectedFinish = 'Raw White';
+  let selectedFinish = 'Floating Mount';
   chipBtns.forEach(chip => {
+    if (chip.classList.contains('active')) {
+      selectedFinish = chip.textContent.trim();
+    }
     chip.addEventListener('click', () => {
       chipBtns.forEach(c => c.classList.remove('active'));
       chip.classList.add('active');
@@ -184,17 +202,23 @@ function initProductPage() {
 function initCartPage() {
   const itemsContainer = document.querySelector('.cart-items-list');
   const cartSummaryCard = document.querySelector('.cart-summary-card');
+  const cartCountHeader = document.querySelector('.cart-count');
 
   if (!itemsContainer) return; // Exit if not on cart page
 
   function renderCart() {
     const cart = getCart();
+    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+
+    if (cartCountHeader) {
+      cartCountHeader.textContent = `${totalItems} ${totalItems === 1 ? 'Item' : 'Items'}`;
+    }
 
     if (cart.length === 0) {
       itemsContainer.innerHTML = `
         <div style="padding: 40px 0; text-align: left;">
           <h3>Your cart is empty.</h3>
-          <p style="color: var(--text-muted); margin: 12px 0 20px;">Explore our curated collection to find relief sculptures for your space.</p>
+          <p style="color: var(--text-muted, #777); margin: 12px 0 20px;">Explore our curated collection to find custom UV print artwork for your space.</p>
           <a href="/shop.html" class="btn btn-solid" style="display: inline-block; padding: 10px 24px;">Explore Collection</a>
         </div>
       `;
@@ -227,9 +251,9 @@ function initCartPage() {
 
             <div class="item-controls">
               <div class="quantity-selector">
-                <button class="qty-btn minus-btn" data-index="${index}">-</button>
+                <button class="qty-btn minus-btn" data-index="${index}" aria-label="Decrease quantity">-</button>
                 <span class="qty-num">${item.quantity}</span>
-                <button class="qty-btn plus-btn" data-index="${index}">+</button>
+                <button class="qty-btn plus-btn" data-index="${index}" aria-label="Increase quantity">+</button>
               </div>
 
               <button class="remove-btn" data-index="${index}">Remove</button>
@@ -304,7 +328,7 @@ function initProductCards() {
     if (link) {
       card.style.cursor = 'pointer';
       card.addEventListener('click', (e) => {
-        // Prevent trigger if clicking directly inside an explicit inner button
+        // Prevent trigger if clicking directly inside an explicit inner button or link
         if (e.target.tagName !== 'BUTTON' && e.target.tagName !== 'A') {
           window.location.href = link.getAttribute('href');
         }
