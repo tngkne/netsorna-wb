@@ -1,330 +1,354 @@
 /**
- * Netsorna E-Commerce Engine
- * Handles Cart State, LocalStorage, Interactivity, and Navigation
+ * Netsorna E-Commerce Core Functionality
+ * Handles Navbar state, Drawer, LocalStorage Cart, Product Details, dynamic totals, and notifications.
  */
 
-document.addEventListener('DOMContentLoaded', () => {
-  CartStore.init();
-  UIController.init();
-});
-
-/* ==========================================================================
-   1. CART STORE (State Management & LocalStorage)
-   ========================================================================== */
-const CartStore = {
-  STORAGE_KEY: 'netsorna_cart',
-
-  getCart() {
-    const data = localStorage.getItem(this.STORAGE_KEY);
-    return data ? JSON.parse(data) : [];
+// --- 1. MOCK PRODUCT DATABASE ---
+const PRODUCTS_DB = {
+  'frome-art': {
+    id: 'frome-art',
+    name: 'FROME ART',
+    price: 1999,
+    sku: 'NET-FRM-001',
+    description: 'A hand-crafted 3D linear relief sculpture created using textured composite layers. Designed for contemporary minimalist and mid-century spaces.',
+    images: [
+      'images/products/product1.jpg',
+      'images/products/product2.jpg',
+      'images/products/product3.jpg'
+    ],
+    dimensions: '60cm x 80cm'
   },
-
-  saveCart(cart) {
-    localStorage.setItem(this.STORAGE_KEY, JSON.stringify(cart));
-    this.updateBadge();
+  'mono-relief': {
+    id: 'mono-relief',
+    name: 'MONO RELIEF',
+    price: 2499,
+    sku: 'NET-MNR-002',
+    description: 'Monochromatic textured wall piece capturing subtle shadows and geometric depth.',
+    images: [
+      'images/products/product3.jpg',
+      'images/products/product1.jpg'
+    ],
+    dimensions: '75cm x 100cm'
   },
-
-  addItem(product) {
-    const cart = this.getCart();
-    const existingIndex = cart.findIndex(
-      item => item.id === product.id && item.option === product.option
-    );
-
-    if (existingIndex > -1) {
-      cart[existingIndex].quantity += product.quantity || 1;
-    } else {
-      cart.push({
-        id: product.id || 'NET-' + Date.now().toString().slice(-4),
-        title: product.title,
-        price: Number(product.price),
-        image: product.image,
-        option: product.option || 'Standard',
-        size: product.size || 'Default',
-        quantity: product.quantity || 1
-      });
-    }
-
-    this.saveCart(cart);
-    UIController.showToast(`Added "${product.title}" to cart`);
-  },
-
-  updateQuantity(index, delta) {
-    const cart = this.getCart();
-    if (!cart[index]) return;
-
-    cart[index].quantity += delta;
-
-    if (cart[index].quantity <= 0) {
-      cart.splice(index, 1);
-    }
-
-    this.saveCart(cart);
-  },
-
-  removeItem(index) {
-    const cart = this.getCart();
-    if (cart[index]) {
-      const name = cart[index].title;
-      cart.splice(index, 1);
-      this.saveCart(cart);
-      UIController.showToast(`Removed "${name}" from cart`);
-    }
-  },
-
-  getTotalCount() {
-    return this.getCart().reduce((sum, item) => sum + item.quantity, 0);
-  },
-
-  getSubtotal() {
-    return this.getCart().reduce((sum, item) => sum + (item.price * item.quantity), 0);
-  },
-
-  updateBadge() {
-    const count = this.getTotalCount();
-    const badgeElements = document.querySelectorAll('#cartBadge, .cart-badge');
-    badgeElements.forEach(badge => {
-      badge.textContent = count;
-      badge.style.display = count > 0 ? 'inline-flex' : 'none';
-    });
-  },
-
-  init() {
-    // Seed sample item if cart is empty on first load (for testing/demo)
-    if (!localStorage.getItem(this.STORAGE_KEY)) {
-      const demoCart = [
-        {
-          id: 'NET-FRM-001',
-          title: 'FROME ART',
-          price: 1999,
-          image: 'images/products/product1.jpg',
-          option: 'Raw White',
-          size: '60cm x 80cm',
-          quantity: 1
-        }
-      ];
-      this.saveCart(demoCart);
-    } else {
-      this.updateBadge();
-    }
+  'lineage-piece': {
+    id: 'lineage-piece',
+    name: 'LINEAGE PIECE',
+    price: 3100,
+    sku: 'NET-LNG-003',
+    description: 'Fluid architectural line art using sustainable composite plaster and organic dye.',
+    images: [
+      'images/products/product4.jpg',
+      'images/products/product2.jpg'
+    ],
+    dimensions: '90cm x 120cm'
   }
 };
 
-/* ==========================================================================
-   2. UI CONTROLLER (Event Listeners & DOM Binding)
-   ========================================================================== */
-const UIController = {
-  init() {
-    this.bindNavigation();
-    this.bindProductPage();
-    this.bindCartPage();
-    this.bindProductCards();
-  },
+const SHIPPING_FEE = 250;
 
-  // Navbar Drawer & Header interactions
-  bindNavigation() {
-    const menuToggle = document.getElementById('menuToggle');
-    const navDrawer = document.getElementById('navDrawer');
+// --- 2. CART STATE MANAGEMENT (LocalStorage) ---
+function getCart() {
+  const storedCart = localStorage.getItem('netsorna_cart');
+  return storedCart ? JSON.parse(storedCart) : [];
+}
 
-    if (menuToggle && navDrawer) {
-      menuToggle.addEventListener('click', (e) => {
-        e.stopPropagation();
-        navDrawer.classList.toggle('active');
-      });
+function saveCart(cart) {
+  localStorage.setItem('netsorna_cart', JSON.stringify(cart));
+  updateCartBadge();
+}
 
-      document.addEventListener('click', (e) => {
-        if (!navDrawer.contains(e.target) && !menuToggle.contains(e.target)) {
-          navDrawer.classList.remove('active');
-        }
-      });
+function addToCart(productId, selectedFinish = 'Raw White', quantity = 1) {
+  const product = PRODUCTS_DB[productId] || PRODUCTS_DB['frome-art'];
+  const cart = getCart();
+
+  const existingIndex = cart.findIndex(
+    item => item.id === product.id && item.finish === selectedFinish
+  );
+
+  if (existingIndex > -1) {
+    cart[existingIndex].quantity += quantity;
+  } else {
+    cart.push({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      finish: selectedFinish,
+      dimensions: product.dimensions,
+      image: product.images[0],
+      quantity: quantity
+    });
+  }
+
+  saveCart(cart);
+  showToast(`Added ${product.name} to your cart.`);
+}
+
+function updateCartBadge() {
+  const cart = getCart();
+  const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+  const badgeElements = document.querySelectorAll('.cart-badge, #cartBadge');
+
+  badgeElements.forEach(badge => {
+    badge.textContent = totalCount;
+    badge.style.display = totalCount > 0 ? 'flex' : 'none';
+  });
+}
+
+// --- 3. NAVBAR SCROLL & DRAWER TOGGLE ---
+function initNavbar() {
+  const navbar = document.getElementById('navbar');
+  const menuToggle = document.getElementById('menuToggle');
+  const navDrawer = document.getElementById('navDrawer');
+
+  // Handle glass transparency transformation on scroll
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 20) {
+      navbar?.classList.add('scrolled');
+    } else {
+      navbar?.classList.remove('scrolled');
     }
-  },
+  });
 
-  // Product Page specific controls
-  bindProductPage() {
-    const addToCartBtn = document.getElementById('addToCartBtn');
-    if (!addToCartBtn) return; // Not on product page
-
-    // Dynamic Option Chips
-    let selectedOption = 'Raw White';
-    const chips = document.querySelectorAll('.option-chips .chip');
-    chips.forEach(chip => {
-      chip.addEventListener('click', () => {
-        chips.forEach(c => c.classList.remove('active'));
-        chip.classList.add('active');
-        selectedOption = chip.textContent.trim();
-      });
+  // Toggle drawer menu
+  if (menuToggle && navDrawer) {
+    menuToggle.addEventListener('click', () => {
+      navDrawer.classList.toggle('active');
     });
 
-    // Image Thumbnail Switcher
-    const mainImg = document.getElementById('mainProductImg');
-    const thumbs = document.querySelectorAll('.thumb-btn');
-    thumbs.forEach(thumb => {
-      thumb.addEventListener('click', () => {
-        thumbs.forEach(t => t.classList.remove('active'));
-        thumb.classList.add('active');
-        const newSrc = thumb.querySelector('img')?.src;
-        if (newSrc && mainImg) mainImg.src = newSrc;
-      });
+    document.addEventListener('click', (e) => {
+      if (!navbar.contains(e.target) && !navDrawer.contains(e.target)) {
+        navDrawer.classList.remove('active');
+      }
     });
+  }
+}
 
-    // Add to Cart Action
+// --- 4. PRODUCT PAGE INTERACTIONS ---
+function initProductPage() {
+  const addToCartBtn = document.getElementById('addToCartBtn');
+  const mainImage = document.getElementById('mainProductImg');
+  const thumbBtns = document.querySelectorAll('.thumb-btn');
+  const chipBtns = document.querySelectorAll('.option-chips .chip');
+
+  // Check URL parameters to see which product to display
+  const urlParams = new URLSearchParams(window.location.search);
+  const productId = urlParams.get('id') || 'frome-art';
+  const productData = PRODUCTS_DB[productId] || PRODUCTS_DB['frome-art'];
+
+  // Dynamically update view if elements exist
+  const titleEl = document.querySelector('.product-title-lg');
+  const priceEl = document.querySelector('.product-price-lg');
+  const skuEl = document.querySelector('.product-sku');
+  const descEl = document.querySelector('.product-description');
+
+  if (titleEl) titleEl.textContent = productData.name;
+  if (priceEl) priceEl.textContent = `R ${productData.price.toLocaleString()}`;
+  if (skuEl) skuEl.textContent = `SKU: ${productData.sku} • Limited Edition`;
+  if (descEl) descEl.textContent = productData.description;
+  if (mainImage && productData.images[0]) mainImage.src = productData.images[0];
+
+  // Thumbnail switching logic
+  thumbBtns.forEach((btn, idx) => {
+    if (productData.images[idx]) {
+      const img = btn.querySelector('img');
+      if (img) img.src = productData.images[idx];
+    }
+    btn.addEventListener('click', () => {
+      thumbBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      if (mainImage && productData.images[idx]) {
+        mainImage.src = productData.images[idx];
+      }
+    });
+  });
+
+  // Chip options selection (Finish choice)
+  let selectedFinish = 'Raw White';
+  chipBtns.forEach(chip => {
+    chip.addEventListener('click', () => {
+      chipBtns.forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      selectedFinish = chip.textContent.trim();
+    });
+  });
+
+  // Add to Cart Action
+  if (addToCartBtn) {
     addToCartBtn.addEventListener('click', () => {
-      const title = document.querySelector('.product-title-lg')?.textContent.trim() || 'Artwork';
-      const priceText = document.querySelector('.product-price-lg')?.textContent.replace(/[^0-9]/g, '') || '0';
-      const image = mainImg?.src || 'images/products/product1.jpg';
-
-      CartStore.addItem({
-        id: 'NET-FRM-001',
-        title: title,
-        price: parseInt(priceText, 10),
-        image: image,
-        option: selectedOption,
-        size: '60cm x 80cm',
-        quantity: 1
-      });
+      addToCart(productData.id, selectedFinish, 1);
     });
-  },
+  }
+}
 
-  // Cart Page Dynamic Rendering & Quantity Handlers
-  bindCartPage() {
-    const cartList = document.querySelector('.cart-items-list');
-    if (!cartList) return; // Not on cart page
+// --- 5. CART PAGE INTERACTIONS & DYNAMIC RENDER ---
+function initCartPage() {
+  const itemsContainer = document.querySelector('.cart-items-list');
+  const cartSummaryCard = document.querySelector('.cart-summary-card');
 
-    this.renderCart();
-  },
+  if (!itemsContainer) return; // Exit if not on cart page
 
-  renderCart() {
-    const cartList = document.querySelector('.cart-items-list');
-    const summaryBox = document.querySelector('.cart-summary-card');
-    const cartHeaderCount = document.querySelector('.cart-count');
-    const cart = CartStore.getCart();
-
-    if (!cartList) return;
-
-    if (cartHeaderCount) {
-      cartHeaderCount.textContent = `${CartStore.getTotalCount()} Item${CartStore.getTotalCount() === 1 ? '' : 's'}`;
-    }
+  function renderCart() {
+    const cart = getCart();
 
     if (cart.length === 0) {
-      cartList.innerHTML = `
-        <div class="empty-cart-msg">
-          <p>Your cart is currently empty.</p>
-          <a href="shop.html" class="btn btn-solid" style="margin-top: 16px; display: inline-block;">Browse Artworks</a>
+      itemsContainer.innerHTML = `
+        <div style="padding: 40px 0; text-align: left;">
+          <h3>Your cart is empty.</h3>
+          <p style="color: var(--text-muted); margin: 12px 0 20px;">Explore our curated collection to find relief sculptures for your space.</p>
+          <a href="shop.html" class="btn btn-solid" style="display: inline-block; padding: 10px 24px;">Explore Collection</a>
         </div>
       `;
-      if (summaryBox) {
-        summaryBox.style.opacity = '0.5';
-        summaryBox.style.pointerEvents = 'none';
-      }
+      if (cartSummaryCard) cartSummaryCard.style.display = 'none';
       return;
     }
 
-    if (summaryBox) {
-      summaryBox.style.opacity = '1';
-      summaryBox.style.pointerEvents = 'all';
-    }
+    if (cartSummaryCard) cartSummaryCard.style.display = 'flex';
 
-    // Render Items
-    cartList.innerHTML = cart.map((item, index) => `
-      <article class="cart-item" data-index="${index}">
-        <div class="cart-item-img">
-          <img src="${item.image}" alt="${item.title}" onerror="this.outerHTML='<div class=\\'placeholder-box\\'></div>'">
-        </div>
+    let html = '';
+    let subtotal = 0;
 
-        <div class="cart-item-details">
-          <div class="item-title-row">
-            <h3 class="item-title">${item.title}</h3>
-            <span class="item-price">R ${item.price * item.quantity}</span>
+    cart.forEach((item, index) => {
+      const itemSubtotal = item.price * item.quantity;
+      subtotal += itemSubtotal;
+
+      html += `
+        <article class="cart-item" data-index="${index}">
+          <div class="cart-item-img">
+            <img src="${item.image}" alt="${item.name}" onerror="this.outerHTML='<div class=\\'placeholder-box\\'></div>'">
           </div>
 
-          <p class="item-spec">Finish: ${item.option} • ${item.size}</p>
-
-          <div class="item-controls">
-            <div class="quantity-selector">
-              <button class="qty-btn dec-btn" onclick="UIController.handleQtyChange(${index}, -1)">-</button>
-              <span class="qty-num">${item.quantity}</span>
-              <button class="qty-btn inc-btn" onclick="UIController.handleQtyChange(${index}, 1)">+</button>
+          <div class="cart-item-details">
+            <div class="item-title-row">
+              <h3 class="item-title">${item.name}</h3>
+              <span class="item-price">R ${itemSubtotal.toLocaleString()}</span>
             </div>
 
-            <button class="remove-btn" onclick="UIController.handleRemove(${index})">Remove</button>
+            <p class="item-spec">Finish: ${item.finish} • ${item.dimensions}</p>
+
+            <div class="item-controls">
+              <div class="quantity-selector">
+                <button class="qty-btn minus-btn" data-index="${index}">-</button>
+                <span class="qty-num">${item.quantity}</span>
+                <button class="qty-btn plus-btn" data-index="${index}">+</button>
+              </div>
+
+              <button class="remove-btn" data-index="${index}">Remove</button>
+            </div>
           </div>
-        </div>
-      </article>
-    `).join('');
+        </article>
+      `;
+    });
 
-    // Update Totals
-    const subtotal = CartStore.getSubtotal();
-    const delivery = subtotal > 0 ? 250 : 0;
-    const total = subtotal + delivery;
+    itemsContainer.innerHTML = html;
 
+    // Update Summary totals
+    const total = subtotal + SHIPPING_FEE;
     const summaryLines = document.querySelectorAll('.summary-line strong');
     if (summaryLines.length >= 3) {
       summaryLines[0].textContent = `R ${subtotal.toLocaleString()}`;
-      summaryLines[1].textContent = subtotal > 0 ? `R ${delivery}` : 'Free';
+      summaryLines[1].textContent = `R ${SHIPPING_FEE.toLocaleString()}`;
       summaryLines[2].textContent = `R ${total.toLocaleString()}`;
     }
-  },
 
-  handleQtyChange(index, delta) {
-    CartStore.updateQuantity(index, delta);
-    this.renderCart();
-  },
+    attachCartListeners();
+  }
 
-  handleRemove(index) {
-    CartStore.removeItem(index);
-    this.renderCart();
-  },
+  function attachCartListeners() {
+    const cart = getCart();
 
-  // Clickable Product Cards on Shop / Related Grids
-  bindProductCards() {
-    const cards = document.querySelectorAll('.product-card');
-    cards.forEach(card => {
-      card.style.cursor = 'pointer';
-      card.addEventListener('click', (e) => {
-        // Prevent redirect if clicking an inline button inside the card
-        if (e.target.tagName === 'BUTTON' || e.target.tagName === 'A') return;
-        window.location.href = 'product.html';
+    // Minus Buttons
+    document.querySelectorAll('.minus-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const idx = btn.dataset.index;
+        if (cart[idx].quantity > 1) {
+          cart[idx].quantity -= 1;
+        } else {
+          cart.splice(idx, 1);
+        }
+        saveCart(cart);
+        renderCart();
       });
     });
-  },
 
-  // Toast Notification System
-  showToast(message) {
-    let container = document.getElementById('toastContainer');
-    if (!container) {
-      container = document.createElement('div');
-      container.id = 'toastContainer';
-      container.style.cssText = `
-        position: fixed;
-        bottom: 24px;
-        right: 24px;
-        z-index: 9999;
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-      `;
-      document.body.appendChild(container);
+    // Plus Buttons
+    document.querySelectorAll('.plus-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const idx = btn.dataset.index;
+        cart[idx].quantity += 1;
+        saveCart(cart);
+        renderCart();
+      });
+    });
+
+    // Remove Buttons
+    document.querySelectorAll('.remove-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const idx = btn.dataset.index;
+        const removedItem = cart[idx].name;
+        cart.splice(idx, 1);
+        saveCart(cart);
+        renderCart();
+        showToast(`Removed ${removedItem} from cart.`);
+      });
+    });
+  }
+
+  renderCart();
+}
+
+// --- 6. GLOBAL PRODUCT CARD CLICK HANDLING ---
+function initProductCards() {
+  const cards = document.querySelectorAll('.product-card');
+  cards.forEach(card => {
+    const link = card.querySelector('a');
+    if (link) {
+      card.style.cursor = 'pointer';
+      card.addEventListener('click', (e) => {
+        // Prevent trigger if clicking directly inside an explicit inner button
+        if (e.target.tagName !== 'BUTTON' && e.target.tagName !== 'A') {
+          window.location.href = link.getAttribute('href');
+        }
+      });
     }
+  });
+}
 
-    const toast = document.createElement('div');
+// --- 7. UX FEEDBACK (Toast Notification) ---
+function showToast(message) {
+  let toast = document.getElementById('netsorna-toast');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.id = 'netsorna-toast';
     toast.style.cssText = `
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
       background: #000;
       color: #fff;
       padding: 12px 20px;
       border-radius: 4px;
       font-size: 0.82rem;
-      font-weight: 500;
+      z-index: 9999;
       box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      animation: fadeIn 0.2s ease-out;
+      transition: opacity 0.3s ease;
+      opacity: 0;
     `;
-    toast.textContent = message;
-
-    container.appendChild(toast);
-
-    setTimeout(() => {
-      toast.style.opacity = '0';
-      toast.style.transition = 'opacity 0.3s ease';
-      setTimeout(() => toast.remove(), 300);
-    }, 2500);
+    document.body.appendChild(toast);
   }
-};
+
+  toast.textContent = message;
+  toast.style.opacity = '1';
+
+  setTimeout(() => {
+    toast.style.opacity = '0';
+  }, 3000);
+}
+
+// --- 8. INITIALIZE ON DOM READY ---
+document.addEventListener('DOMContentLoaded', () => {
+  initNavbar();
+  updateCartBadge();
+  initProductPage();
+  initCartPage();
+  initProductCards();
+});
