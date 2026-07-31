@@ -1,6 +1,6 @@
 /**
  * Netsorna E-Commerce Core Functionality
- * Handles Navbar state, Drawer, LocalStorage Cart, Product Details Carousel, Dynamic Totals, and Notifications.
+ * Handles In-Bar Navigation Expansion, Cart Management, Product Details, and Notifications.
  */
 
 // --- 1. MOCK PRODUCT DATABASE ---
@@ -94,25 +94,15 @@ function updateCartBadge() {
   });
 }
 
-// --- 3. NAVBAR SCROLL & DRAWER TOGGLE ---
+// --- 3. IN-BAR EXTENDABLE NAVBAR CONTROLLER ---
 function initNavbar() {
   const navbar = document.getElementById('navbar');
   const menuToggle = document.getElementById('menuToggle');
   const navDrawer = document.getElementById('navDrawer');
 
-  // Handle glass transparency transformation on scroll
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 20) {
-      navbar?.classList.add('scrolled');
-    } else {
-      navbar?.classList.remove('scrolled');
-    }
-  });
-
-  // Toggle drawer menu
-  if (menuToggle && navDrawer) {
+  if (menuToggle && navbar && navDrawer) {
     const closeDrawer = () => {
-      navDrawer.classList.remove('active');
+      navbar.classList.remove('expanded');
       menuToggle.classList.remove('active');
       menuToggle.setAttribute('aria-expanded', 'false');
       navDrawer.setAttribute('aria-hidden', 'true');
@@ -120,7 +110,7 @@ function initNavbar() {
     };
 
     const openDrawer = () => {
-      navDrawer.classList.add('active');
+      navbar.classList.add('expanded');
       menuToggle.classList.add('active');
       menuToggle.setAttribute('aria-expanded', 'true');
       navDrawer.setAttribute('aria-hidden', 'false');
@@ -129,33 +119,32 @@ function initNavbar() {
 
     menuToggle.addEventListener('click', (e) => {
       e.stopPropagation();
-      const isOpen = navDrawer.classList.contains('active');
-      if (isOpen) {
+      const isExpanded = navbar.classList.contains('expanded');
+      if (isExpanded) {
         closeDrawer();
       } else {
         openDrawer();
       }
     });
 
-    // Close when clicking outside of navbar & drawer
+    // Close when clicking outside of the header bar
     document.addEventListener('click', (e) => {
       if (
-        navDrawer.classList.contains('active') &&
-        navbar && !navbar.contains(e.target) &&
-        !navDrawer.contains(e.target)
+        navbar.classList.contains('expanded') &&
+        !navbar.contains(e.target)
       ) {
         closeDrawer();
       }
     });
 
-    // Close drawer on pressing Escape key
+    // Close on pressing Escape key
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && navDrawer.classList.contains('active')) {
+      if (e.key === 'Escape' && navbar.classList.contains('expanded')) {
         closeDrawer();
       }
     });
 
-    // Close drawer when clicking any link inside it
+    // Close when clicking any nav link
     const drawerLinks = navDrawer.querySelectorAll('a');
     drawerLinks.forEach(link => {
       link.addEventListener('click', closeDrawer);
@@ -170,12 +159,10 @@ function initProductPage() {
   const imageCounter = document.getElementById('imageCounter');
   const chipBtns = document.querySelectorAll('.option-chips .chip');
 
-  // Check URL parameters to see which product to display
   const urlParams = new URLSearchParams(window.location.search);
   const productId = urlParams.get('id') || 'frome-art';
   const productData = PRODUCTS_DB[productId] || PRODUCTS_DB['frome-art'];
 
-  // Dynamically update content if elements exist
   const titleEl = document.querySelector('.product-title-lg');
   const priceEl = document.querySelector('.product-price-lg');
   const descEl = document.querySelector('.product-description');
@@ -184,7 +171,6 @@ function initProductPage() {
   if (priceEl) priceEl.textContent = `R ${productData.price.toLocaleString()}`;
   if (descEl) descEl.textContent = productData.description;
 
-  // Render full-width hero slider images
   if (heroSlider && productData.images.length > 0) {
     heroSlider.innerHTML = productData.images
       .map(
@@ -208,7 +194,6 @@ function initProductPage() {
       }
     };
 
-    // Cycle slides on click for full-width carousel
     heroSlider.addEventListener('click', () => {
       currentSlide = (currentSlide + 1) % slides.length;
       updateSlider();
@@ -217,7 +202,6 @@ function initProductPage() {
     updateSlider();
   }
 
-  // Chip options selection (Finish choice)
   let selectedFinish = 'Floating Mount';
   chipBtns.forEach(chip => {
     if (chip.classList.contains('active')) {
@@ -230,7 +214,6 @@ function initProductPage() {
     });
   });
 
-  // Add to Cart Action
   if (addToCartBtn) {
     addToCartBtn.addEventListener('click', () => {
       addToCart(productData.id, selectedFinish, 1);
@@ -244,7 +227,7 @@ function initCartPage() {
   const cartSummaryCard = document.querySelector('.cart-summary-card');
   const cartCountHeader = document.querySelector('.cart-count');
 
-  if (!itemsContainer) return; // Exit if not on cart page
+  if (!itemsContainer) return;
 
   function renderCart() {
     const cart = getCart();
@@ -305,7 +288,6 @@ function initCartPage() {
 
     itemsContainer.innerHTML = html;
 
-    // Update Summary totals
     const total = subtotal + SHIPPING_FEE;
     const summaryLines = document.querySelectorAll('.summary-line strong');
     if (summaryLines.length >= 3) {
@@ -320,7 +302,6 @@ function initCartPage() {
   function attachCartListeners() {
     const cart = getCart();
 
-    // Minus Buttons
     document.querySelectorAll('.minus-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         const idx = btn.dataset.index;
@@ -334,7 +315,6 @@ function initCartPage() {
       });
     });
 
-    // Plus Buttons
     document.querySelectorAll('.plus-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         const idx = btn.dataset.index;
@@ -344,7 +324,6 @@ function initCartPage() {
       });
     });
 
-    // Remove Buttons
     document.querySelectorAll('.remove-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         const idx = btn.dataset.index;
@@ -368,7 +347,6 @@ function initProductCards() {
     if (link) {
       card.style.cursor = 'pointer';
       card.addEventListener('click', (e) => {
-        // Prevent trigger if clicking directly inside an explicit inner button or link
         if (e.target.tagName !== 'BUTTON' && e.target.tagName !== 'A') {
           window.location.href = link.getAttribute('href');
         }
