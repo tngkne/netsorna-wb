@@ -3,40 +3,60 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Netsorna - Fine Art & Collectibles</title>
-  
-  <!-- Fonts -->
+  <title>Netsorna — Fine Art & Collectibles</title>
+
+  <!-- Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Reenie+Beanie&family=Great+Vibes&display=swap" rel="stylesheet">
-  
-  <!-- Main Stylesheet -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Reenie+Beanie&display=swap" rel="stylesheet">
+
+  <!-- Core Styles -->
   <link rel="stylesheet" href="css/main.css" />
   <link rel="icon" type="image/svg+xml" href="images/icons/favicon.svg" />
 </head>
 <body>
 
+  <!-- Announcement Bar -->
+  <div class="announcement-bar">
+    <span>Free delivery on orders over R2500 across South Africa</span>
+  </div>
+
   <!-- Header Navigation -->
   <header class="navbar">
-    <button class="menu-btn" aria-label="Open Menu">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+    <button class="menu-btn" aria-label="Toggle Navigation Menu" id="menuToggle">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
         <line x1="3" y1="6" x2="21" y2="6"></line>
         <line x1="3" y1="12" x2="21" y2="12"></line>
         <line x1="3" y1="18" x2="21" y2="18"></line>
       </svg>
     </button>
+
     <a href="index.html" class="brand-logo">
-      <img src="images/icons/logo1.svg" alt="Netsorna Logo" class="logo-img" onerror="this.outerHTML='<span class=\'logo-text\'>netsorna.</span>'">
+      <img src="images/icons/logo1.svg" alt="Netsorna" class="logo-img" onerror="this.outerHTML='<span class=\'logo-text\'>netsorna.</span>'">
     </a>
-    <a href="cart.html" class="cart-btn" aria-label="Shopping Cart">
+
+    <a href="cart.html" class="cart-btn" aria-label="View Cart">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
         <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
       </svg>
+      <span class="cart-badge" id="cartBadge">0</span>
     </a>
   </header>
 
+  <!-- Navigation Drawer Dropdown -->
+  <nav class="nav-drawer" id="navDrawer">
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="shop.html">Shop Artworks</a></li>
+      <li><a href="featured.html">Featured Program</a></li>
+      <li><a href="custom-order.html">Custom Orders</a></li>
+      <li><a href="blog.html">Blog & Stories</a></li>
+      <li><a href="faqs.html">FAQs</a></li>
+    </ul>
+  </nav>
+
   <main>
-    <!-- Featured Hero Banner Section -->
+    <!-- Featured Hero Section -->
     <section class="hero-section">
       <div class="hero-bg-overlay"></div>
       
@@ -45,13 +65,13 @@
         
         <div class="featured-content">
           <div class="featured-image-box">
-            <img src="images/products/featured-art.jpg" alt="Featured Relief Artwork" onerror="this.src='https://via.placeholder.com/200x200/ddd/333?text=Art+Piece'">
-            <a href="product.html" class="btn btn-solid btn-sm">Get One</a>
+            <img src="images/products/featured-art.jpg" alt="Featured Relief Artwork" onerror="this.src='https://via.placeholder.com/300x300/dedad3/000000?text=Featured+Art'">
+            <a href="product.html?id=featured-1" class="btn btn-solid btn-sm">Get One</a>
           </div>
           
           <div class="featured-details">
             <p class="quote">
-              "I really love this piece, it reminds me of when i was still young looking at my late granny's walls seeing beautiful pieces like this one."
+              "I really love this piece, it reminds me of when i was still young looking at my late granny's walls seeing beautiful pieces like this one"
             </p>
             <span class="signature">Lerato M.</span>
             <div class="action-right">
@@ -62,37 +82,139 @@
       </div>
     </section>
 
-    <!-- Browse Grid Section -->
+    <!-- Browse Catalog Section -->
     <section class="browse-section">
       <h1 class="browse-heading">Browse</h1>
       
       <div class="product-grid">
-        <!-- Product Card 1 -->
-        <div class="product-card">
+        <!-- Product Item 1 -->
+        <article class="product-card">
           <div class="product-image-container">
             <img src="images/products/product1.jpg" alt="FROME ART" class="product-img" onerror="this.outerHTML='<div class=\'placeholder-box\'></div>'">
           </div>
           <div class="product-info">
             <span class="price">R 1999</span>
             <h3 class="product-title">FROME ART</h3>
-            <a href="product.html" class="btn btn-outline">Get One</a>
+            <a href="product.html?id=frome-art-1" class="btn btn-outline">Get One</a>
           </div>
-        </div>
+        </article>
 
-        <!-- Product Card 2 -->
-        <div class="product-card">
+        <!-- Product Item 2 -->
+        <article class="product-card">
           <div class="product-image-container">
             <img src="images/products/product2.jpg" alt="FROME ART" class="product-img" onerror="this.outerHTML='<div class=\'placeholder-box\'></div>'">
           </div>
           <div class="product-info">
             <span class="price">R 1999</span>
             <h3 class="product-title">FROME ART</h3>
-            <a href="product.html" class="btn btn-outline">Get One</a>
+            <a href="product.html?id=frome-art-2" class="btn btn-outline">Get One</a>
           </div>
+        </article>
+
+        <!-- Product Item 3 -->
+        <article class="product-card">
+          <div class="product-image-container">
+            <img src="images/products/product3.jpg" alt="MONO RELIEF" class="product-img" onerror="this.outerHTML='<div class=\'placeholder-box\'></div>'">
+          </div>
+          <div class="product-info">
+            <span class="price">R 2499</span>
+            <h3 class="product-title">MONO RELIEF</h3>
+            <a href="product.html?id=mono-relief" class="btn btn-outline">Get One</a>
+          </div>
+        </article>
+
+        <!-- Product Item 4 -->
+        <article class="product-card">
+          <div class="product-image-container">
+            <img src="images/products/product4.jpg" alt="LINEAGE PIECE" class="product-img" onerror="this.outerHTML='<div class=\'placeholder-box\'></div>'">
+          </div>
+          <div class="product-info">
+            <span class="price">R 3100</span>
+            <h3 class="product-title">LINEAGE PIECE</h3>
+            <a href="product.html?id=lineage-piece" class="btn btn-outline">Get One</a>
+          </div>
+        </article>
+      </div>
+
+      <div class="view-all-container">
+        <a href="shop.html" class="btn btn-solid btn-lg">Explore Full Catalogue →</a>
+      </div>
+    </section>
+
+    <!-- Custom Order Callout Section -->
+    <section class="custom-cta-section">
+      <div class="custom-cta-container">
+        <h2>Bespoke & Custom Commissions</h2>
+        <p>Have a specific vision or looking for a tailor-made sculpture for your space? Submit your requirements and custom images directly.</p>
+        <div class="cta-actions">
+          <a href="custom-order.html" class="btn btn-solid">Request Custom Order</a>
+          <a href="whatsapp-inquiry.html" class="btn btn-subtle">WhatsApp Inquiry</a>
         </div>
       </div>
     </section>
+
+    <!-- Blog & Spotlight Section -->
+    <section class="stories-section">
+      <h2 class="section-title">Stories & Insights</h2>
+      <div class="stories-grid">
+        <article class="story-card">
+          <span class="story-date">July 2026</span>
+          <h3>The Craft Behind Modern Linear Relief Art</h3>
+          <p>Discover how classic architectural techniques meet contemporary interior aesthetics.</p>
+          <a href="blog.html" class="story-link">Read Story →</a>
+        </article>
+        <article class="story-card">
+          <span class="story-date">June 2026</span>
+          <h3>Preserving Heritage Through Art Collectibles</h3>
+          <p>A deep dive into how memory and nostalgia shape modern gallery spaces.</p>
+          <a href="blog.html" class="story-link">Read Story →</a>
+        </article>
+      </div>
+    </section>
   </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <span class="footer-logo">netsorna.</span>
+        <p>Curated fine art, relief sculptures, and custom interior pieces.</p>
+      </div>
+
+      <div class="footer-links-group">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="shop.html">Catalogue</a></li>
+          <li><a href="featured.html">Featured Partner</a></li>
+          <li><a href="custom-order.html">Custom Orders</a></li>
+          <li><a href="faqs.html">FAQs</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-links-group">
+        <h4>Legal & Terms</h4>
+        <ul>
+          <li><a href="terms.html">Terms of Service</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="refunds.html">Refund Policy</a></li>
+          <li><a href="ownership.html">Content Ownership</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-newsletter">
+        <h4>Stay Updated</h4>
+        <p>Subscribe to receive notifications for new drops and partner releases.</p>
+        <form class="newsletter-form" action="/api/newsletter" method="POST">
+          <input type="email" placeholder="Enter your email" required />
+          <button type="submit" class="btn btn-solid">Join</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2026 Netsorna. All rights reserved.</p>
+    </div>
+  </footer>
 
   <script src="js/main.js"></script>
 </body>
