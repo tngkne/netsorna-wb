@@ -1,6 +1,6 @@
 /**
  * Netsorna E-Commerce Core Functionality
- * Handles In-Bar Navigation Expansion, Cart Management, Product Details, and Notifications.
+ * Dynamic Scroll & In-Bar Navigation Expansion, Cart Management, Product Details, and Notifications.
  */
 
 // --- 1. MOCK PRODUCT DATABASE ---
@@ -94,13 +94,25 @@ function updateCartBadge() {
   });
 }
 
-// --- 3. IN-BAR EXTENDABLE NAVBAR CONTROLLER ---
+// --- 3. DYNAMIC SCROLL & IN-BAR EXTENDABLE NAVBAR CONTROLLER ---
 function initNavbar() {
   const navbar = document.getElementById('navbar');
   const menuToggle = document.getElementById('menuToggle');
   const navDrawer = document.getElementById('navDrawer');
 
   if (menuToggle && navbar && navDrawer) {
+    // Dynamic Scroll Listener
+    const handleScroll = () => {
+      if (window.scrollY > 20) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Initial check on load
+
     const closeDrawer = () => {
       navbar.classList.remove('expanded');
       menuToggle.classList.remove('active');
