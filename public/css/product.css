@@ -12,7 +12,7 @@ body.product-page-body {
 .product-page-wrapper {
   width: 100%;
   margin: 0;
-  padding: 0;
+  padding: 84px 0 0 0;
   display: flex;
   flex-direction: column;
 }
@@ -226,7 +226,7 @@ body.product-page-body {
 }
 
 /* ==========================================================================
-   YOU MIGHT ALSO LIKE / RELATED PRODUCTS SECTION (Fully Optimized)
+   YOU MIGHT ALSO LIKE / RELATED PRODUCTS SECTION
    ========================================================================== */
 .stories-section {
   width: 100%;
@@ -242,10 +242,9 @@ body.product-page-body {
   letter-spacing: -0.3px;
 }
 
-/* Responsive Grid for Related Products */
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 2 columns on mobile */
+  grid-template-columns: repeat(2, 1fr);
   gap: 16px;
   width: 100%;
 }
@@ -288,12 +287,11 @@ body.product-page-body {
   gap: 12px;
 }
 
-/* Vertical Stacking for Title & Reduced Price (Un-cramped) */
 .product-meta {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 4px; /* Clean vertical spacing */
+  gap: 4px;
 }
 
 .product-title {
@@ -305,7 +303,6 @@ body.product-page-body {
   word-break: break-word;
 }
 
-/* Price is 30% smaller (0.7rem vs previous 1rem) & stacked under title */
 .product-meta .price {
   font-size: 0.7rem;
   font-weight: 500;
@@ -329,19 +326,18 @@ body.product-page-body {
    Responsive Breakpoints
    ========================================================================== */
 
-/* Tablet Split Viewport (768px to 1023px) */
 @media (min-width: 768px) {
   .product-page-wrapper {
     flex-direction: row;
     max-width: 1280px;
     margin: 0 auto;
-    padding-top: 90px;
+    padding-top: 96px;
     align-items: flex-start;
   }
 
   .full-width-hero {
     position: sticky;
-    top: 90px;
+    top: 96px;
     width: 50vw;
     max-width: 600px;
     height: clamp(450px, 65vh, 680px);
@@ -376,11 +372,10 @@ body.product-page-body {
   }
 
   .product-meta .price {
-    font-size: 0.75rem; /* Standardized 30% reduction across breakpoints */
+    font-size: 0.75rem;
   }
 }
 
-/* Desktop Viewport (1024px and above) */
 @media (min-width: 1024px) {
   .product-page-wrapper {
     gap: 40px;
@@ -388,6 +383,7 @@ body.product-page-body {
   }
 
   .full-width-hero {
+    top: 100px;
     width: 55%;
     max-width: 720px;
     height: 75vh;
@@ -408,12 +404,11 @@ body.product-page-body {
   }
 
   .product-grid {
-    grid-template-columns: repeat(3, 1fr); /* Expands to 3 columns on desktop */
+    grid-template-columns: repeat(3, 1fr);
     gap: 20px;
   }
 }
 
-/* Large Desktop / Ultra-Wide (1440px and above) */
 @media (min-width: 1440px) {
   .product-page-wrapper {
     max-width: 1400px;
