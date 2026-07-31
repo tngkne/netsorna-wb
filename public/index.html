@@ -3,161 +3,254 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KREZI — Precision Automotive Design & Engineering</title>
-    <!-- Fonts -->
+    <title>Netsorna — Premium Art & Prints</title>
+    <meta name="description" content="Discover curated art prints, custom commissions, and featured artist partnerships at Netsorna.">
+    <link rel="icon" type="image/svg+xml" href="images/icons/favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/main.css">
-    <link rel="icon" type="image/svg+xml" href="images/icons/favicon.svg">
 </head>
 <body>
 
-    <!-- Header Navigation -->
-    <header class="site-header">
-        <div class="container header-container">
-            <a href="index.html" class="brand-logo">
-                <img src="images/icons/logo1.svg" alt="Krezi Logo" class="logo-icon">
-                <span class="brand-name">KREZI</span>
+    <!-- ===== A.1 HEADER ===== -->
+    <header class="site-header" id="siteHeader">
+        <div class="header-inner">
+            <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+            
+            <a href="index.html" class="logo">
+                <img src="images/icons/logo1.svg" alt="Netsorna" class="logo-img">
             </a>
             
-            <nav class="main-nav">
+            <button class="cart-toggle" id="cartToggle" aria-label="Open cart">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="9" cy="21" r="1"></circle>
+                    <circle cx="20" cy="21" r="1"></circle>
+                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                </svg>
+                <span class="cart-count" id="cartCount">0</span>
+            </button>
+        </div>
+        
+        <!-- Mobile Navigation -->
+        <nav class="mobile-nav" id="mobileNav" aria-hidden="true">
+            <div class="nav-links">
                 <a href="index.html" class="nav-link active">Home</a>
                 <a href="shop.html" class="nav-link">Shop</a>
-                <a href="featured.html" class="nav-link">Programs</a>
-                <a href="blog.html" class="nav-link">Journal</a>
+                <a href="featured.html" class="nav-link">Featured</a>
+                <a href="blog.html" class="nav-link">Blog</a>
                 <a href="faqs.html" class="nav-link">FAQs</a>
-            </nav>
-
-            <div class="header-actions">
-                <a href="custom-order.html" class="btn btn-outline">Custom Order</a>
-                <a href="cart.html" class="cart-btn" aria-label="View Cart">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
-                    <span class="cart-count">0</span>
-                </a>
+                <a href="custom-order.html" class="nav-link">Custom Order</a>
+                <a href="whatsapp-inquiry.html" class="nav-link">WhatsApp</a>
             </div>
-        </div>
+        </nav>
     </header>
 
-    <!-- Main Hero Section -->
-    <main>
-        <section class="hero-section">
-            <div class="container hero-container">
-                <div class="hero-content">
-                    <div class="badge">Precision Automotive Engineering</div>
-                    <h1 class="hero-title">Emotional Driving Experiences.</h1>
-                    <p class="hero-subtitle">Modernity, boldness, and tailored elegance. We design premium custom modifications, bespoke vehicle programs, and high-performance components.</p>
-                    
-                    <div class="hero-cta-group">
-                        <a href="shop.html" class="btn btn-primary">Explore Catalogue</a>
-                        <a href="whatsapp-inquiry.html" class="btn btn-secondary">WhatsApp Inquiry</a>
-                    </div>
-                </div>
-                
-                <div class="hero-media">
-                    <div class="image-frame">
-                        <img src="images/banners/hero-banner.jpg" alt="Krezi Custom Vehicle" class="hero-img">
-                        <div class="signature-tag">
-                            <span class="signature-font">Wil Patterson</span>
-                        </div>
-                    </div>
-                </div>
+    <!-- ===== A.4 CART DRAWER ===== -->
+    <aside class="cart-drawer" id="cartDrawer" aria-hidden="true">
+        <div class="cart-drawer-overlay" id="cartOverlay"></div>
+        <div class="cart-drawer-panel">
+            <div class="cart-drawer-header">
+                <h2>Your Cart</h2>
+                <button class="cart-close" id="cartClose" aria-label="Close cart">&times;</button>
             </div>
-        </section>
-
-        <!-- Brand Archetype & Precision Showcase -->
-        <section class="brand-values">
-            <div class="container grid-3">
-                <div class="value-card">
-                    <h3>Engineering</h3>
-                    <p>Designed with micro-precision specs and geometric balance, giving your vehicle an uncompromising stance.</p>
+            <div class="cart-drawer-body" id="cartDrawerBody">
+                <div class="cart-empty" id="cartEmpty">
+                    <p>Your cart is empty.</p>
+                    <a href="shop.html" class="btn btn-primary">Browse Shop</a>
                 </div>
-                <div class="value-card">
-                    <h3>Warm Tech</h3>
-                    <p>Technological advancement meets organic tactile luxury. Designed to elevate every single driving touchpoint.</p>
-                </div>
-                <div class="value-card">
-                    <h3>Movement</h3>
-                    <p>Dynamic visual identity and aggressive aerodynamics engineered to move even when static.</p>
-                </div>
+                <div class="cart-items" id="cartItems"></div>
             </div>
-        </section>
-
-        <!-- Sub-Brand Models Showcase -->
-        <section class="models-section">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Sub-Brand Models</h2>
-                    <p>Tailored performance directions for unique driving intents.</p>
+            <div class="cart-drawer-footer" id="cartFooter" style="display:none;">
+                <div class="cart-subtotal">
+                    <span>Subtotal</span>
+                    <span id="cartSubtotal">R 0</span>
                 </div>
-
-                <div class="grid-2">
-                    <div class="model-card road-blaze">
-                        <div class="model-overlay"></div>
-                        <div class="model-info">
-                            <span class="badge-accent">Grand Touring</span>
-                            <h3>Road Blaze</h3>
-                            <p>Panoramic luxury, tailored long-distance comfort, and ultra-smooth modern styling.</p>
-                            <a href="shop.html?model=road-blaze" class="link-arrow">Discover Model &rarr;</a>
-                        </div>
-                    </div>
-                    
-                    <div class="model-card sport-blaze">
-                        <div class="model-overlay"></div>
-                        <div class="model-info">
-                            <span class="badge-accent">Track & Sport</span>
-                            <h3>Sport Blaze</h3>
-                            <p>Agility, raw track response, lightweight materials, and bold motorsport geometry.</p>
-                            <a href="shop.html?model=sport-blaze" class="link-arrow">Discover Model &rarr;</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Site Footer -->
-    <footer class="site-footer">
-        <div class="container footer-grid">
-            <div class="footer-brand">
-                <a href="index.html" class="brand-logo">
-                    <img src="images/icons/logo1.svg" alt="Krezi Logo" class="logo-icon">
-                    <span class="brand-name">KREZI</span>
-                </a>
-                <p>Modern automotive identity and performance engineering.</p>
-                <div class="signature-footer">
-                    Crafted by <span class="signature-font">Michael</span> & Team
-                </div>
-            </div>
-
-            <div class="footer-links">
-                <h4>Navigation</h4>
-                <ul>
-                    <li><a href="shop.html">Shop Catalogue</a></li>
-                    <li><a href="featured.html">Featured Programs</a></li>
-                    <li><a href="blog.html">Journal</a></li>
-                    <li><a href="custom-order.html">Custom Order</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-links">
-                <h4>Support & Legal</h4>
-                <ul>
-                    <li><a href="faqs.html">FAQs</a></li>
-                    <li><a href="terms.html">Terms of Service</a></li>
-                    <li><a href="privacy.html">Privacy Policy</a></li>
-                    <li><a href="refunds.html">Refund Policy</a></li>
-                    <li><a href="ownership.html">Content Ownership</a></li>
-                </ul>
+                <a href="checkout.html" class="btn btn-primary btn-block">Checkout</a>
+                <a href="cart.html" class="btn btn-ghost btn-block">View Full Cart</a>
             </div>
         </div>
-        <div class="footer-bottom">
-            <div class="container">
-                <p>&copy; 2026 KREZI Automotive Specialist. All rights reserved.</p>
+    </aside>
+
+    <!-- ===== B.1 HERO SECTION ===== -->
+    <section class="hero" id="hero">
+        <div class="hero-bg">
+            <img src="images/banners/hero-bg.jpg" alt="Art studio background" class="hero-bg-img">
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="hero-content">
+            <h1 class="hero-title">Art That Speaks</h1>
+            <p class="hero-subtitle">Curated prints, custom commissions & featured artist partnerships.</p>
+            <div class="hero-actions">
+                <a href="shop.html" class="btn btn-primary">Browse Collection</a>
+                <a href="featured.html" class="btn btn-ghost-light">Meet Our Artists</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== B.4 FEATURED PARTNER ===== -->
+    <section class="featured-partner" id="featuredPartner">
+        <div class="featured-bg">
+            <img src="images/banners/featured-bg.jpg" alt="Featured artist workspace" class="featured-bg-img">
+            <div class="featured-overlay"></div>
+        </div>
+        <div class="featured-content">
+            <h2 class="featured-title">Featured<br>Partner</h2>
+            <div class="featured-card">
+                <div class="featured-artwork">
+                    <img src="images/products/featured-art.jpg" alt="Featured artwork" class="featured-art-img">
+                </div>
+                <div class="featured-quote">
+                    <p class="quote-text">"I really love this piece, it reminds me of when I was still young looking at my late granny's walls seeing beautiful pieces like this one."</p>
+                    <p class="quote-signature">Lerato M.</p>
+                </div>
+                <div class="featured-actions">
+                    <a href="product.html?id=featured-001" class="btn btn-light">Get One</a>
+                    <a href="featured.html" class="btn btn-ghost-light">View More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== B.2 BROWSE / PRODUCT CATALOGUE PREVIEW ===== -->
+    <section class="browse-section" id="browse">
+        <div class="section-header">
+            <h2 class="section-title">Browse</h2>
+        </div>
+        <div class="product-grid" id="productGrid">
+            <!-- Products injected via JS -->
+            <article class="product-card" data-product-id="frome-001">
+                <div class="product-image">
+                    <img src="images/products/placeholder.jpg" alt="FROME ART" class="product-img" loading="lazy">
+                </div>
+                <div class="product-info">
+                    <p class="product-price">R 1,999</p>
+                    <h3 class="product-name">FROME ART</h3>
+                </div>
+                <button class="btn btn-outline btn-block add-to-cart" data-id="frome-001" data-name="FROME ART" data-price="1999">Get One</button>
+            </article>
+            <article class="product-card" data-product-id="frome-002">
+                <div class="product-image">
+                    <img src="images/products/placeholder.jpg" alt="FROME ART" class="product-img" loading="lazy">
+                </div>
+                <div class="product-info">
+                    <p class="product-price">R 1,999</p>
+                    <h3 class="product-name">FROME ART</h3>
+                </div>
+                <button class="btn btn-outline btn-block add-to-cart" data-id="frome-002" data-name="FROME ART" data-price="1999">Get One</button>
+            </article>
+        </div>
+        <div class="browse-actions">
+            <a href="shop.html" class="btn btn-primary">View All Products</a>
+        </div>
+    </section>
+
+    <!-- ===== B.5 BLOG PREVIEW ===== -->
+    <section class="blog-preview" id="blogPreview">
+        <div class="section-header">
+            <h2 class="section-title">From the Studio</h2>
+        </div>
+        <div class="blog-grid" id="blogGrid">
+            <article class="blog-card">
+                <div class="blog-image">
+                    <img src="images/banners/blog-1.jpg" alt="Blog post" class="blog-img" loading="lazy">
+                </div>
+                <div class="blog-info">
+                    <span class="blog-date">July 2026</span>
+                    <h3 class="blog-title">The Story Behind Our Signature Collection</h3>
+                    <a href="blog/story-behind-collection.html" class="blog-link">Read More &rarr;</a>
+                </div>
+            </article>
+            <article class="blog-card">
+                <div class="blog-image">
+                    <img src="images/banners/blog-2.jpg" alt="Blog post" class="blog-img" loading="lazy">
+                </div>
+                <div class="blog-info">
+                    <span class="blog-date">June 2026</span>
+                    <h3 class="blog-title">How to Choose Art for Your Space</h3>
+                    <a href="blog/choose-art-for-space.html" class="blog-link">Read More &rarr;</a>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- ===== NEWSLETTER ===== -->
+    <section class="newsletter" id="newsletter">
+        <div class="newsletter-inner">
+            <h2 class="newsletter-title">Stay in the Loop</h2>
+            <p class="newsletter-text">New drops, artist features, and exclusive offers — straight to your inbox.</p>
+            <form class="newsletter-form" id="newsletterForm">
+                <input type="email" class="newsletter-input" placeholder="Enter your email" required aria-label="Email address">
+                <button type="submit" class="btn btn-primary">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- ===== A.2 FOOTER ===== -->
+    <footer class="site-footer" id="siteFooter">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <img src="images/icons/logo1.svg" alt="Netsorna" class="footer-logo">
+                <p class="footer-tagline">Art that transforms spaces.</p>
+            </div>
+            <div class="footer-links">
+                <div class="footer-col">
+                    <h4>Shop</h4>
+                    <a href="shop.html">All Products</a>
+                    <a href="featured.html">Featured</a>
+                    <a href="custom-order.html">Custom Order</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <a href="blog.html">Blog</a>
+                    <a href="faqs.html">FAQs</a>
+                    <a href="whatsapp-inquiry.html">Contact</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <a href="terms.html">Terms</a>
+                    <a href="privacy.html">Privacy</a>
+                    <a href="refunds.html">Refunds</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-copy">&copy; 2026 Netsorna. All rights reserved.</p>
+                <div class="footer-social">
+                    <a href="#" aria-label="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+                    <a href="#" aria-label="Twitter"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a>
+                </div>
             </div>
         </div>
     </footer>
 
+    <!-- ===== A.3 COOKIE CONSENT ===== -->
+    <div class="cookie-consent" id="cookieConsent" role="dialog" aria-label="Cookie consent">
+        <div class="cookie-inner">
+            <p class="cookie-text">We use cookies to enhance your experience and analyze our traffic.</p>
+            <div class="cookie-actions">
+                <button class="btn btn-sm btn-ghost" id="cookieDecline">Decline</button>
+                <button class="btn btn-sm btn-primary" id="cookieAccept">Accept</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== A.5 QUICK ACTIONS ===== -->
+    <div class="quick-actions" id="quickActions">
+        <a href="whatsapp-inquiry.html" class="quick-btn quick-whatsapp" aria-label="WhatsApp inquiry">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        </a>
+        <button class="quick-btn quick-top" id="backToTop" aria-label="Back to top">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"></polyline></svg>
+        </button>
+    </div>
+
+    <!-- Scripts -->
     <script src="js/main.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/analytics.js"></script>
 </body>
 </html>
