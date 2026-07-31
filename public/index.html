@@ -3,12 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Netsorna — Premium Art & Prints</title>
-    <meta name="description" content="Discover curated art prints, custom commissions, and featured artist partnerships at Netsorna.">
+    <title>Netsorna — Premium Bespoke Art & UV Wall Prints</title>
+    <meta name="description" content="Discover curated art prints, custom acrylic UV commissions, and featured artist partnerships at Netsorna.">
     <link rel="icon" type="image/svg+xml" href="images/icons/favicon.svg">
+    
+    <!-- Preconnects & Typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
@@ -27,7 +29,7 @@
             </a>
             
             <button class="cart-toggle" id="cartToggle" aria-label="Open cart">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <circle cx="9" cy="21" r="1"></circle>
                     <circle cx="20" cy="21" r="1"></circle>
                     <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
@@ -40,12 +42,12 @@
         <nav class="mobile-nav" id="mobileNav" aria-hidden="true">
             <div class="nav-links">
                 <a href="index.html" class="nav-link active">Home</a>
-                <a href="shop.html" class="nav-link">Shop</a>
-                <a href="featured.html" class="nav-link">Featured</a>
-                <a href="blog.html" class="nav-link">Blog</a>
+                <a href="shop.html" class="nav-link">Shop Collection</a>
+                <a href="featured.html" class="nav-link">Featured Artists</a>
+                <a href="custom-order.html" class="nav-link">Custom Commissions</a>
+                <a href="blog.html" class="nav-link">Journal</a>
                 <a href="faqs.html" class="nav-link">FAQs</a>
-                <a href="custom-order.html" class="nav-link">Custom Order</a>
-                <a href="whatsapp-inquiry.html" class="nav-link">WhatsApp</a>
+                <a href="whatsapp-inquiry.html" class="nav-link highlight">WhatsApp Order</a>
             </div>
         </nav>
     </header>
@@ -55,13 +57,13 @@
         <div class="cart-drawer-overlay" id="cartOverlay"></div>
         <div class="cart-drawer-panel">
             <div class="cart-drawer-header">
-                <h2>Your Cart</h2>
+                <h2>Your Collection</h2>
                 <button class="cart-close" id="cartClose" aria-label="Close cart">&times;</button>
             </div>
             <div class="cart-drawer-body" id="cartDrawerBody">
                 <div class="cart-empty" id="cartEmpty">
-                    <p>Your cart is empty.</p>
-                    <a href="shop.html" class="btn btn-primary">Browse Shop</a>
+                    <p>Your collection is currently empty.</p>
+                    <a href="shop.html" class="btn btn-primary">Browse Gallery</a>
                 </div>
                 <div class="cart-items" id="cartItems"></div>
             </div>
@@ -70,158 +72,218 @@
                     <span>Subtotal</span>
                     <span id="cartSubtotal">R 0</span>
                 </div>
-                <a href="checkout.html" class="btn btn-primary btn-block">Checkout</a>
-                <a href="cart.html" class="btn btn-ghost btn-block">View Full Cart</a>
+                <a href="checkout.html" class="btn btn-primary btn-block">Proceed to Checkout</a>
+                <a href="cart.html" class="btn btn-ghost btn-block">View Bag Details</a>
             </div>
         </div>
     </aside>
 
-    <!-- ===== B.1 HERO SECTION ===== -->
-    <section class="hero" id="hero">
-        <div class="hero-bg">
-            <img src="images/banners/hero-bg.jpg" alt="Art studio background" class="hero-bg-img">
-            <div class="hero-overlay"></div>
-        </div>
-        <div class="hero-content">
-            <h1 class="hero-title">Art That Speaks</h1>
-            <p class="hero-subtitle">Curated prints, custom commissions & featured artist partnerships.</p>
-            <div class="hero-actions">
-                <a href="shop.html" class="btn btn-primary">Browse Collection</a>
-                <a href="featured.html" class="btn btn-ghost-light">Meet Our Artists</a>
+    <main class="main-content">
+        <!-- ===== B.1 HERO SECTION ===== -->
+        <section class="hero" id="hero">
+            <div class="hero-bg">
+                <img src="images/banners/hero-bg.jpg" alt="Art gallery workspace" class="hero-bg-img">
+                <div class="hero-overlay"></div>
             </div>
-        </div>
-    </section>
-
-    <!-- ===== B.4 FEATURED PARTNER ===== -->
-    <section class="featured-partner" id="featuredPartner">
-        <div class="featured-bg">
-            <img src="images/banners/featured-bg.jpg" alt="Featured artist workspace" class="featured-bg-img">
-            <div class="featured-overlay"></div>
-        </div>
-        <div class="featured-content">
-            <h2 class="featured-title">Featured<br>Partner</h2>
-            <div class="featured-card">
-                <div class="featured-artwork">
-                    <img src="images/products/featured-art.jpg" alt="Featured artwork" class="featured-art-img">
-                </div>
-                <div class="featured-quote">
-                    <p class="quote-text">"I really love this piece, it reminds me of when I was still young looking at my late granny's walls seeing beautiful pieces like this one."</p>
-                    <p class="quote-signature">Lerato M.</p>
-                </div>
-                <div class="featured-actions">
-                    <a href="product.html?id=featured-001" class="btn btn-light">Get One</a>
-                    <a href="featured.html" class="btn btn-ghost-light">View More</a>
+            <div class="hero-content">
+                <span class="badge badge-accent">Bespoke Collection</span>
+                <h1 class="hero-title">Art That Speaks</h1>
+                <p class="hero-subtitle">Curated gallery prints, specialized acrylic UV wall art, and custom commissions crafted to elevate your space.</p>
+                <div class="hero-actions">
+                    <a href="shop.html" class="btn btn-primary">Explore Gallery</a>
+                    <a href="custom-order.html" class="btn btn-ghost-light">Commission Custom Piece</a>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- ===== B.2 BROWSE / PRODUCT CATALOGUE PREVIEW ===== -->
-    <section class="browse-section" id="browse">
-        <div class="section-header">
-            <h2 class="section-title">Browse</h2>
-        </div>
-        <div class="product-grid" id="productGrid">
-            <!-- Products injected via JS -->
-            <article class="product-card" data-product-id="frome-001">
-                <div class="product-image">
-                    <img src="images/products/placeholder.jpg" alt="FROME ART" class="product-img" loading="lazy">
+        <!-- ===== FEATURE HIGHLIGHT (VALUE PROPOSITION) ===== -->
+        <section class="value-props">
+            <div class="container value-grid">
+                <div class="value-item">
+                    <span class="value-number">01</span>
+                    <h3>Premium Materials</h3>
+                    <p>Archival-grade acrylics and UV inks built for lifelong radiance.</p>
                 </div>
-                <div class="product-info">
-                    <p class="product-price">R 1,999</p>
-                    <h3 class="product-name">FROME ART</h3>
+                <div class="value-item">
+                    <span class="value-number">02</span>
+                    <h3>Tailored Commissions</h3>
+                    <p>Transform personal ideas into gallery-ready physical statements.</p>
                 </div>
-                <button class="btn btn-outline btn-block add-to-cart" data-id="frome-001" data-name="FROME ART" data-price="1999">Get One</button>
-            </article>
-            <article class="product-card" data-product-id="frome-002">
-                <div class="product-image">
-                    <img src="images/products/placeholder.jpg" alt="FROME ART" class="product-img" loading="lazy">
+                <div class="value-item">
+                    <span class="value-number">03</span>
+                    <h3>Direct Collaboration</h3>
+                    <p>Seamless WhatsApp ordering and personalized artist support.</p>
                 </div>
-                <div class="product-info">
-                    <p class="product-price">R 1,999</p>
-                    <h3 class="product-name">FROME ART</h3>
-                </div>
-                <button class="btn btn-outline btn-block add-to-cart" data-id="frome-002" data-name="FROME ART" data-price="1999">Get One</button>
-            </article>
-        </div>
-        <div class="browse-actions">
-            <a href="shop.html" class="btn btn-primary">View All Products</a>
-        </div>
-    </section>
+            </div>
+        </section>
 
-    <!-- ===== B.5 BLOG PREVIEW ===== -->
-    <section class="blog-preview" id="blogPreview">
-        <div class="section-header">
-            <h2 class="section-title">From the Studio</h2>
-        </div>
-        <div class="blog-grid" id="blogGrid">
-            <article class="blog-card">
-                <div class="blog-image">
-                    <img src="images/banners/blog-1.jpg" alt="Blog post" class="blog-img" loading="lazy">
+        <!-- ===== B.2 BROWSE / CATALOGUE PREVIEW ===== -->
+        <section class="browse-section" id="browse">
+            <div class="container">
+                <div class="section-header text-center">
+                    <span class="section-tag">Selected Works</span>
+                    <h2 class="section-title">Featured Pieces</h2>
+                    <p class="section-subtitle">Handpicked statement artworks ready for display.</p>
                 </div>
-                <div class="blog-info">
-                    <span class="blog-date">July 2026</span>
-                    <h3 class="blog-title">The Story Behind Our Signature Collection</h3>
-                    <a href="blog/story-behind-collection.html" class="blog-link">Read More &rarr;</a>
-                </div>
-            </article>
-            <article class="blog-card">
-                <div class="blog-image">
-                    <img src="images/banners/blog-2.jpg" alt="Blog post" class="blog-img" loading="lazy">
-                </div>
-                <div class="blog-info">
-                    <span class="blog-date">June 2026</span>
-                    <h3 class="blog-title">How to Choose Art for Your Space</h3>
-                    <a href="blog/choose-art-for-space.html" class="blog-link">Read More &rarr;</a>
-                </div>
-            </article>
-        </div>
-    </section>
+                
+                <div class="product-grid" id="productGrid">
+                    <article class="product-card" data-product-id="frome-001">
+                        <div class="product-image">
+                            <span class="product-badge">Featured</span>
+                            <img src="images/products/placeholder.jpg" alt="FROME ART" class="product-img" loading="lazy">
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">UV Acrylic Print</span>
+                            <h3 class="product-name">FROME ART — Edition I</h3>
+                            <p class="product-price">R 1,999</p>
+                        </div>
+                        <button class="btn btn-outline btn-block add-to-cart" data-id="frome-001" data-name="FROME ART I" data-price="1999">Add To Collection</button>
+                    </article>
 
-    <!-- ===== NEWSLETTER ===== -->
-    <section class="newsletter" id="newsletter">
-        <div class="newsletter-inner">
-            <h2 class="newsletter-title">Stay in the Loop</h2>
-            <p class="newsletter-text">New drops, artist features, and exclusive offers — straight to your inbox.</p>
-            <form class="newsletter-form" id="newsletterForm">
-                <input type="email" class="newsletter-input" placeholder="Enter your email" required aria-label="Email address">
-                <button type="submit" class="btn btn-primary">Subscribe</button>
-            </form>
-        </div>
-    </section>
+                    <article class="product-card" data-product-id="frome-002">
+                        <div class="product-image">
+                            <span class="product-badge">Bestseller</span>
+                            <img src="images/products/placeholder.jpg" alt="FROME ART" class="product-img" loading="lazy">
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">Framed Print</span>
+                            <h3 class="product-name">FROME ART — Edition II</h3>
+                            <p class="product-price">R 1,999</p>
+                        </div>
+                        <button class="btn btn-outline btn-block add-to-cart" data-id="frome-002" data-name="FROME ART II" data-price="1999">Add To Collection</button>
+                    </article>
+                </div>
+
+                <div class="browse-actions">
+                    <a href="shop.html" class="btn btn-secondary">View Full Collection &rarr;</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== B.4 FEATURED PARTNER ===== -->
+        <section class="featured-partner" id="featuredPartner">
+            <div class="featured-bg">
+                <img src="images/banners/featured-bg.jpg" alt="Featured artist studio" class="featured-bg-img">
+                <div class="featured-overlay"></div>
+            </div>
+            <div class="container featured-content">
+                <div class="featured-grid">
+                    <div class="featured-header-col">
+                        <span class="badge badge-outline-light">Spotlight</span>
+                        <h2 class="featured-title">Featured Partner</h2>
+                    </div>
+                    <div class="featured-card">
+                        <div class="featured-artwork">
+                            <img src="images/products/featured-art.jpg" alt="Featured artwork" class="featured-art-img">
+                        </div>
+                        <div class="featured-quote">
+                            <p class="quote-text">"I really love this piece. It reminds me of when I was still young looking at my late granny's walls seeing beautiful pieces like this one."</p>
+                            <p class="quote-signature">Lerato M.</p>
+                            <div class="featured-actions">
+                                <a href="product.html?id=featured-001" class="btn btn-light">Acquire Piece</a>
+                                <a href="featured.html" class="btn btn-ghost-light">Artist Story</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== B.5 BLOG / JOURNAL PREVIEW ===== -->
+        <section class="blog-preview" id="blogPreview">
+            <div class="container">
+                <div class="section-header text-between">
+                    <div>
+                        <span class="section-tag">Insights</span>
+                        <h2 class="section-title">From the Studio</h2>
+                    </div>
+                    <a href="blog.html" class="link-arrow hide-mobile">Read All Articles &rarr;</a>
+                </div>
+
+                <div class="blog-grid" id="blogGrid">
+                    <article class="blog-card">
+                        <div class="blog-image">
+                            <img src="images/banners/blog-1.jpg" alt="Signature Collection process" class="blog-img" loading="lazy">
+                        </div>
+                        <div class="blog-info">
+                            <div class="blog-meta">
+                                <span class="blog-date">July 2026</span>
+                                <span class="blog-tag">Behind the Scenes</span>
+                            </div>
+                            <h3 class="blog-title">The Story Behind Our Signature UV Acrylic Collection</h3>
+                            <a href="blog/story-behind-collection.html" class="blog-link">Read Story &rarr;</a>
+                        </div>
+                    </article>
+
+                    <article class="blog-card">
+                        <div class="blog-image">
+                            <img src="images/banners/blog-2.jpg" alt="Choosing art for interior spaces" class="blog-img" loading="lazy">
+                        </div>
+                        <div class="blog-info">
+                            <div class="blog-meta">
+                                <span class="blog-date">June 2026</span>
+                                <span class="blog-tag">Guide</span>
+                            </div>
+                            <h3 class="blog-title">How to Choose Statement Art for Modern Interior Spaces</h3>
+                            <a href="blog/choose-art-for-space.html" class="blog-link">Read Guide &rarr;</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== NEWSLETTER ===== -->
+        <section class="newsletter" id="newsletter">
+            <div class="container newsletter-inner">
+                <span class="badge badge-accent">Exclusive Access</span>
+                <h2 class="newsletter-title">Stay in the Loop</h2>
+                <p class="newsletter-text">Be notified of new art drops, artist collaborations, and private gallery events.</p>
+                <form class="newsletter-form" id="newsletterForm">
+                    <input type="email" class="newsletter-input" placeholder="Enter your email address" required aria-label="Email address">
+                    <button type="submit" class="btn btn-primary">Subscribe</button>
+                </form>
+            </div>
+        </section>
+    </main>
 
     <!-- ===== A.2 FOOTER ===== -->
     <footer class="site-footer" id="siteFooter">
-        <div class="footer-inner">
-            <div class="footer-brand">
-                <img src="images/icons/logo1.svg" alt="Netsorna" class="footer-logo">
-                <p class="footer-tagline">Art that transforms spaces.</p>
-            </div>
-            <div class="footer-links">
-                <div class="footer-col">
-                    <h4>Shop</h4>
-                    <a href="shop.html">All Products</a>
-                    <a href="featured.html">Featured</a>
-                    <a href="custom-order.html">Custom Order</a>
+        <div class="container footer-inner">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <img src="images/icons/logo1.svg" alt="Netsorna" class="footer-logo">
+                    <p class="footer-tagline">Transforming spaces through bespoke print art and acrylic design.</p>
                 </div>
-                <div class="footer-col">
-                    <h4>Company</h4>
-                    <a href="blog.html">Blog</a>
-                    <a href="faqs.html">FAQs</a>
-                    <a href="whatsapp-inquiry.html">Contact</a>
-                </div>
-                <div class="footer-col">
-                    <h4>Legal</h4>
-                    <a href="terms.html">Terms</a>
-                    <a href="privacy.html">Privacy</a>
-                    <a href="refunds.html">Refunds</a>
+                <div class="footer-links">
+                    <div class="footer-col">
+                        <h4>Gallery</h4>
+                        <a href="shop.html">All Products</a>
+                        <a href="featured.html">Featured Artists</a>
+                        <a href="custom-order.html">Custom Orders</a>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Journal & Info</h4>
+                        <a href="blog.html">Studio Journal</a>
+                        <a href="faqs.html">FAQs</a>
+                        <a href="whatsapp-inquiry.html">WhatsApp Inquiry</a>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Legal</h4>
+                        <a href="terms.html">Terms of Service</a>
+                        <a href="privacy.html">Privacy Policy</a>
+                        <a href="refunds.html">Refund Policy</a>
+                    </div>
                 </div>
             </div>
             <div class="footer-bottom">
                 <p class="footer-copy">&copy; 2026 Netsorna. All rights reserved.</p>
                 <div class="footer-social">
-                    <a href="#" aria-label="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
-                    <a href="#" aria-label="Twitter"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a>
+                    <a href="#" aria-label="Instagram">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                    </a>
+                    <a href="#" aria-label="Twitter">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+                    </a>
                 </div>
             </div>
         </div>
@@ -230,7 +292,7 @@
     <!-- ===== A.3 COOKIE CONSENT ===== -->
     <div class="cookie-consent" id="cookieConsent" role="dialog" aria-label="Cookie consent">
         <div class="cookie-inner">
-            <p class="cookie-text">We use cookies to enhance your experience and analyze our traffic.</p>
+            <p class="cookie-text">We use cookies to tailor your gallery experience and evaluate platform analytics.</p>
             <div class="cookie-actions">
                 <button class="btn btn-sm btn-ghost" id="cookieDecline">Decline</button>
                 <button class="btn btn-sm btn-primary" id="cookieAccept">Accept</button>
