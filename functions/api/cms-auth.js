@@ -1,64 +1,68 @@
-// Function handling both /api/cms-auth (redirect to GitHub) and /api/cms-auth/callback
+// Handles /api/cms-auth (Redirects to GitHub) and /api/cms-auth/callback (Exchanges token)
 export async function onRequest(context) {
-  const { request, env } = context;
-  const url = new URL(request.url);
+  const url = new URL(context.request.url);
+  const client_id = context.env.GITHUB_CLIENT_ID;
+  const client_secret = context.env.GITHUB_CLIENT_SECRET;
 
-  const clientId = env.GITHUB_CLIENT_ID;
-  const clientSecret = env.GITHUB_CLIENT_SECRET;
-
-  // Step 1: Redirect user to GitHub for login
+  // Step 1: Redirect user to GitHub login
   if (!url.pathname.endsWith('/callback')) {
-    const authUrl = `https://github.com/login/oauth/authorize?client_id=${clientId}&scope=repo,user`;
+    const authUrl = `https://github.com/login/oauth/authorize?client_id=${client_id}&scope=repo,user`;
     return Response.redirect(authUrl, 302);
   }
 
-  // Step 2: Process GitHub Callback
+  // Step 2: Handle GitHub OAuth Callback
   const code = url.searchParams.get('code');
   if (!code) {
-    return new Response('Missing authorization code', { status: 400 });
+    return new Response("Missing OAuth code from GitHub", { status: 400 });
   }
 
-  // Exchange code for access token with GitHub
-  const tokenResponse = await fetch('https://github.com/login/oauth/access_token', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-      'User-Agent': 'Netsorna-CMS-Auth'
-    },
-    body: JSON.stringify({
-      client_id: clientId,
-      client_secret: clientSecret,
-      code: code
-    })
-  });
+  try {
+    const tokenResponse = await fetch("https://github.com/login/oauth/access_token", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+      },
+      body: JSON.stringify({
+        client_id,
+        client_secret,
+        code,
+      }),
+    });
 
-  const tokenData = await tokenResponse.json();
+    const data = await tokenResponse.json();
 
-  if (tokenData.error) {
-    return new Response(`OAuth Error: ${tokenData.error_description}`, { status: 400 });
+    if (data.error) {
+      return new Response(`OAuth Error: ${data.error_description}`, { status: 400 });
+    }
+
+    const token = data.access_token;
+    
+    // Post back token to Decap CMS popup via window message
+    const htmlResponse = `
+      <!DOCTYPE html>
+      <html>
+      <body>
+        <script>
+          (function() {
+            function recieveMessage(e) {
+              window.opener.postMessage(
+                'authorization:github:success:${JSON.stringify({ token, provider: 'github' })}',
+                e.origin
+              );
+            }
+            window.addEventListener("message", recieveMessage, false);
+            window.opener.postMessage("authorizing:github", "*");
+          })();
+        </script>
+      </body>
+      </html>
+    `;
+
+    return new Response(htmlResponse, {
+      headers: { "Content-Type": "text/html" },
+    });
+  } catch (err) {
+    return new Response(`Authentication Server Error: ${err.message}`, { status: 500 });
   }
-
-  // Return script that sends the token back to Decap CMS popup window
-  const content = `
-    <script>
-      (function() {
-        function recieveMessage(e) {
-          window.opener.postMessage(
-            'authorization:github:success:${JSON.stringify({
-              token: tokenData.access_token,
-              provider: 'github'
-            })}',
-            e.origin
-          );
-        }
-        window.addEventListener("message", recieveMessage, false);
-        window.opener.postMessage("authorizing:github", "*");
-      })();
-    </script>
-  `;
-
-  return new Response(content, {
-    headers: { 'Content-Type': 'text/html;charset=UTF-8' }
-  });
 }
