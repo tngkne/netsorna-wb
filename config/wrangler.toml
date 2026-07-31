@@ -1,0 +1,3 @@
+name = "netsorna-wb"
+main = "functions/api/cms-auth.js" # or your worker entry point
+assets = "./public"
