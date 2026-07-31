@@ -33,31 +33,28 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Announcement Bar */
-.announcement-bar {
-  background: #000000;
-  color: #ffffff;
-  text-align: center;
-  font-size: 0.72rem;
-  padding: 6px 12px;
-  font-weight: 500;
-  letter-spacing: 0.3px;
-  position: relative;
-  z-index: 101;
-}
-
-/* Header Navbar - Solid Opaque Background */
+/* Header Navbar - Transparent Floating Bar with Scroll Blur */
 .navbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 12px 18px;
-  border-bottom: 1px solid var(--border-color);
-  background-color: #ffffff !important;
-  position: sticky;
+  padding: 16px 20px;
+  border-bottom: none; /* Removed horizontal line */
+  background-color: transparent;
+  position: fixed; /* Fixed position over hero area */
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 1000;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  transition: background-color 0.3s ease, backdrop-filter 0.3s ease, -webkit-backdrop-filter 0.3s ease, padding 0.3s ease;
+}
+
+/* Scrolled state: 20% transparent white tint with blur effect */
+.navbar.scrolled {
+  background-color: rgba(255, 255, 255, 0.2) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 12px 20px;
 }
 
 .menu-btn, .cart-btn {
@@ -107,10 +104,15 @@ body {
 /* Navigation Drawer Dropdown */
 .nav-drawer {
   display: none;
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border-color);
-  padding: 16px 20px;
-  position: relative;
+  padding: 80px 20px 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   z-index: 999;
 }
 
@@ -136,12 +138,12 @@ body {
   text-decoration: underline;
 }
 
-/* Hero Section */
+/* Hero Section - Padded top for overlay fixed navbar */
 .hero-section {
   position: relative;
-  min-height: 420px;
+  min-height: 480px;
   background: url('../images/banners/hero-bg.jpg') center/cover no-repeat #c5c0b6;
-  padding: 24px 16px;
+  padding: 80px 16px 24px;
   display: flex;
   align-items: flex-end;
   justify-content: center;
@@ -154,7 +156,7 @@ body {
   background: rgba(0, 0, 0, 0.05);
 }
 
-/* Featured Partner Glass Card - Reduced Radius */
+/* Featured Partner Glass Card */
 .featured-card {
   position: relative;
   z-index: 2;
@@ -163,7 +165,7 @@ body {
   background: var(--card-bg-glass);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  border-radius: 8px; /* Was 16px */
+  border-radius: 8px;
   padding: 18px;
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.65);
@@ -227,7 +229,7 @@ body {
   justify-content: flex-end;
 }
 
-/* Common Buttons - Reduced Radius */
+/* Common Buttons */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -236,7 +238,7 @@ body {
   font-family: var(--font-main);
   font-size: 0.8rem;
   font-weight: 600;
-  border-radius: 3px; /* Was 6px */
+  border-radius: 3px;
   cursor: pointer;
   transition: all 0.2s ease;
   padding: 7px 16px;
@@ -271,7 +273,7 @@ body {
   border: 1px solid var(--border-color);
   width: 100%;
   padding: 8px 0;
-  border-radius: 2px; /* Was 4px */
+  border-radius: 2px;
 }
 
 .btn-outline:hover {
@@ -393,7 +395,7 @@ body {
   flex-wrap: wrap;
 }
 
-/* Stories Section - Reduced Radius */
+/* Stories Section */
 .stories-section {
   padding: 32px 20px;
   border-bottom: 1px solid var(--border-color);
@@ -413,7 +415,7 @@ body {
 .story-card {
   border: 1px solid var(--border-color);
   padding: 16px;
-  border-radius: 3px; /* Was 6px */
+  border-radius: 3px;
 }
 
 .story-date {
@@ -440,7 +442,7 @@ body {
   text-decoration: none;
 }
 
-/* Footer & Form - Reduced Radius */
+/* Footer & Form */
 .site-footer {
   background: #ffffff;
   padding: 32px 20px 16px;
@@ -503,7 +505,7 @@ body {
   flex: 1;
   padding: 8px;
   border: 1px solid var(--border-color);
-  border-radius: 2px; /* Was 4px */
+  border-radius: 2px;
   font-size: 0.8rem;
 }
 
