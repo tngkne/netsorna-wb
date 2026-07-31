@@ -109,17 +109,56 @@ function initNavbar() {
     }
   });
 
-  // Toggle drawer menu (Matches CSS class `.open`)
+  // Toggle drawer menu
   if (menuToggle && navDrawer) {
+    const closeDrawer = () => {
+      navDrawer.classList.remove('active');
+      menuToggle.classList.remove('active');
+      menuToggle.setAttribute('aria-expanded', 'false');
+      navDrawer.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('menu-open');
+    };
+
+    const openDrawer = () => {
+      navDrawer.classList.add('active');
+      menuToggle.classList.add('active');
+      menuToggle.setAttribute('aria-expanded', 'true');
+      navDrawer.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('menu-open');
+    };
+
     menuToggle.addEventListener('click', (e) => {
       e.stopPropagation();
-      navDrawer.classList.toggle('open');
+      const isOpen = navDrawer.classList.contains('active');
+      if (isOpen) {
+        closeDrawer();
+      } else {
+        openDrawer();
+      }
     });
 
+    // Close when clicking outside of navbar & drawer
     document.addEventListener('click', (e) => {
-      if (navbar && !navbar.contains(e.target) && navDrawer && !navDrawer.contains(e.target)) {
-        navDrawer.classList.remove('open');
+      if (
+        navDrawer.classList.contains('active') &&
+        navbar && !navbar.contains(e.target) &&
+        !navDrawer.contains(e.target)
+      ) {
+        closeDrawer();
       }
+    });
+
+    // Close drawer on pressing Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && navDrawer.classList.contains('active')) {
+        closeDrawer();
+      }
+    });
+
+    // Close drawer when clicking any link inside it
+    const drawerLinks = navDrawer.querySelectorAll('a');
+    drawerLinks.forEach(link => {
+      link.addEventListener('click', closeDrawer);
     });
   }
 }
@@ -131,10 +170,12 @@ function initProductPage() {
   const imageCounter = document.getElementById('imageCounter');
   const chipBtns = document.querySelectorAll('.option-chips .chip');
 
+  // Check URL parameters to see which product to display
   const urlParams = new URLSearchParams(window.location.search);
   const productId = urlParams.get('id') || 'frome-art';
   const productData = PRODUCTS_DB[productId] || PRODUCTS_DB['frome-art'];
 
+  // Dynamically update content if elements exist
   const titleEl = document.querySelector('.product-title-lg');
   const priceEl = document.querySelector('.product-price-lg');
   const descEl = document.querySelector('.product-description');
@@ -143,6 +184,7 @@ function initProductPage() {
   if (priceEl) priceEl.textContent = `R ${productData.price.toLocaleString()}`;
   if (descEl) descEl.textContent = productData.description;
 
+  // Render full-width hero slider images
   if (heroSlider && productData.images.length > 0) {
     heroSlider.innerHTML = productData.images
       .map(
@@ -166,6 +208,7 @@ function initProductPage() {
       }
     };
 
+    // Cycle slides on click for full-width carousel
     heroSlider.addEventListener('click', () => {
       currentSlide = (currentSlide + 1) % slides.length;
       updateSlider();
@@ -174,6 +217,7 @@ function initProductPage() {
     updateSlider();
   }
 
+  // Chip options selection (Finish choice)
   let selectedFinish = 'Floating Mount';
   chipBtns.forEach(chip => {
     if (chip.classList.contains('active')) {
@@ -186,6 +230,7 @@ function initProductPage() {
     });
   });
 
+  // Add to Cart Action
   if (addToCartBtn) {
     addToCartBtn.addEventListener('click', () => {
       addToCart(productData.id, selectedFinish, 1);
@@ -199,7 +244,7 @@ function initCartPage() {
   const cartSummaryCard = document.querySelector('.cart-summary-card');
   const cartCountHeader = document.querySelector('.cart-count');
 
-  if (!itemsContainer) return;
+  if (!itemsContainer) return; // Exit if not on cart page
 
   function renderCart() {
     const cart = getCart();
@@ -260,6 +305,7 @@ function initCartPage() {
 
     itemsContainer.innerHTML = html;
 
+    // Update Summary totals
     const total = subtotal + SHIPPING_FEE;
     const summaryLines = document.querySelectorAll('.summary-line strong');
     if (summaryLines.length >= 3) {
@@ -274,6 +320,7 @@ function initCartPage() {
   function attachCartListeners() {
     const cart = getCart();
 
+    // Minus Buttons
     document.querySelectorAll('.minus-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         const idx = btn.dataset.index;
@@ -287,6 +334,7 @@ function initCartPage() {
       });
     });
 
+    // Plus Buttons
     document.querySelectorAll('.plus-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         const idx = btn.dataset.index;
@@ -296,6 +344,7 @@ function initCartPage() {
       });
     });
 
+    // Remove Buttons
     document.querySelectorAll('.remove-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         const idx = btn.dataset.index;
@@ -319,7 +368,8 @@ function initProductCards() {
     if (link) {
       card.style.cursor = 'pointer';
       card.addEventListener('click', (e) => {
-        if (!e.target.closest('a') && !e.target.closest('button')) {
+        // Prevent trigger if clicking directly inside an explicit inner button or link
+        if (e.target.tagName !== 'BUTTON' && e.target.tagName !== 'A') {
           window.location.href = link.getAttribute('href');
         }
       });
