@@ -11,13 +11,17 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Reenie+Beanie&display=swap" rel="stylesheet">
 
   <!-- Core Styles -->
-  <link rel="stylesheet" href="css/main.css" />
-  <link rel="stylesheet" href="css/cart.css" />
-  <link rel="icon" type="image/svg+xml" href="images/icons/favicon.svg" />
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/css/cart.css" />
+
+  <!-- Global Favicon Setup -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="icon" type="image/svg+xml" href="/images/icons/horizon_logo.svg" />
 </head>
 <body>
 
-  <!-- Floating Sticky Header Container (UNTOUCHED) -->
+  <!-- Floating Sticky Header Container -->
   <div class="navbar-wrapper">
     <header class="navbar" id="navbar">
       <button class="menu-btn" aria-label="Toggle Navigation Menu" id="menuToggle">
@@ -28,11 +32,16 @@
         </svg>
       </button>
 
-      <a href="index.html" class="brand-logo">
-        <img src="images/icons/logo1.svg" alt="Netsorna" class="logo-img" onerror="this.outerHTML='<span class=\'logo-text\'>netsorna.</span>'">
+      <a href="/index.html" class="brand-logo">
+        <img 
+          src="/images/icons/horizon_logo.svg" 
+          alt="Netsorna" 
+          class="logo-img" 
+          onerror="this.outerHTML='<span class=\'logo-text\'>netsorna.</span>'"
+        />
       </a>
 
-      <a href="cart.html" class="cart-btn" aria-label="View Cart">
+      <a href="/cart.html" class="cart-btn" aria-label="View Cart">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
           <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
         </svg>
@@ -44,12 +53,12 @@
   <!-- Navigation Drawer Dropdown -->
   <nav class="nav-drawer" id="navDrawer">
     <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="shop.html">Shop Artworks</a></li>
-      <li><a href="featured.html">Featured Program</a></li>
-      <li><a href="custom-order.html">Custom Orders</a></li>
-      <li><a href="blog.html">Blog & Stories</a></li>
-      <li><a href="faqs.html">FAQs</a></li>
+      <li><a href="/index.html">Home</a></li>
+      <li><a href="/shop.html">Shop Artworks</a></li>
+      <li><a href="/featured.html">Featured Program</a></li>
+      <li><a href="/custom-order.html">Custom Orders</a></li>
+      <li><a href="/blog.html">Blog & Stories</a></li>
+      <li><a href="/faqs.html">FAQs</a></li>
     </ul>
   </nav>
 
@@ -67,7 +76,7 @@
         <!-- Cart Item 1 -->
         <article class="cart-item">
           <div class="cart-item-img">
-            <img src="images/products/product1.jpg" alt="FROME ART" onerror="this.outerHTML='<div class=\'placeholder-box\'></div>'">
+            <img src="/images/products/product1.jpg" alt="FROME ART" onerror="this.outerHTML='<div class=\'placeholder-box\'></div>'">
           </div>
 
           <div class="cart-item-details">
@@ -112,8 +121,8 @@
 
         <!-- Identical Stacked Action Buttons -->
         <div class="summary-actions">
-          <a href="checkout.html" class="btn btn-solid">Checkout</a>
-          <a href="shop.html" class="btn btn-subtle">Continue Shopping</a>
+          <a href="/checkout.html" class="btn btn-solid">Checkout</a>
+          <a href="/shop.html" class="btn btn-subtle">Continue Shopping</a>
         </div>
       </aside>
     </section>
@@ -130,20 +139,20 @@
       <div class="footer-links-group">
         <h4>Navigation</h4>
         <ul>
-          <li><a href="shop.html">Catalogue</a></li>
-          <li><a href="featured.html">Featured Partner</a></li>
-          <li><a href="custom-order.html">Custom Orders</a></li>
-          <li><a href="faqs.html">FAQs</a></li>
+          <li><a href="/shop.html">Catalogue</a></li>
+          <li><a href="/featured.html">Featured Partner</a></li>
+          <li><a href="/custom-order.html">Custom Orders</a></li>
+          <li><a href="/faqs.html">FAQs</a></li>
         </ul>
       </div>
 
       <div class="footer-links-group">
         <h4>Legal & Terms</h4>
         <ul>
-          <li><a href="terms.html">Terms of Service</a></li>
-          <li><a href="privacy.html">Privacy Policy</a></li>
-          <li><a href="refunds.html">Refund Policy</a></li>
-          <li><a href="ownership.html">Content Ownership</a></li>
+          <li><a href="/terms.html">Terms of Service</a></li>
+          <li><a href="/privacy.html">Privacy Policy</a></li>
+          <li><a href="/refunds.html">Refund Policy</a></li>
+          <li><a href="/ownership.html">Content Ownership</a></li>
         </ul>
       </div>
 
@@ -163,6 +172,6 @@
     </div>
   </footer>
 
-  <script src="js/main.js"></script>
+  <script src="/js/main.js"></script>
 </body>
 </html>
