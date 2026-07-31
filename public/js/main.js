@@ -109,15 +109,16 @@ function initNavbar() {
     }
   });
 
-  // Toggle drawer menu
+  // Toggle drawer menu (Matches CSS class `.open`)
   if (menuToggle && navDrawer) {
-    menuToggle.addEventListener('click', () => {
-      navDrawer.classList.toggle('active');
+    menuToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      navDrawer.classList.toggle('open');
     });
 
     document.addEventListener('click', (e) => {
       if (navbar && !navbar.contains(e.target) && navDrawer && !navDrawer.contains(e.target)) {
-        navDrawer.classList.remove('active');
+        navDrawer.classList.remove('open');
       }
     });
   }
@@ -130,12 +131,10 @@ function initProductPage() {
   const imageCounter = document.getElementById('imageCounter');
   const chipBtns = document.querySelectorAll('.option-chips .chip');
 
-  // Check URL parameters to see which product to display
   const urlParams = new URLSearchParams(window.location.search);
   const productId = urlParams.get('id') || 'frome-art';
   const productData = PRODUCTS_DB[productId] || PRODUCTS_DB['frome-art'];
 
-  // Dynamically update content if elements exist
   const titleEl = document.querySelector('.product-title-lg');
   const priceEl = document.querySelector('.product-price-lg');
   const descEl = document.querySelector('.product-description');
@@ -144,7 +143,6 @@ function initProductPage() {
   if (priceEl) priceEl.textContent = `R ${productData.price.toLocaleString()}`;
   if (descEl) descEl.textContent = productData.description;
 
-  // Render full-width hero slider images
   if (heroSlider && productData.images.length > 0) {
     heroSlider.innerHTML = productData.images
       .map(
@@ -168,7 +166,6 @@ function initProductPage() {
       }
     };
 
-    // Cycle slides on click for full-width carousel
     heroSlider.addEventListener('click', () => {
       currentSlide = (currentSlide + 1) % slides.length;
       updateSlider();
@@ -177,7 +174,6 @@ function initProductPage() {
     updateSlider();
   }
 
-  // Chip options selection (Finish choice)
   let selectedFinish = 'Floating Mount';
   chipBtns.forEach(chip => {
     if (chip.classList.contains('active')) {
@@ -190,7 +186,6 @@ function initProductPage() {
     });
   });
 
-  // Add to Cart Action
   if (addToCartBtn) {
     addToCartBtn.addEventListener('click', () => {
       addToCart(productData.id, selectedFinish, 1);
@@ -204,7 +199,7 @@ function initCartPage() {
   const cartSummaryCard = document.querySelector('.cart-summary-card');
   const cartCountHeader = document.querySelector('.cart-count');
 
-  if (!itemsContainer) return; // Exit if not on cart page
+  if (!itemsContainer) return;
 
   function renderCart() {
     const cart = getCart();
@@ -265,7 +260,6 @@ function initCartPage() {
 
     itemsContainer.innerHTML = html;
 
-    // Update Summary totals
     const total = subtotal + SHIPPING_FEE;
     const summaryLines = document.querySelectorAll('.summary-line strong');
     if (summaryLines.length >= 3) {
@@ -280,7 +274,6 @@ function initCartPage() {
   function attachCartListeners() {
     const cart = getCart();
 
-    // Minus Buttons
     document.querySelectorAll('.minus-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         const idx = btn.dataset.index;
@@ -294,7 +287,6 @@ function initCartPage() {
       });
     });
 
-    // Plus Buttons
     document.querySelectorAll('.plus-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         const idx = btn.dataset.index;
@@ -304,7 +296,6 @@ function initCartPage() {
       });
     });
 
-    // Remove Buttons
     document.querySelectorAll('.remove-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         const idx = btn.dataset.index;
@@ -328,8 +319,7 @@ function initProductCards() {
     if (link) {
       card.style.cursor = 'pointer';
       card.addEventListener('click', (e) => {
-        // Prevent trigger if clicking directly inside an explicit inner button or link
-        if (e.target.tagName !== 'BUTTON' && e.target.tagName !== 'A') {
+        if (!e.target.closest('a') && !e.target.closest('button')) {
           window.location.href = link.getAttribute('href');
         }
       });
