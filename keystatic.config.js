@@ -5,10 +5,12 @@ export default config({
     kind: 'cloud',
   },
   cloud: {
-    project: 'netsorna-admin/netsorna-wb', // Matches your Keystatic Cloud project key
+    project: 'netsorna-admin/netsorna-wb',
   },
+
+  // REPEATABLE CONTENT (content/products, blog, faqs, featured)
   collections: {
-    // B.2, B.3 Product Catalogue
+    // 1. Products (content/products/*.json)
     products: collection({
       label: 'Products',
       slugField: 'title',
@@ -38,12 +40,12 @@ export default config({
       },
     }),
 
-    // B.5 Blog Posts
+    // 2. Blog Posts (content/blog/*.md)
     blog: collection({
       label: 'Blog Posts',
       slugField: 'title',
       path: 'content/blog/*',
-      format: { data: 'md' },
+      format: { contentField: 'body' },
       schema: {
         title: fields.slug({ name: { label: 'Post Title' } }),
         date: fields.date({ label: 'Publish Date' }),
@@ -53,12 +55,12 @@ export default config({
       },
     }),
 
-    // B.6 FAQs
+    // 3. FAQs (content/faqs/*.md)
     faqs: collection({
       label: 'FAQs',
       slugField: 'title',
       path: 'content/faqs/*',
-      format: { data: 'md' },
+      format: { contentField: 'body' },
       schema: {
         title: fields.slug({ name: { label: 'Question' } }),
         category: fields.select({
@@ -74,18 +76,105 @@ export default config({
         body: fields.markdoc({ label: 'Answer' }),
       },
     }),
+
+    // 4. Featured Profiles (content/featured/*.json)
+    featured: collection({
+      label: 'Featured Profiles',
+      slugField: 'title',
+      path: 'content/featured/*',
+      format: { data: 'json' },
+      schema: {
+        title: fields.slug({ name: { label: 'Profile / Program Name' } }),
+        tagline: fields.text({ label: 'Tagline' }),
+        image: fields.image({
+          label: 'Featured Image',
+          directory: 'public/images/banners',
+          publicPath: '/images/banners/',
+        }),
+        active: fields.checkbox({ label: 'Active', defaultValue: true }),
+        description: fields.markdoc({ label: 'Description' }),
+      },
+    }),
   },
 
-  // Single Page Contents (content/pages/)
+  // SINGLE-ENTRY PAGES & SETTINGS (content/pages & content/settings)
   singletons: {
-    home: singleton({
+    // 1. Home Page (content/pages/home.md)
+    homePage: singleton({
       label: 'Home Page',
       path: 'content/pages/home',
-      format: { data: 'md' },
+      format: { contentField: 'body' },
       schema: {
         hero_title: fields.text({ label: 'Hero Title' }),
         hero_subtitle: fields.text({ label: 'Hero Subtitle' }),
-        body: fields.markdoc({ label: 'Main Content' }),
+        body: fields.markdoc({ label: 'Page Content' }),
+      },
+    }),
+
+    // 2. About Page (content/pages/about.md)
+    aboutPage: singleton({
+      label: 'About Page',
+      path: 'content/pages/about',
+      format: { contentField: 'body' },
+      schema: {
+        title: fields.text({ label: 'Page Title', defaultValue: 'About Us' }),
+        body: fields.markdoc({ label: 'Page Content' }),
+      },
+    }),
+
+    // 3. Contact Page (content/pages/contact.md)
+    contactPage: singleton({
+      label: 'Contact Page',
+      path: 'content/pages/contact',
+      format: { contentField: 'body' },
+      schema: {
+        title: fields.text({ label: 'Page Title', defaultValue: 'Contact Us' }),
+        email: fields.text({ label: 'Contact Email' }),
+        whatsapp: fields.text({ label: 'WhatsApp Number' }),
+        body: fields.markdoc({ label: 'Page Content' }),
+      },
+    }),
+
+    // 4. Site Config (content/settings/site.json)
+    siteSettings: singleton({
+      label: 'Site Settings',
+      path: 'content/settings/site',
+      format: { data: 'json' },
+      schema: {
+        site_name: fields.text({ label: 'Site Name', defaultValue: 'Netsorna Store' }),
+        currency: fields.text({ label: 'Currency Symbol', defaultValue: 'R' }),
+        support_email: fields.text({ label: 'Support Email' }),
+      },
+    }),
+
+    // 5. Navigation Links (content/settings/navigation.json)
+    navigationSettings: singleton({
+      label: 'Header Navigation',
+      path: 'content/settings/navigation',
+      format: { data: 'json' },
+      schema: {
+        links: fields.array(
+          fields.object({
+            label: fields.text({ label: 'Link Text' }),
+            url: fields.text({ label: 'URL Path (e.g. /shop.html)' }),
+          }),
+          {
+            label: 'Navigation Links',
+            itemLabel: (props) => props.fields.label.value || 'Link',
+          }
+        ),
+      },
+    }),
+
+    // 6. Footer Content (content/settings/footer.json)
+    footerSettings: singleton({
+      label: 'Footer Settings',
+      path: 'content/settings/footer',
+      format: { data: 'json' },
+      schema: {
+        copyright_text: fields.text({ label: 'Copyright Notice' }),
+        social_facebook: fields.text({ label: 'Facebook URL' }),
+        social_instagram: fields.text({ label: 'Instagram URL' }),
       },
     }),
   },
