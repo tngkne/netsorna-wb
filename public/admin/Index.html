@@ -2,51 +2,74 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Netsorna Admin Login</title>
-    <link rel="stylesheet" href="/css/admin.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netsorna Admin</title>
+    <style>
+        body { font-family: sans-serif; background: #f4f4f9; padding: 20px; display: flex; justify-content: center; }
+        .card { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); width: 100%; max-width: 400px; }
+        input, button { width: 100%; padding: 12px; margin-top: 10px; box-sizing: border-box; border-radius: 4px; border: 1px solid #ccc; }
+        button { background: #000; color: #fff; font-weight: bold; cursor: pointer; border: none; }
+        .error { color: red; font-size: 14px; margin-top: 10px; display: none; }
+    </style>
 </head>
 <body>
-    <div id="login-container" style="max-width: 400px; margin: 100px auto; padding: 20px; background: #fff; border-radius: 8px;">
-        <h2>Admin Access</h2>
+
+    <div id="login-box" class="card">
+        <h2>Netsorna Admin Login</h2>
         <form id="login-form">
-            <label for="password">Enter Admin Password:</label>
-            <input type="password" id="password" required style="width: 100%; padding: 8px; margin: 10px 0;">
-            <button type="submit" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none;">Login</button>
+            <input type="password" id="admin-pass" placeholder="Enter Admin Password" required>
+            <button type="submit">Access Dashboard</button>
         </form>
-        <p id="error-msg" style="color: red; display: none;">Incorrect password.</p>
+        <p id="error-msg" class="error">Incorrect password. Try again.</p>
     </div>
 
-    <div id="admin-dashboard" style="display: none;">
-        <h1>Welcome to Netsorna CMS Dashboard</h1>
-        <!-- Your Product Manager / Order Forms go here -->
+    <div id="dashboard" class="card" style="display: none;">
+        <h2>Netsorna CMS Dashboard</h2>
+        <p>Status: Connected securely</p>
+        <hr>
+        <button id="logout-btn" style="background: #666;">Log Out</button>
     </div>
 
     <script>
-        document.getElementById('login-form').addEventListener('submit', async (e) => {
+        const loginForm = document.getElementById('login-form');
+        const loginBox = document.getElementById('login-box');
+        const dashboard = document.getElementById('dashboard');
+        const errorMsg = document.getElementById('error-msg');
+
+        // Session check
+        if (sessionStorage.getItem('netsorna_admin') === 'true') {
+            loginBox.style.display = 'none';
+            dashboard.style.display = 'block';
+        }
+
+        loginForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            const password = document.getElementById('password').value;
+            errorMsg.style.display = 'none';
+            const password = document.getElementById('admin-pass').value;
 
-            const response = await fetch('/api/admin/auth', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ password })
-            });
+            try {
+                const res = await fetch('/api/admin/auth', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ password })
+                });
 
-            if (response.ok) {
-                document.getElementById('login-container').style.display = 'none';
-                document.getElementById('admin-dashboard').style.display = 'block';
-                // Save a temporary session flag in browser memory
-                sessionStorage.setItem('isAdmin', 'true');
-            } else {
-                document.getElementById('error-msg').style.display = 'block';
+                if (res.ok) {
+                    sessionStorage.setItem('netsorna_admin', 'true');
+                    loginBox.style.display = 'none';
+                    dashboard.style.display = 'block';
+                } else {
+                    errorMsg.style.display = 'block';
+                }
+            } catch (err) {
+                alert('Connection error. Please try again.');
             }
         });
 
-        // Check if already logged in during this session
-        if (sessionStorage.getItem('isAdmin') === 'true') {
-            document.getElementById('login-container').style.display = 'none';
-            document.getElementById('admin-dashboard').style.display = 'block';
-        }
+        document.getElementById('logout-btn').addEventListener('click', () => {
+            sessionStorage.removeItem('netsorna_admin');
+            location.reload();
+        });
     </script>
 </body>
 </html>
