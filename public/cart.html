@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Cart — Netsorna</title>
+
+  <!-- Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Reenie+Beanie&display=swap" rel="stylesheet">
+
+  <!-- Core Styles -->
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/cart.css" />
+  <link rel="icon" type="image/svg+xml" href="images/icons/favicon.svg" />
+</head>
+<body>
+
+  <!-- Floating Sticky Header Container (UNTOUCHED) -->
+  <div class="navbar-wrapper">
+    <header class="navbar" id="navbar">
+      <button class="menu-btn" aria-label="Toggle Navigation Menu" id="menuToggle">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+
+      <a href="index.html" class="brand-logo">
+        <img src="images/icons/logo1.svg" alt="Netsorna" class="logo-img" onerror="this.outerHTML='<span class=\'logo-text\'>netsorna.</span>'">
+      </a>
+
+      <a href="cart.html" class="cart-btn" aria-label="View Cart">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
+        </svg>
+        <span class="cart-badge" id="cartBadge">1</span>
+      </a>
+    </header>
+  </div>
+
+  <!-- Navigation Drawer Dropdown -->
+  <nav class="nav-drawer" id="navDrawer">
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="shop.html">Shop Artworks</a></li>
+      <li><a href="featured.html">Featured Program</a></li>
+      <li><a href="custom-order.html">Custom Orders</a></li>
+      <li><a href="blog.html">Blog & Stories</a></li>
+      <li><a href="faqs.html">FAQs</a></li>
+    </ul>
+  </nav>
+
+  <main class="page-container">
+    <!-- Header Title Bar (F-Pattern Left Anchor) -->
+    <div class="cart-header-bar">
+      <h1 class="cart-heading">Your Cart</h1>
+      <span class="cart-count">1 Item</span>
+    </div>
+
+    <!-- Cart Layout Grid -->
+    <section class="cart-layout">
+      <!-- Left Column: Item List (F-Pattern Content Flow) -->
+      <div class="cart-items-list">
+        <!-- Cart Item 1 -->
+        <article class="cart-item">
+          <div class="cart-item-img">
+            <img src="images/products/product1.jpg" alt="FROME ART" onerror="this.outerHTML='<div class=\'placeholder-box\'></div>'">
+          </div>
+
+          <div class="cart-item-details">
+            <div class="item-title-row">
+              <h3 class="item-title">FROME ART</h3>
+              <span class="item-price">R 1 999</span>
+            </div>
+
+            <p class="item-spec">Finish: Raw White • 60cm x 80cm</p>
+
+            <div class="item-controls">
+              <div class="quantity-selector">
+                <button class="qty-btn">-</button>
+                <span class="qty-num">1</span>
+                <button class="qty-btn">+</button>
+              </div>
+
+              <button class="remove-btn">Remove</button>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- Right Column: Order Summary Card -->
+      <aside class="cart-summary-card">
+        <h2 class="summary-title">Summary</h2>
+
+        <div class="summary-line">
+          <span>Subtotal</span>
+          <strong>R 1 999</strong>
+        </div>
+
+        <div class="summary-line">
+          <span>Estimated Delivery</span>
+          <strong>R 250</strong>
+        </div>
+
+        <div class="summary-line total">
+          <span>Total</span>
+          <strong>R 2 249</strong>
+        </div>
+
+        <!-- Identical Stacked Action Buttons -->
+        <div class="summary-actions">
+          <a href="checkout.html" class="btn btn-solid">Checkout</a>
+          <a href="shop.html" class="btn btn-subtle">Continue Shopping</a>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <span class="footer-logo">netsorna.</span>
+        <p>Curated fine art, relief sculptures, and custom interior pieces.</p>
+      </div>
+
+      <div class="footer-links-group">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="shop.html">Catalogue</a></li>
+          <li><a href="featured.html">Featured Partner</a></li>
+          <li><a href="custom-order.html">Custom Orders</a></li>
+          <li><a href="faqs.html">FAQs</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-links-group">
+        <h4>Legal & Terms</h4>
+        <ul>
+          <li><a href="terms.html">Terms of Service</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="refunds.html">Refund Policy</a></li>
+          <li><a href="ownership.html">Content Ownership</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-newsletter">
+        <h4>Stay Updated</h4>
+        <p>Subscribe to receive notifications for new drops and partner releases.</p>
+        <form class="newsletter-form" action="/api/newsletter" method="POST">
+          <input type="email" placeholder="Enter your email" required />
+          <button type="submit" class="btn btn-solid">Join</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>&copy; 2026 Netsorna. All rights reserved.</span>
+      <span>Fine Art & Collectibles</span>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
