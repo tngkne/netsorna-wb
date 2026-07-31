@@ -2,14 +2,12 @@ backend:
   name: github
   repo: tngkne/netsorna-wb
   branch: main
-  base_url: https://netsorna.website
+  base_url: https://netsorna-wb.netsorna.workers.dev
   auth_endpoint: /api/cms-auth
 
-# Media files location
 media_folder: "public/images/uploads"
 public_folder: "/images/uploads"
 
-# Content Collections
 collections:
   - name: "products"
     label: "Products"
@@ -25,57 +23,3 @@ collections:
       - { label: "Featured Image", name: "image", widget: "image" }
       - { label: "Description", name: "description", widget: "markdown" }
       - { label: "In Stock", name: "in_stock", widget: "boolean", default: true }
-      - { label: "Category", name: "category", widget: "select", options: ["Apparel", "Accessories", "Digital", "Custom"] }
-
-  - name: "blog"
-    label: "Blog"
-    folder: "content/blog"
-    create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Publish Date", name: "date", widget: "datetime" }
-      - { label: "Author", name: "author", widget: "string", default: "Store Admin" }
-      - { label: "Featured Image", name: "image", widget: "image", required: false }
-      - { label: "Excerpt", name: "excerpt", widget: "text" }
-      - { label: "Body", name: "body", widget: "markdown" }
-
-  - name: "faqs"
-    label: "FAQs"
-    folder: "content/faqs"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - { label: "Question", name: "title", widget: "string" }
-      - { label: "Category", name: "category", widget: "select", options: ["General", "Shipping", "Returns", "Orders"] }
-      - { label: "Answer", name: "body", widget: "markdown" }
-
-  - name: "pages"
-    label: "Pages"
-    files:
-      - file: "content/pages/home.md"
-        label: "Home Page"
-        name: "home"
-        fields:
-          - { label: "Hero Title", name: "hero_title", widget: "string" }
-          - { label: "Hero Subtitle", name: "hero_subtitle", widget: "text" }
-          - { label: "Banner Image", name: "hero_image", widget: "image" }
-          - { label: "Main Content", name: "body", widget: "markdown" }
-
-      - file: "content/pages/about.md"
-        label: "About Page"
-        name: "about"
-        fields:
-          - { label: "Title", name: "title", widget: "string" }
-          - { label: "Body", name: "body", widget: "markdown" }
-
-  - name: "settings"
-    label: "Site Settings"
-    files:
-      - file: "content/settings/site.json"
-        label: "Global Settings"
-        name: "site_settings"
-        fields:
-          - { label: "Site Name", name: "site_name", widget: "string" }
-          - { label: "Support Email", name: "support_email", widget: "string" }
-          - { label: "Maintenance Mode", name: "maintenance_mode", widget: "boolean", default: false }
