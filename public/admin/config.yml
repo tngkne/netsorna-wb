@@ -1,7 +1,8 @@
-backend: Ov23limOJO3MEihlRuLC
+backend:
   name: github
   repo: tngkne/netsorna-wb
   branch: main
+  client_id: Ov23limOJO3MEihlRuLC
 
 media_folder: public/images/products
 public_folder: /images/products
