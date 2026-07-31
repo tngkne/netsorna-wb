@@ -97,6 +97,7 @@ body {
   justify-content: center;
 }
 
+/* Responsive Brand Logo Styling Across All Pages */
 .brand-logo {
   display: flex;
   align-items: center;
@@ -224,7 +225,7 @@ body {
 .hero-section {
   position: relative;
   min-height: 520px;
-  background: url('../images/banners/hero-bg.jpg') center/cover no-repeat #c5c0b6;
+  background: url('/images/banners/hero-bg.jpg') center/cover no-repeat #c5c0b6;
   padding: 84px 16px 32px;
   display: flex;
   align-items: flex-end;
@@ -332,7 +333,7 @@ body {
   height: 38px;
 }
 
-/* BROWSE CATALOG SECTION (UN-CRAMPED GRID LAYOUT) */
+/* BROWSE CATALOG SECTION */
 .browse-section {
   width: 100%;
   max-width: 1200px;
@@ -393,7 +394,7 @@ body {
   background-color: var(--placeholder-color);
 }
 
-/* Un-cramped Card Information Flow */
+/* Vertical Stacking Information Flow */
 .product-info {
   display: flex;
   flex-direction: column;
@@ -402,7 +403,6 @@ body {
   flex-grow: 1;
 }
 
-/* Vertical Stacking: Price directly under Title */
 .product-meta {
   display: flex;
   flex-direction: column;
@@ -420,7 +420,6 @@ body {
   word-break: break-word;
 }
 
-/* Reduced price size by ~30% (from 0.9rem to 0.65rem) stacked below */
 .price {
   font-size: 0.65rem;
   font-weight: 500;
