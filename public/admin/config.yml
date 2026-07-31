@@ -1,63 +1,81 @@
 backend:
   name: github
-  repo: tngkne/netsorna-wb # Replace with your GitHub repository
-  branch: main # Or your default branch
+  repo: tngkne/netsorna-wb
+  branch: main
+  base_url: https://netsorna.website
+  auth_endpoint: /api/cms-auth
 
-# Media files setup
-media_folder: "public/images/uploads" # Where files will be stored in repo
-public_folder: "/images/uploads"       # HTML path to access uploaded files
+# Media files location
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
 
+# Content Collections
 collections:
-  # Products (JSON format)
   - name: "products"
     label: "Products"
     folder: "content/products"
     create: true
     slug: "{{slug}}"
+    extension: "json"
     format: "json"
     fields:
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Price", name: "price", widget: "number", value_type: "int" }
       - { label: "SKU", name: "sku", widget: "string" }
+      - { label: "Price", name: "price", widget: "number", value_type: "float" }
       - { label: "Featured Image", name: "image", widget: "image" }
-      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Description", name: "description", widget: "markdown" }
       - { label: "In Stock", name: "in_stock", widget: "boolean", default: true }
+      - { label: "Category", name: "category", widget: "select", options: ["Apparel", "Accessories", "Digital", "Custom"] }
 
-  # Blog Posts (Markdown format)
   - name: "blog"
-    label: "Blog Posts"
+    label: "Blog"
     folder: "content/blog"
     create: true
-    slug: "{{slug}}"
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Publish Date", name: "date", widget: "datetime" }
-      - { label: "Cover Image", name: "image", widget: "image" }
+      - { label: "Author", name: "author", widget: "string", default: "Store Admin" }
+      - { label: "Featured Image", name: "image", widget: "image", required: false }
+      - { label: "Excerpt", name: "excerpt", widget: "text" }
       - { label: "Body", name: "body", widget: "markdown" }
 
-  # FAQs
   - name: "faqs"
     label: "FAQs"
     folder: "content/faqs"
     create: true
     slug: "{{slug}}"
     fields:
-      - { label: "Question", name: "question", widget: "string" }
+      - { label: "Question", name: "title", widget: "string" }
+      - { label: "Category", name: "category", widget: "select", options: ["General", "Shipping", "Returns", "Orders"] }
       - { label: "Answer", name: "body", widget: "markdown" }
 
-  # Pages (Files collection for distinct markdown files)
   - name: "pages"
     label: "Pages"
     files:
-      - label: "Home Page"
+      - file: "content/pages/home.md"
+        label: "Home Page"
         name: "home"
-        file: "content/pages/home.md"
         fields:
-          - { label: "Hero Headline", name: "hero_title", widget: "string" }
+          - { label: "Hero Title", name: "hero_title", widget: "string" }
           - { label: "Hero Subtitle", name: "hero_subtitle", widget: "text" }
-      - label: "About Page"
+          - { label: "Banner Image", name: "hero_image", widget: "image" }
+          - { label: "Main Content", name: "body", widget: "markdown" }
+
+      - file: "content/pages/about.md"
+        label: "About Page"
         name: "about"
-        file: "content/pages/about.md"
         fields:
           - { label: "Title", name: "title", widget: "string" }
           - { label: "Body", name: "body", widget: "markdown" }
+
+  - name: "settings"
+    label: "Site Settings"
+    files:
+      - file: "content/settings/site.json"
+        label: "Global Settings"
+        name: "site_settings"
+        fields:
+          - { label: "Site Name", name: "site_name", widget: "string" }
+          - { label: "Support Email", name: "support_email", widget: "string" }
+          - { label: "Maintenance Mode", name: "maintenance_mode", widget: "boolean", default: false }
