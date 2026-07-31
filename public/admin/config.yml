@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: your-github-username/your-repo-name # Replace with your GitHub repository
+  repo: tngkne/netsorna-wb # Replace with your GitHub repository
   branch: main # Or your default branch
 
 # Media files setup
