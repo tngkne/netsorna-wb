@@ -2,24 +2,31 @@ backend:
   name: github
   repo: tngkne/netsorna-wb
   branch: main
-  base_url: https://netsorna-wb.netsorna.workers.dev
-  auth_endpoint: /api/cms-auth
 
-media_folder: "public/images/uploads"
-public_folder: "/images/uploads"
+media_folder: public/images/products
+public_folder: /images/products
 
 collections:
-  - name: "products"
-    label: "Products"
-    folder: "content/products"
+  - name: products
+    label: Products
+    folder: content/products
     create: true
-    slug: "{{slug}}"
-    extension: "json"
-    format: "json"
+    format: json
     fields:
-      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Product Name", name: "title", widget: "string" }
       - { label: "SKU", name: "sku", widget: "string" }
-      - { label: "Price", name: "price", widget: "number", value_type: "float" }
-      - { label: "Featured Image", name: "image", widget: "image" }
+      - { label: "Price", name: "price", widget: "number" }
+      - { label: "Product Image", name: "image", widget: "image" }
       - { label: "Description", name: "description", widget: "markdown" }
       - { label: "In Stock", name: "in_stock", widget: "boolean", default: true }
+
+  - name: blog
+    label: Blog Posts
+    folder: content/blog
+    create: true
+    format: markdown
+    fields:
+      - { label: "Post Title", name: "title", widget: "string" }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - { label: "Author", name: "author", widget: "string", default: "Store Admin" }
+      - { label: "Body Content", name: "body", widget: "markdown" }
