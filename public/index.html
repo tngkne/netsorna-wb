@@ -16,22 +16,20 @@
 </head>
 <body>
 
-  <!-- Floating Sticky Header Container -->
+  <!-- Floating Sticky Header Container (UNTOUCHED) -->
   <div class="navbar-wrapper">
     <header class="navbar" id="navbar">
-      <div class="nav-left-group">
-        <button class="menu-btn" aria-label="Toggle Navigation Menu" id="menuToggle">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <line x1="3" y1="6" x2="21" y2="6"></line>
-            <line x1="3" y1="12" x2="21" y2="12"></line>
-            <line x1="3" y1="18" x2="21" y2="18"></line>
-          </svg>
-        </button>
+      <button class="menu-btn" aria-label="Toggle Navigation Menu" id="menuToggle">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
 
-        <a href="index.html" class="brand-logo">
-          <img src="images/icons/logo1.svg" alt="Netsorna" class="logo-img" onerror="this.outerHTML='<span class=\'logo-text\'>netsorna.</span>'">
-        </a>
-      </div>
+      <a href="index.html" class="brand-logo">
+        <img src="images/icons/logo1.svg" alt="Netsorna" class="logo-img" onerror="this.outerHTML='<span class=\'logo-text\'>netsorna.</span>'">
+      </a>
 
       <a href="cart.html" class="cart-btn" aria-label="View Cart">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
@@ -55,47 +53,45 @@
   </nav>
 
   <main>
-    <!-- Featured Hero Section -->
+    <!-- Z-Pattern Featured Hero Section -->
     <section class="hero-section">
       <div class="hero-bg-overlay"></div>
       
-      <!-- Optimized Featured Partner Banner -->
       <div class="featured-card">
+        <!-- Z-Pattern Top: Header Anchored Right -->
         <div class="featured-header">
           <h2 class="featured-title">Featured Partner</h2>
-          <span class="featured-tag">Collection 01</span>
         </div>
         
-        <div class="featured-content-grid">
-          <div class="featured-image-box">
-            <img src="images/products/featured-art.jpg" alt="Featured Relief Artwork" onerror="this.src='https://via.placeholder.com/300x300/dedad3/000000?text=Featured+Art'">
-          </div>
-          
-          <div class="featured-details">
-            <p class="quote">
-              "I really love this piece, it reminds me of when i was still young looking at my late granny's walls seeing beautiful pieces like this one."
-            </p>
-            <span class="signature">Lerato M.</span>
-            
-            <!-- Identical Size Card Buttons Anchored Apart / Horizontally -->
-            <div class="card-actions-horizontal">
-              <a href="product.html?id=featured-1" class="btn btn-solid btn-sm">Get One</a>
-              <a href="featured.html" class="btn btn-subtle btn-sm">View More</a>
+        <div class="featured-content">
+          <!-- Z-Pattern Diagonal Body Flow -->
+          <div class="featured-body">
+            <div class="featured-image-box">
+              <img src="images/products/featured-art.jpg" alt="Featured Relief Artwork" onerror="this.src='https://via.placeholder.com/300x300/dedad3/000000?text=Featured+Art'">
             </div>
+            
+            <div class="featured-details">
+              <p class="quote">
+                "I really love this piece, it reminds me of when i was still young looking at my late granny's walls seeing beautiful pieces like this one"
+              </p>
+              <span class="signature">Lerato M.</span>
+            </div>
+          </div>
+
+          <!-- Z-Pattern Bottom: Identical Buttons Anchored Apart (Left & Right) -->
+          <div class="featured-actions">
+            <a href="featured.html" class="btn btn-subtle">View More</a>
+            <a href="product.html?id=featured-1" class="btn btn-solid">Get One</a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Browse Catalog Section (F-Pattern Grid Layout) -->
+    <!-- F-Pattern Browse Catalog Section -->
     <section class="browse-section">
-      <div class="browse-heading-bar">
-        <h1 class="browse-heading">Browse</h1>
-        <span class="browse-subtext">Curated Catalogue</span>
-      </div>
+      <h1 class="browse-heading">Browse</h1>
       
       <div class="product-grid">
-        <!-- Product Item 1 -->
         <article class="product-card">
           <div class="product-image-container">
             <img src="images/products/product1.jpg" alt="FROME ART" class="product-img" onerror="this.outerHTML='<div class=\'placeholder-box\'></div>'">
@@ -105,13 +101,12 @@
               <h3 class="product-title">FROME ART</h3>
               <span class="price">R 1999</span>
             </div>
-            <div class="card-actions-stacked">
+            <div class="product-actions">
               <a href="product.html?id=frome-art-1" class="btn btn-outline">Get One</a>
             </div>
           </div>
         </article>
 
-        <!-- Product Item 2 -->
         <article class="product-card">
           <div class="product-image-container">
             <img src="images/products/product2.jpg" alt="FROME ART" class="product-img" onerror="this.outerHTML='<div class=\'placeholder-box\'></div>'">
@@ -121,13 +116,12 @@
               <h3 class="product-title">FROME ART</h3>
               <span class="price">R 1999</span>
             </div>
-            <div class="card-actions-stacked">
+            <div class="product-actions">
               <a href="product.html?id=frome-art-2" class="btn btn-outline">Get One</a>
             </div>
           </div>
         </article>
 
-        <!-- Product Item 3 -->
         <article class="product-card">
           <div class="product-image-container">
             <img src="images/products/product3.jpg" alt="MONO RELIEF" class="product-img" onerror="this.outerHTML='<div class=\'placeholder-box\'></div>'">
@@ -137,13 +131,12 @@
               <h3 class="product-title">MONO RELIEF</h3>
               <span class="price">R 2499</span>
             </div>
-            <div class="card-actions-stacked">
+            <div class="product-actions">
               <a href="product.html?id=mono-relief" class="btn btn-outline">Get One</a>
             </div>
           </div>
         </article>
 
-        <!-- Product Item 4 -->
         <article class="product-card">
           <div class="product-image-container">
             <img src="images/products/product4.jpg" alt="LINEAGE PIECE" class="product-img" onerror="this.outerHTML='<div class=\'placeholder-box\'></div>'">
@@ -153,13 +146,14 @@
               <h3 class="product-title">LINEAGE PIECE</h3>
               <span class="price">R 3100</span>
             </div>
-            <div class="card-actions-stacked">
+            <div class="product-actions">
               <a href="product.html?id=lineage-piece" class="btn btn-outline">Get One</a>
             </div>
           </div>
         </article>
       </div>
 
+      <!-- Action Anchored Right -->
       <div class="view-all-container">
         <a href="shop.html" class="btn btn-solid btn-lg">Explore Full Catalogue →</a>
       </div>
@@ -168,34 +162,28 @@
     <!-- Custom Order Callout Section -->
     <section class="custom-cta-section">
       <div class="custom-cta-container">
-        <div class="cta-text-content">
+        <div class="custom-cta-text">
           <h2>Bespoke & Custom Commissions</h2>
-          <p>Have a specific vision or looking for a tailor-made sculpture for your space? Submit your requirements directly.</p>
+          <p>Have a specific vision or looking for a tailor-made sculpture for your space? Submit your requirements and custom images directly.</p>
         </div>
-        
-        <!-- Identical Size Card Buttons Anchored Apart -->
-        <div class="card-actions-horizontal">
-          <a href="custom-order.html" class="btn btn-solid">Request Order</a>
+        <!-- Identical Buttons Stacked / Side-by-Side -->
+        <div class="cta-actions">
           <a href="whatsapp-inquiry.html" class="btn btn-subtle">WhatsApp Inquiry</a>
+          <a href="custom-order.html" class="btn btn-solid">Request Custom Order</a>
         </div>
       </div>
     </section>
 
-    <!-- Blog & Spotlight Section -->
+    <!-- Stories & Blog Section -->
     <section class="stories-section">
-      <div class="stories-header">
-        <h2 class="section-title">Stories & Insights</h2>
-        <a href="blog.html" class="section-link">View All →</a>
-      </div>
-
+      <h2 class="section-title">Stories & Insights</h2>
       <div class="stories-grid">
         <article class="story-card">
           <div>
-            <div class="story-card-top">
+            <div class="story-header">
+              <h3>The Craft Behind Modern Linear Relief Art</h3>
               <span class="story-date">July 2026</span>
-              <span class="story-category">Craftsmanship</span>
             </div>
-            <h3>The Craft Behind Modern Linear Relief Art</h3>
             <p>Discover how classic architectural techniques meet contemporary interior aesthetics.</p>
           </div>
           <a href="blog.html" class="story-link">Read Story →</a>
@@ -203,11 +191,10 @@
 
         <article class="story-card">
           <div>
-            <div class="story-card-top">
+            <div class="story-header">
+              <h3>Preserving Heritage Through Art Collectibles</h3>
               <span class="story-date">June 2026</span>
-              <span class="story-category">Heritage</span>
             </div>
-            <h3>Preserving Heritage Through Art Collectibles</h3>
             <p>A deep dive into how memory and nostalgia shape modern gallery spaces.</p>
           </div>
           <a href="blog.html" class="story-link">Read Story →</a>
@@ -256,7 +243,7 @@
 
     <div class="footer-bottom">
       <span>&copy; 2026 Netsorna. All rights reserved.</span>
-      <span>Fine Art & Reliefs</span>
+      <span>Fine Art & Collectibles</span>
     </div>
   </footer>
 
