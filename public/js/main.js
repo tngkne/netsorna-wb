@@ -101,16 +101,16 @@ function initNavbar() {
   const navDrawer = document.getElementById('navDrawer');
 
   if (menuToggle && navbar && navDrawer) {
-    // Dynamic Scroll Listener
+    // Dynamic Scroll Listener: Completely invisible at y=0, gains styling on downward scroll
     const handleScroll = () => {
-      if (window.scrollY > 20) {
+      if (window.scrollY > 0) {
         navbar.classList.add('scrolled');
       } else {
         navbar.classList.remove('scrolled');
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll(); // Initial check on load
 
     const closeDrawer = () => {
