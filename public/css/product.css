@@ -1,192 +1,216 @@
-/* Typography Reset Overrides for Minimalist Aesthetic */
-body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  color: #000000;
-  background-color: #ffffff;
+/* Body reset for full-width layout */
+body.product-page-body {
+  margin: 0;
+  padding: 0;
 }
 
-/* Page Container Layout */
 .product-page-wrapper {
   width: 100%;
-  margin: 0 auto;
-  padding-top: 0px; /* Artwork touches top under floating navbar */
+  margin: 0;
+  padding: 0;
 }
 
-/* 1. Full-Width Hero Media Viewer */
-.artwork-display-container {
-  width: 100%;
+/* Full Width Hero Slider Locked Directly Below Floating Navbar */
+.full-width-hero {
   position: relative;
+  width: 100vw;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  height: 68vh;
+  min-height: 420px;
+  max-height: 720px;
   background-color: #f7f7f7;
+  overflow: hidden;
 }
 
-.artwork-viewport {
-  position: relative;
-  width: 100%;
-  max-width: 100%;
+.hero-slider {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  width: 100%;
+  height: 100%;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
 }
 
-.hero-artwork-img {
+/* Hide horizontal scrollbar */
+.hero-slider::-webkit-scrollbar {
+  display: none;
+}
+.hero-slider {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.slide-item {
+  flex: 0 0 100%;
   width: 100%;
-  height: auto;
-  max-height: 80vh;
+  height: 100%;
+  scroll-snap-align: start;
+  position: relative;
+}
+
+.hero-img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
+  object-position: center;
   display: block;
 }
 
-/* Minimalist Image Counter Badge (Matching Reference) */
-.image-pagination-counter {
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 0.85rem;
-  font-weight: 600;
-  letter-spacing: 2px;
-  color: #111111;
-  background: rgba(255, 255, 255, 0.6);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  padding: 4px 14px;
-  border-radius: 12px;
+.placeholder-hero {
+  width: 100%;
+  height: 100%;
+  background: var(--placeholder-color, #e5e5e5);
 }
 
-/* 2. Product Info Container */
-.product-info-container {
-  max-width: 680px;
+/* Image Counter Badge: Locked at Far-Right Over bottom of Image */
+.hero-counter-badge {
+  position: absolute;
+  bottom: 20px;
+  right: 24px;
+  font-family: var(--font-primary, 'Poppins', sans-serif);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  color: #000000;
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 4px 12px;
+  border-radius: 20px;
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* Product Content Block Below Hero */
+.product-details-container {
+  max-width: 640px;
   margin: 0 auto;
-  padding: 36px 24px 60px;
+  padding: 32px 20px 60px;
   text-align: left;
 }
 
-/* Title & Price Layout */
-.artwork-header {
-  margin-bottom: 28px;
+/* Editorial Minimal Title & Price Section */
+.editorial-header {
+  margin-bottom: 24px;
 }
 
-.artwork-title {
-  font-size: 2.5rem;
+.product-title-lg {
+  font-size: 2.2rem;
   font-weight: 700;
-  letter-spacing: -1px;
-  margin: 0 0 8px 0;
   line-height: 1.1;
-  color: #000000;
+  letter-spacing: -0.5px;
+  margin: 0 0 6px 0;
+  color: var(--text-dark, #000);
 }
 
-.artwork-price-row {
-  display: flex;
-  align-items: baseline;
-  gap: 6px;
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: #000000;
-}
-
-.price-currency {
-  font-size: 0.95rem;
+.product-price-lg {
+  font-size: 1.15rem;
   font-weight: 600;
+  color: var(--text-dark, #000);
+  margin-bottom: 2px;
 }
 
 .shipping-tagline {
-  font-size: 0.9rem;
-  color: #a0a0a0;
-  margin-top: 4px;
-  font-weight: 500;
-}
-
-/* Vertical Bulletless Spec Details */
-.artwork-specs-list {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  margin-bottom: 36px;
-}
-
-.spec-line {
-  font-size: 1rem;
-  font-weight: 700;
-  color: #000000;
-  line-height: 1.4;
+  font-size: 0.82rem;
+  color: #888888;
   margin: 0;
 }
 
-/* CTA Buttons */
-.purchase-action-group {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+/* Specs Bullet/List Styling (Reference Clean Layout) */
+.editorial-specs {
+  margin-bottom: 28px;
 }
 
-.purchase-action-group .btn {
-  width: 100%;
-  height: 52px;
-  font-size: 0.95rem;
+.editorial-specs ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.editorial-specs li {
+  font-size: 0.9rem;
   font-weight: 600;
-  border-radius: 4px;
+  color: var(--text-dark, #111);
+  line-height: 1.6;
+}
+
+/* Options & Purchase Button Actions */
+.product-purchase-box {
+  border-top: 1px solid var(--border-color, #eee);
+  border-bottom: 1px solid var(--border-color, #eee);
+  padding: 20px 0;
+  margin-bottom: 32px;
+}
+
+.option-row {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.option-row label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--text-muted, #666);
+}
+
+.option-chips {
+  display: flex;
+  gap: 8px;
+}
+
+.chip {
+  padding: 6px 14px;
+  font-size: 0.78rem;
+  border: 1px solid var(--border-color, #ccc);
+  background: #fff;
   cursor: pointer;
+  border-radius: 2px;
   transition: all 0.2s ease;
 }
 
-.buy-now-btn {
-  background-color: #000000;
-  color: #ffffff;
-  border: 1px solid #000000;
+.chip.active, .chip:hover {
+  background: #000;
+  color: #fff;
+  border-color: #000;
 }
 
-.buy-now-btn:hover {
-  background-color: #222222;
+.product-purchase-actions {
+  display: flex;
+  gap: 12px;
 }
 
-.checkout-direct-btn {
-  background-color: transparent;
-  color: #000000;
-  border: 1px solid #000000;
+.product-purchase-actions .btn {
+  flex: 1;
+  height: 46px;
 }
 
-.checkout-direct-btn:hover {
-  background-color: #f5f5f5;
+/* Narrative Section */
+.product-narrative {
+  margin-bottom: 40px;
 }
 
-/* Related Artworks Section */
-.related-artworks-section {
-  max-width: 1140px;
-  margin: 0 auto;
-  padding: 40px 20px 80px;
-  border-top: 1px solid #eeeeee;
+.product-narrative h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: 8px;
 }
 
-.related-heading {
-  font-size: 1.2rem;
-  font-weight: 700;
-  margin-bottom: 24px;
-  text-align: left;
+.product-description {
+  font-size: 0.9rem;
+  color: var(--text-dark, #333);
+  line-height: 1.6;
+  margin: 0;
 }
 
-/* Desktop Responsive Layout Adjustments */
 @media (min-width: 768px) {
-  .product-page-wrapper {
-    padding-top: 90px;
-  }
-
-  .product-info-container {
-    padding: 48px 24px 80px;
-  }
-
-  .artwork-title {
-    font-size: 3rem;
-  }
-
-  .purchase-action-group {
-    flex-direction: row;
-  }
-
-  .purchase-action-group .btn {
-    flex: 1;
+  .full-width-hero {
+    height: 75vh;
   }
 }
