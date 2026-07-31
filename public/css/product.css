@@ -1,16 +1,25 @@
-/* Body reset for full-width layout */
+/* ==========================================================================
+   Base Layout Setup & Body Resets
+   ========================================================================== */
 body.product-page-body {
   margin: 0;
   padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+  background-color: #ffffff;
 }
 
 .product-page-wrapper {
   width: 100%;
   margin: 0;
   padding: 0;
+  display: flex;
+  flex-direction: column;
 }
 
-/* Full Width Hero Slider Locked Directly Below Floating Navbar */
+/* ==========================================================================
+   Full-Width Hero Slider & Carousel (Mobile & Compact Viewports)
+   ========================================================================== */
 .full-width-hero {
   position: relative;
   width: 100vw;
@@ -18,9 +27,7 @@ body.product-page-body {
   right: 50%;
   margin-left: -50vw;
   margin-right: -50vw;
-  height: 68vh;
-  min-height: 420px;
-  max-height: 720px;
+  height: clamp(380px, 60vh, 650px);
   background-color: #f7f7f7;
   overflow: hidden;
 }
@@ -35,7 +42,7 @@ body.product-page-body {
   -webkit-overflow-scrolling: touch;
 }
 
-/* Hide horizontal scrollbar */
+/* Hide native scrollbars across browsers */
 .hero-slider::-webkit-scrollbar {
   display: none;
 }
@@ -66,63 +73,68 @@ body.product-page-body {
   background: var(--placeholder-color, #e5e5e5);
 }
 
-/* Image Counter Badge: Locked at Far-Right Over bottom of Image */
+/* Floating Image Counter Badge (Far-Right Anchor) */
 .hero-counter-badge {
   position: absolute;
-  bottom: 20px;
-  right: 24px;
+  bottom: clamp(12px, 3vw, 24px);
+  right: clamp(12px, 3vw, 24px);
   font-family: var(--font-primary, 'Poppins', sans-serif);
-  font-size: 0.85rem;
+  font-size: clamp(0.75rem, 2vw, 0.85rem);
   font-weight: 500;
   letter-spacing: 1px;
   color: #000000;
-  background: rgba(255, 255, 255, 0.4);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   padding: 4px 12px;
   border-radius: 20px;
   z-index: 10;
   pointer-events: none;
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-/* Product Content Block Below Hero */
+/* ==========================================================================
+   Product Content & Typography Container
+   ========================================================================== */
 .product-details-container {
+  width: 100%;
   max-width: 640px;
   margin: 0 auto;
-  padding: 32px 20px 60px;
+  padding: clamp(24px, 5vw, 48px) clamp(16px, 4vw, 24px) 60px;
+  box-sizing: border-box;
   text-align: left;
 }
 
-/* Editorial Minimal Title & Price Section */
+/* Title & Price Block */
 .editorial-header {
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 }
 
 .product-title-lg {
-  font-size: 2.2rem;
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
   font-weight: 700;
   line-height: 1.1;
   letter-spacing: -0.5px;
-  margin: 0 0 6px 0;
+  margin: 0 0 8px 0;
   color: var(--text-dark, #000);
 }
 
 .product-price-lg {
-  font-size: 1.15rem;
+  font-size: clamp(1.1rem, 3vw, 1.35rem);
   font-weight: 600;
   color: var(--text-dark, #000);
-  margin-bottom: 2px;
+  margin-bottom: 4px;
 }
 
 .shipping-tagline {
-  font-size: 0.82rem;
-  color: #888888;
+  font-size: 0.8rem;
+  color: #777777;
   margin: 0;
 }
 
-/* Specs Bullet/List Styling (Reference Clean Layout) */
+/* Editorial Artwork Specifications */
 .editorial-specs {
-  margin-bottom: 28px;
+  margin-bottom: 24px;
 }
 
 .editorial-specs ul {
@@ -132,13 +144,13 @@ body.product-page-body {
 }
 
 .editorial-specs li {
-  font-size: 0.9rem;
-  font-weight: 600;
+  font-size: clamp(0.85rem, 2vw, 0.92rem);
+  font-weight: 500;
   color: var(--text-dark, #111);
   line-height: 1.6;
 }
 
-/* Options & Purchase Button Actions */
+/* Options & Purchase Box */
 .product-purchase-box {
   border-top: 1px solid var(--border-color, #eee);
   border-bottom: 1px solid var(--border-color, #eee);
@@ -150,29 +162,32 @@ body.product-page-body {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  margin-bottom: 16px;
+  margin-bottom: 18px;
 }
 
 .option-row label {
-  font-size: 0.78rem;
+  font-size: 0.75rem;
   font-weight: 600;
   text-transform: uppercase;
+  letter-spacing: 0.5px;
   color: var(--text-muted, #666);
 }
 
 .option-chips {
   display: flex;
+  flex-wrap: wrap;
   gap: 8px;
 }
 
 .chip {
-  padding: 6px 14px;
-  font-size: 0.78rem;
+  padding: 8px 16px;
+  font-size: 0.8rem;
   border: 1px solid var(--border-color, #ccc);
   background: #fff;
   cursor: pointer;
   border-radius: 2px;
   transition: all 0.2s ease;
+  touch-action: manipulation;
 }
 
 .chip.active, .chip:hover {
@@ -188,7 +203,8 @@ body.product-page-body {
 
 .product-purchase-actions .btn {
   flex: 1;
-  height: 46px;
+  height: 48px;
+  font-size: 0.88rem;
 }
 
 /* Narrative Section */
@@ -197,7 +213,7 @@ body.product-page-body {
 }
 
 .product-narrative h3 {
-  font-size: 1.05rem;
+  font-size: 1rem;
   font-weight: 600;
   margin-bottom: 8px;
 }
@@ -205,12 +221,85 @@ body.product-page-body {
 .product-description {
   font-size: 0.9rem;
   color: var(--text-dark, #333);
-  line-height: 1.6;
+  line-height: 1.65;
   margin: 0;
 }
 
+/* ==========================================================================
+   Responsive Breakpoints
+   ========================================================================== */
+
+/* Tablet Split Viewport (768px to 1023px) */
 @media (min-width: 768px) {
+  .product-page-wrapper {
+    flex-direction: row;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding-top: 90px; /* Clears navbar floating height */
+    align-items: flex-start;
+  }
+
   .full-width-hero {
+    position: sticky;
+    top: 90px;
+    width: 50vw;
+    max-width: 600px;
+    height: clamp(450px, 65vh, 680px);
+    margin-left: 0;
+    margin-right: 0;
+    left: auto;
+    right: auto;
+    flex-shrink: 0;
+  }
+
+  .product-details-container {
+    width: 50%;
+    max-width: 580px;
+    padding: 0 32px 60px;
+  }
+
+  .product-purchase-actions {
+    flex-direction: row;
+  }
+}
+
+/* Desktop & Widescreen Viewport (1024px and above) */
+@media (min-width: 1024px) {
+  .product-page-wrapper {
+    gap: 40px;
+    padding-top: 100px;
+  }
+
+  .full-width-hero {
+    width: 55%;
+    max-width: 720px;
     height: 75vh;
+    border-radius: 4px;
+  }
+
+  .product-details-container {
+    width: 45%;
+    padding: 20px 40px 80px 0;
+  }
+
+  .product-title-lg {
+    font-size: 2.8rem;
+  }
+
+  .chip {
+    padding: 10px 20px;
+  }
+}
+
+/* Large Desktop Screens (1440px and above) */
+@media (min-width: 1440px) {
+  .product-page-wrapper {
+    max-width: 1400px;
+    gap: 60px;
+  }
+
+  .full-width-hero {
+    height: 80vh;
+    max-height: 850px;
   }
 }
