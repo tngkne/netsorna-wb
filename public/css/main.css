@@ -38,7 +38,7 @@ body.menu-open {
   overflow: hidden;
 }
 
-/* FLOATING EXPANDABLE GLASS NAVBAR */
+/* FLOATING NAVBAR CONTAINER */
 .navbar-wrapper {
   position: fixed;
   top: 12px;
@@ -51,6 +51,7 @@ body.menu-open {
   pointer-events: none;
 }
 
+/* Base transparent state (At top of page & menu closed) */
 .navbar {
   pointer-events: auto;
   width: 100%;
@@ -59,12 +60,31 @@ body.menu-open {
   flex-direction: column;
   overflow: hidden;
   border-radius: 12px;
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: transparent;
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
+  border: 1px solid transparent;
+  box-shadow: none;
+  transition: background-color 0.4s ease, 
+              backdrop-filter 0.4s ease, 
+              border-color 0.4s ease, 
+              box-shadow 0.4s ease;
+}
+
+/* Scrolled Down OR Expanded Menu Active State */
+.navbar.scrolled,
+.navbar.expanded {
+  background-color: rgba(255, 255, 255, 0.35);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.45);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  border-color: rgba(255, 255, 255, 0.55);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+.navbar.expanded {
+  background-color: rgba(255, 255, 255, 0.65);
+  border-color: rgba(255, 255, 255, 0.75);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
 }
 
 /* Top bar containing Icon, Logo, and Cart */
@@ -148,13 +168,6 @@ body.menu-open {
   transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
               opacity 0.3s ease, 
               visibility 0.3s ease;
-}
-
-/* Extended Glass Header Active State */
-.navbar.expanded {
-  background-color: rgba(255, 255, 255, 0.65);
-  border-color: rgba(255, 255, 255, 0.75);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
 }
 
 .navbar.expanded .nav-drawer {
