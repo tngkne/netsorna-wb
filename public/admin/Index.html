@@ -1,15 +1,52 @@
-<!Doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Netsorna Content Manager</title>
+    <meta charset="UTF-8">
+    <title>Netsorna Admin Login</title>
+    <link rel="stylesheet" href="/css/admin.css">
 </head>
 <body>
-  <!-- Include the Static CMS script -->
-  <script src="https://unpkg.com/@staticcms/core@^3.0.0/dist/static-cms-app.js"></script>
-  <script>
-    CMS.init();
-  </script>
+    <div id="login-container" style="max-width: 400px; margin: 100px auto; padding: 20px; background: #fff; border-radius: 8px;">
+        <h2>Admin Access</h2>
+        <form id="login-form">
+            <label for="password">Enter Admin Password:</label>
+            <input type="password" id="password" required style="width: 100%; padding: 8px; margin: 10px 0;">
+            <button type="submit" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none;">Login</button>
+        </form>
+        <p id="error-msg" style="color: red; display: none;">Incorrect password.</p>
+    </div>
+
+    <div id="admin-dashboard" style="display: none;">
+        <h1>Welcome to Netsorna CMS Dashboard</h1>
+        <!-- Your Product Manager / Order Forms go here -->
+    </div>
+
+    <script>
+        document.getElementById('login-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const password = document.getElementById('password').value;
+
+            const response = await fetch('/api/admin/auth', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ password })
+            });
+
+            if (response.ok) {
+                document.getElementById('login-container').style.display = 'none';
+                document.getElementById('admin-dashboard').style.display = 'block';
+                // Save a temporary session flag in browser memory
+                sessionStorage.setItem('isAdmin', 'true');
+            } else {
+                document.getElementById('error-msg').style.display = 'block';
+            }
+        });
+
+        // Check if already logged in during this session
+        if (sessionStorage.getItem('isAdmin') === 'true') {
+            document.getElementById('login-container').style.display = 'none';
+            document.getElementById('admin-dashboard').style.display = 'block';
+        }
+    </script>
 </body>
 </html>
