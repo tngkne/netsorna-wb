@@ -5,6 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Your Cart — Netsorna</title>
 
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://netsorna.website/cart.html" />
+
+  <!-- Open Graph / WhatsApp & Social Sharing -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://netsorna.website/cart.html" />
+  <meta property="og:title" content="Your Cart — Netsorna" />
+  <meta property="og:description" content="Review your selected fine art and custom acrylic UV print pieces." />
+  <meta property="og:image" content="https://netsorna.website/images/icons/horizontal_logo.svg" />
+
   <!-- Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,7 +27,7 @@
   <!-- Global Favicon Setup -->
   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
-  <link rel="icon" type="image/svg+xml" href="/images/icons/horizon_logo.svg" />
+  <link rel="icon" type="image/svg+xml" href="/images/icons/horizontal_logo.svg" />
 </head>
 <body>
 
@@ -32,12 +42,14 @@
         </svg>
       </button>
 
-      <a href="/index.html" class="brand-logo">
+      <a href="/index.html" class="brand-logo" aria-label="Netsorna Home">
         <img 
-          src="/images/icons/horizon_logo.svg" 
-          alt="Netsorna" 
+          src="/images/icons/horizontal_logo.svg" 
+          alt="Netsorna Logo" 
           class="logo-img" 
-          onerror="this.outerHTML='<span class=\'logo-text\'>netsorna.</span>'"
+          width="160"
+          height="40"
+          onerror="this.outerHTML='<span class=\'logo-text\'>NETSORNA.</span>'"
         />
       </a>
 
@@ -85,13 +97,13 @@
               <span class="item-price">R 1 999</span>
             </div>
 
-            <p class="item-spec">Finish: Raw White • 60cm x 80cm</p>
+            <p class="item-spec">Finish: Floating Mount • 60cm x 80cm</p>
 
             <div class="item-controls">
               <div class="quantity-selector">
-                <button class="qty-btn">-</button>
+                <button class="qty-btn" aria-label="Decrease quantity">-</button>
                 <span class="qty-num">1</span>
-                <button class="qty-btn">+</button>
+                <button class="qty-btn" aria-label="Increase quantity">+</button>
               </div>
 
               <button class="remove-btn">Remove</button>
@@ -133,7 +145,7 @@
     <div class="footer-top">
       <div class="footer-brand">
         <span class="footer-logo">netsorna.</span>
-        <p>Curated fine art, relief sculptures, and custom interior pieces.</p>
+        <p>Curated fine art, personalized acrylic UV prints, and custom interior pieces.</p>
       </div>
 
       <div class="footer-links-group">
