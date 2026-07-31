@@ -3,20 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Netsorna — Fine Art & Collectibles</title>
+  <title>Horizon — Fine Art & Collectibles</title>
 
   <!-- Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Reenie+Beanie&display=swap" rel="stylesheet">
 
+  <!-- Favicon Setup -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="icon" type="image/svg+xml" href="images/icons/horizon_logo.svg" />
+
   <!-- Core Styles -->
   <link rel="stylesheet" href="css/main.css" />
-  <link rel="icon" type="image/svg+xml" href="images/icons/favicon.svg" />
 </head>
 <body>
 
-  <!-- Floating Sticky Header Container (UNTOUCHED) -->
+  <!-- Floating Sticky Header Container -->
   <div class="navbar-wrapper">
     <header class="navbar" id="navbar">
       <button class="menu-btn" aria-label="Toggle Navigation Menu" id="menuToggle">
@@ -27,8 +30,14 @@
         </svg>
       </button>
 
-      <a href="index.html" class="brand-logo">
-        <img src="images/icons/logo1.svg" alt="Netsorna" class="logo-img" onerror="this.outerHTML='<span class=\'logo-text\'>netsorna.</span>'">
+      <!-- Brand Logo using horizon_logo.svg -->
+      <a href="index.html" class="brand-logo" aria-label="Horizon Home">
+        <img 
+          src="images/icons/horizon_logo.svg" 
+          alt="Horizon Logo" 
+          class="logo-img" 
+          onerror="this.outerHTML='<span class=\'logo-text\'>HORIZON.</span>'"
+        />
       </a>
 
       <a href="cart.html" class="cart-btn" aria-label="View Cart">
@@ -87,7 +96,7 @@
       </div>
     </section>
 
-    <!-- F-Pattern Browse Catalog Section -->
+    <!-- F-Pattern Browse Catalog Section (Un-cramped Card Grid) -->
     <section class="browse-section">
       <h1 class="browse-heading">Browse</h1>
       
@@ -99,7 +108,7 @@
           <div class="product-info">
             <div class="product-meta">
               <h3 class="product-title">FROME ART</h3>
-              <span class="price">R 1999</span>
+              <span class="price">R 1 999</span>
             </div>
             <div class="product-actions">
               <a href="product.html?id=frome-art-1" class="btn btn-outline">Get One</a>
@@ -114,7 +123,7 @@
           <div class="product-info">
             <div class="product-meta">
               <h3 class="product-title">FROME ART</h3>
-              <span class="price">R 1999</span>
+              <span class="price">R 1 999</span>
             </div>
             <div class="product-actions">
               <a href="product.html?id=frome-art-2" class="btn btn-outline">Get One</a>
@@ -129,7 +138,7 @@
           <div class="product-info">
             <div class="product-meta">
               <h3 class="product-title">MONO RELIEF</h3>
-              <span class="price">R 2499</span>
+              <span class="price">R 2 499</span>
             </div>
             <div class="product-actions">
               <a href="product.html?id=mono-relief" class="btn btn-outline">Get One</a>
@@ -144,7 +153,7 @@
           <div class="product-info">
             <div class="product-meta">
               <h3 class="product-title">LINEAGE PIECE</h3>
-              <span class="price">R 3100</span>
+              <span class="price">R 3 100</span>
             </div>
             <div class="product-actions">
               <a href="product.html?id=lineage-piece" class="btn btn-outline">Get One</a>
@@ -207,7 +216,7 @@
   <footer class="site-footer">
     <div class="footer-top">
       <div class="footer-brand">
-        <span class="footer-logo">netsorna.</span>
+        <span class="footer-logo">horizon.</span>
         <p>Curated fine art, relief sculptures, and custom interior pieces.</p>
       </div>
 
@@ -242,7 +251,7 @@
     </div>
 
     <div class="footer-bottom">
-      <span>&copy; 2026 Netsorna. All rights reserved.</span>
+      <span>&copy; 2026 Horizon. All rights reserved.</span>
       <span>Fine Art & Collectibles</span>
     </div>
   </footer>
