@@ -12,9 +12,9 @@ const PRODUCTS_DB = {
     sku: 'NET-FRM-001',
     description: 'A hand-crafted 3D linear relief sculpture created using textured composite layers. Designed for contemporary minimalist and mid-century spaces.',
     images: [
-      'images/products/product1.jpg',
-      'images/products/product2.jpg',
-      'images/products/product3.jpg'
+      '/images/products/product1.jpg',
+      '/images/products/product2.jpg',
+      '/images/products/product3.jpg'
     ],
     dimensions: '60cm x 80cm'
   },
@@ -25,8 +25,8 @@ const PRODUCTS_DB = {
     sku: 'NET-MNR-002',
     description: 'Monochromatic textured wall piece capturing subtle shadows and geometric depth.',
     images: [
-      'images/products/product3.jpg',
-      'images/products/product1.jpg'
+      '/images/products/product3.jpg',
+      '/images/products/product1.jpg'
     ],
     dimensions: '75cm x 100cm'
   },
@@ -37,8 +37,8 @@ const PRODUCTS_DB = {
     sku: 'NET-LNG-003',
     description: 'Fluid architectural line art using sustainable composite plaster and organic dye.',
     images: [
-      'images/products/product4.jpg',
-      'images/products/product2.jpg'
+      '/images/products/product4.jpg',
+      '/images/products/product2.jpg'
     ],
     dimensions: '90cm x 120cm'
   }
@@ -195,7 +195,7 @@ function initCartPage() {
         <div style="padding: 40px 0; text-align: left;">
           <h3>Your cart is empty.</h3>
           <p style="color: var(--text-muted); margin: 12px 0 20px;">Explore our curated collection to find relief sculptures for your space.</p>
-          <a href="shop.html" class="btn btn-solid" style="display: inline-block; padding: 10px 24px;">Explore Collection</a>
+          <a href="/shop.html" class="btn btn-solid" style="display: inline-block; padding: 10px 24px;">Explore Collection</a>
         </div>
       `;
       if (cartSummaryCard) cartSummaryCard.style.display = 'none';
