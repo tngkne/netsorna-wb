@@ -1,9 +1,0 @@
-name = "netsorna-admin"
-compatibility_date = "2026-08-01"
-
-[assets]
-directory = "public/admin"
-
-routes = [
-  { pattern = "admin.netsorna.website", custom_domain = true }
-]
