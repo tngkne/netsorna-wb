@@ -1,27 +1,32 @@
-// Function to update a product file in content/products/[slug].json
-async function publishProductUpdate(slug, data, existingSha = null) {
-  const filePath = `content/products/${slug}.json`;
-  const jsonString = JSON.stringify(data, null, 2);
+// Store a fine-grained PAT in Cloudflare Secrets, expose via a thin worker
+// OR (simpler): Use GitHub's OAuth Device Flow for browser-based auth
 
-  try {
-    const response = await fetch('/admin-api/github-commit', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        path: filePath,
-        content: jsonString,
-        message: `CMS: Update product ${slug}`,
-        sha: existingSha
-      })
-    });
+const GITHUB_API = 'https://api.github.com';
+const REPO = 'tngkne/netsorna-wb';
+const CONTENT_PATH = 'content/products';
 
-    const res = await response.json();
-    if (res.success) {
-      alert('Product saved! Cloudflare build triggered for main site.');
-    } else {
-      alert(`Save failed: ${res.error}`);
-    }
-  } catch (err) {
-    console.error('API Error:', err);
-  }
+// Read file (GET)
+async function getContent(path) {
+  const res = await fetch(`${GITHUB_API}/repos/${REPO}/contents/${path}`, {
+    headers: { 'Accept': 'application/vnd.github+json' }
+  });
+  const data = await res.json();
+  return { content: atob(data.content), sha: data.sha };
+}
+
+// Write file (PUT) — creates commit
+async function updateContent(path, message, content, sha) {
+  const res = await fetch(`${GITHUB_API}/repos/${REPO}/contents/${path}`, {
+    method: 'PUT',
+    headers: {
+      'Authorization': `token ${GITHUB_TOKEN}`, // From your CF worker proxy
+      'Accept': 'application/vnd.github+json'
+    },
+    body: JSON.stringify({
+      message,
+      content: btoa(content),
+      sha // required for updates
+    })
+  });
+  return res.json();
 }
