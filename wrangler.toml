@@ -1,9 +1,0 @@
-name = "netsorna-wb"
-compatibility_date = "2026-07-31"
-
-[assets]
-directory = "./public"
-
-[[kv_namespaces]]
-binding = "STORE_PRODUCTS"
-id = "b4f4bfb99bb04aafb6f43fb5030d1a63"
